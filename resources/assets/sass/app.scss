@@ -1,9 +1,17 @@
-
-// Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
-
-// Variables
 @import "variables";
+@import "~bootstrap/scss/bootstrap";
+@import "~font-awesome/scss/font-awesome";
 
-// Bootstrap
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+label {
+  font-weight: bold;
+}
+
+.text-decoration-none,
+.text-decoration-none:hover {
+  text-decoration: none;
+}
+
+.btn-custom {
+  font-weight: bold;
+  border-width: 2px;
+}
