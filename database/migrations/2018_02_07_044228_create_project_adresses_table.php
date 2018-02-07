@@ -20,6 +20,8 @@ class CreateProjectAdressesTable extends Migration
             $table->integer('city_id')->unsigned()->index();
             $table->foreign('city_id')->references('id')->on('cities');
             $table->timestamps();
+            $table->integer('deleted_by')->nullable()->unsigned()->index();
+            $table->foreign('deleted_by')->references('id')->on('users');
             $table->softDeletes();
         });
     }

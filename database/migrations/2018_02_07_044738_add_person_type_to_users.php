@@ -19,7 +19,9 @@ class AddPersonTypeToUsers extends Migration
             $table->integer('type_user_id')->unsigned()->index();
             $table->foreign('type_user_id')->references('id')->on('type_users');
             $table->integer('created_by')->unsigned()->index();
-          //  $table->foreign('created_by')->references('id')->on('users');
+            //  $table->foreign('created_by')->references('id')->on('users');
+            $table->integer('deleted_by')->nullable()->unsigned()->index();
+            $table->foreign('deleted_by')->references('id')->on('users');
         });
     }
 
