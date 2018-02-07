@@ -13,12 +13,20 @@ class CreateDocumentsTable extends Migration
      */
     public function up()
     {
+        Schema::create('document_types', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+        });
+
         Schema::create('documents', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('type_document_id')->unsigned()->index();
-            $table->foreign('type_document_id')->references('id')->on('type_documents');
-            $table->timestamps();
+            $table->string('path');
+            $table->integer('document_type_id')->unsigned();
+            $table->foreign('document_type_id')->references('id')->on('document_types');
+            $table->integer('project_id')->unsigned();
+            $table->foreign('project_id')->references('id')->on('projects');
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 
@@ -29,6 +37,7 @@ class CreateDocumentsTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('document_types');
         Schema::dropIfExists('documents');
     }
 }

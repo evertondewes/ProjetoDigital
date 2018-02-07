@@ -13,16 +13,21 @@ class CreateEventsTable extends Migration
      */
     public function up()
     {
+        Schema::create('event_types', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('description');
+        });
+
         Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('project_id')->unsigned()->index();
+            $table->integer('event_type_id')->unsigned();
+            $table->foreign('event_type_id')->references('id')->on('event_types');
+            $table->integer('project_id')->unsigned();
             $table->foreign('project_id')->references('id')->on('projects');
-            $table->integer('event_id')->unsigned()->index();
-            $table->foreign('event_id')->references('id')->on('events');
-            $table->integer('created_by')->unsigned()->index();
-            $table->foreign('created_by')->references('id')->on('users');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -33,6 +38,7 @@ class CreateEventsTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('event_types');
         Schema::dropIfExists('events');
     }
 }
