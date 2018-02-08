@@ -4,7 +4,7 @@
 
 @section ('content')
     <div class="row mt-5">
-        <div class="col-md-4 mx-auto">
+        <div class="col-md-6 mx-auto">
             <div class="card">
                 <div class="card-body">
                     <h4 class="text-center">Entrar</h4>

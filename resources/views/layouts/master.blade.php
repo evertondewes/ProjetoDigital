@@ -9,11 +9,19 @@
     <link href="/css/app.css" rel="stylesheet">
 </head>
 <body>
-    @include ('layouts.nav')
+    <main id="app">
+        <div id="sidebar">
+            @include ('layouts.sidebar')
+        </div>
 
-    <div class="container">
-        @yield ('content')
-    </div>
+        <div id="content">
+            @include ('layouts.nav')
+
+            <div class="container">
+                @yield ('content')
+            </div>
+        </div>
+    </main>
 
     @section ('scripts')
         <script src="/js/app.js"></script>

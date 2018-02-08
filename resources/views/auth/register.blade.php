@@ -13,18 +13,18 @@
                         {{ csrf_field() }}
 
                         <div class="form-group">
-                            <label for="name">Nome:</label>
+                            <label for="name">Nome / Empresa:</label>
                             <input type="text" id="name" class="form-control" name="name">
                         </div>
 
                         <div class="form-group">
-                            <label for="cpf">CPF:</label>
-                            <input type="text" id="cpf" class="form-control" name="cpf">
+                            <label for="cpf">CPF / CNPJ:</label>
+                            <input type="text" id="cpf_cnpj" class="form-control" name="cpf">
                         </div>
 
                         <div class="form-group">
-                            <label for="company">Empresa: <span class="text-muted">(Opcional)</span></label>
-                            <input type="text" id="company" class="form-control" name="company">
+                            <label for="company">CREA / CAU: <span class="text-muted">(Opcional)</span></label>
+                            <input type="text" id="crea_cau" class="form-control" name="crea_cau">
                         </div>
 
                         <div class="form-group">

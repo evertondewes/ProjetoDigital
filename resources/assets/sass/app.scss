@@ -1,17 +1,7 @@
-@import "variables";
+@import "partials/variables";
 @import "~bootstrap/scss/bootstrap";
 @import "~font-awesome/scss/font-awesome";
 
-label {
-  font-weight: bold;
-}
-
-.text-decoration-none,
-.text-decoration-none:hover {
-  text-decoration: none;
-}
-
-.btn-custom {
-  font-weight: bold;
-  border-width: 2px;
-}
+@import "partials/sidebar";
+@import "partials/content";
+@import "partials/custom";

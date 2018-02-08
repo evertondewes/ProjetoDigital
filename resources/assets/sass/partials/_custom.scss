@@ -1,0 +1,32 @@
+label {
+  font-weight: bold;
+}
+
+.text-decoration-none,
+.text-decoration-none:hover {
+  text-decoration: none;
+}
+
+.btn-custom {
+  font-weight: bold;
+  border-width: 2px;
+}
+
+button[class*='primary'],
+a[class*='primary'] {
+  color: #fff !important;
+}
+
+button[class*='outline-primary'],
+a[class*='outline-primary'] {
+  color: $primary !important;
+
+  &:hover,
+  &:active {
+    color: #fff !important;
+  }
+}
+
+.margin-top-1-px {
+  margin-top: 1px;
+}

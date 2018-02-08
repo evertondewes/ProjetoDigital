@@ -3,7 +3,5 @@
 @section ('title', 'Início')
 
 @section ('content')
-    <div class="jumbotron text-center mt-2">
-        <h1 class="display-4">Projeto Digital</h1>
-    </div>
+    <h2 class="display-4 text-center mt-5">Home</h2>
 @endsection

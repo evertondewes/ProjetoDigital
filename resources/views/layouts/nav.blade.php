@@ -1,20 +1,18 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <div class="container">
-        <a class="navbar-brand" href="/">Projeto Digital</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarDefault" aria-controls="navbarDefault">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+        <ul class="navbar-nav">
+            <li class="nav-item sidebar-burger">
+                <a class="nav-link" href="#">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </li>
+        </ul>
 
-        <div class="collapse navbar-collapse" id="navbarDefault">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item {{ request()->is('login') ? 'active' : '' }}">
-                    <a class="nav-link" href="/login">Entrar</a>
-                </li>
-
-                <li class="nav-item {{ request()->is('register') ? 'active' : '' }}">
-                    <a class="nav-link" href="/register">Cadastrar-se</a>
-                </li>
-            </ul>
-        </div>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="btn btn-primary btn-custom" href="/login">Entrar</a>
+                <a class="btn btn-outline-primary btn-custom" href="/register">Cadastrar-se</a>
+            </li>
+        </ul>
     </div>
 </nav>

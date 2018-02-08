@@ -12898,6 +12898,18 @@ __webpack_require__(1);
 
 __webpack_require__(5);
 
+$('#sidebar').find('.navbar .close').click(function () {
+    $('#sidebar').css('display', 'none');
+    $('#content').css('margin-left', '0');
+    $('.sidebar-burger').show();
+});
+
+$('.sidebar-burger').click(function () {
+    $('#sidebar').css('display', 'block');
+    $('#content').css('margin-left', '250px');
+    $('.sidebar-burger').hide();
+});
+
 /***/ }),
 /* 4 */
 /***/ (function(module, exports) {

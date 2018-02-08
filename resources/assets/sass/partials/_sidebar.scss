@@ -1,0 +1,51 @@
+#sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 250px;
+  z-index: 500;
+  border-right: 1px solid rgba(0, 0, 0, .125);
+}
+
+#sidebar #sidebar-body {
+  background-color: $light;
+  position: relative;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#sidebar .navbar .close {
+  position: absolute;
+  top: 2px;
+  right: 8px;
+  outline: none;
+}
+
+#sidebar .list-group {
+  border-radius: 0 !important;
+}
+
+#sidebar .list-group nav.list-group a {
+  text-indent: .6em;
+}
+
+#sidebar .list-group .list-group-item {
+  border-right: none !important;
+  border-radius: 0 !important;
+}
+
+#sidebar .list-group .list-group-item.active {
+  z-index: 2;
+  color: #495057;
+  background-color: #e9ecef;
+  border-color: rgba(0, 0, 0, .125);
+}
+
+@media screen and (max-width: 768px) {
+  #sidebar {
+    width: 100vw;
+  }
+}
