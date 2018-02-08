@@ -27,6 +27,10 @@ class CreatePeopleTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreign('person_id')->references('id')->on('people');
+        });
     }
 
     /**
@@ -36,6 +40,10 @@ class CreatePeopleTable extends Migration
      */
     public function down()
     {
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign(['person_id']);
+        });
+
         Schema::dropIfExists('people');
     }
 }

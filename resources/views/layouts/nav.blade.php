@@ -6,12 +6,6 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarDefault">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item {{ request()->is('/') ? 'active' : '' }}">
-                    <a class="nav-link" href="/">Início</a>
-                </li>
-            </ul>
-
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item {{ request()->is('login') ? 'active' : '' }}">
                     <a class="nav-link" href="/login">Entrar</a>
@@ -24,4 +18,3 @@
         </div>
     </div>
 </nav>
-
