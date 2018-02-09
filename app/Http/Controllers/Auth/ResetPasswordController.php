@@ -2,8 +2,8 @@
 
 namespace ProjetoDigital\Http\Controllers\Auth;
 
-use ProjetoDigital\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use ProjetoDigital\Http\Controllers\Controller;
 
 class ResetPasswordController extends Controller
 {
@@ -25,7 +25,7 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.

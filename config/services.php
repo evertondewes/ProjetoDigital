@@ -30,7 +30,7 @@ return [
     ],
 
     'stripe' => [
-        'model' => ProjetoDigital\User::class,
+        'model' => ProjetoDigital\Models\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],

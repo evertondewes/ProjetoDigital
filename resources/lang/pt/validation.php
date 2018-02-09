@@ -116,6 +116,13 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'name' => 'Nome',
+        'email' => 'E-mail',
+        'cpf_cnpj' => 'CPF / CNPJ',
+        'crea_cau' => 'CREA / CAU',
+        'username' => 'Nome de usuário',
+        'password' => 'Senha',
+    ],
 
 ];

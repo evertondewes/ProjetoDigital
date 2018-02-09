@@ -5,8 +5,7 @@
 @section ('content')
     <div class="row mt-5">
         <div class="col-md-6 mx-auto">
-
-            @include ('layouts.errors')
+            @include ('layouts.status')
 
             <div class="card">
                 <div class="card-body">

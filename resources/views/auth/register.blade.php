@@ -5,6 +5,8 @@
 @section ('content')
     <div class="row my-5">
         <div class="col-md-6 mx-auto">
+            @include ('layouts.status')
+
             <div class="card">
                 <div class="card-body">
                     <h4 class="text-center">Cadastro</h4>
@@ -18,12 +20,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="cpf">CPF / CNPJ:</label>
-                            <input type="text" id="cpf_cnpj" class="form-control" name="cpf">
+                            <label for="cpf_cnpj">CPF / CNPJ:</label>
+                            <input type="text" id="cpf_cnpj" class="form-control" name="cpf_cnpj">
                         </div>
 
                         <div class="form-group">
-                            <label for="company">CREA / CAU: <span class="text-muted">(Opcional)</span></label>
+                            <label for="crea_cau">CREA / CAU: <span class="text-muted">(Opcional)</span></label>
                             <input type="text" id="crea_cau" class="form-control" name="crea_cau">
                         </div>
 

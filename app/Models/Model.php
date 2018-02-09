@@ -1,6 +1,6 @@
 <?php
 
-namespace ProjetoDigital;
+namespace ProjetoDigital\Models;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
