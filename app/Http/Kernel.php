@@ -2,6 +2,8 @@
 
 namespace ProjetoDigital\Http;
 
+use ProjetoDigital\Http\Middleware\Backend;
+use ProjetoDigital\Http\Middleware\Customer;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -57,5 +59,7 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \ProjetoDigital\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'backend'  => Backend::class,
+        'customer' => Customer::class,
     ];
 }

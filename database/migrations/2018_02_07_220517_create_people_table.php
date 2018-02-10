@@ -18,12 +18,11 @@ class CreatePeopleTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('cpf_cnpj', 14)->unique();
-            $table->string('crea_cau', 10)->nullable();
+            $table->string('crea_cau', 10)->nullable()->unique();
             $table->integer('created_by')->nullable()->unsigned();
             $table->foreign('created_by')->references('id')->on('users');
             $table->integer('deleted_by')->nullable()->unsigned();
             $table->foreign('deleted_by')->references('id')->on('users');
-            $table->boolean('active')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

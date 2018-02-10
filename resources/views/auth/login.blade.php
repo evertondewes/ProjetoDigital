@@ -2,6 +2,10 @@
 
 @section ('title', 'Entrar')
 
+@section ('sidebar')
+    @include ('layouts.sidebar')
+@endsection
+
 @section ('content')
     <div class="row mt-5">
         <div class="col-md-6 mx-auto">
@@ -15,15 +19,15 @@
                         {{ csrf_field() }}
 
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Nome de usuário">
+                            <input type="text" class="form-control" placeholder="Nome de usuário" name="username">
                         </div>
 
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Senha">
+                            <input type="password" class="form-control" placeholder="Senha" name="password">
                         </div>
 
                         <div class="form-group">
-                            <button type="button" class="text-uppercase btn btn-outline-primary btn-block btn-custom">
+                            <button type="submit" class="text-uppercase btn btn-outline-primary btn-block btn-custom">
                                 Entrar
                             </button>
                         </div>

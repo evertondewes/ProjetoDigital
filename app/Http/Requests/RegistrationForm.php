@@ -28,12 +28,12 @@ class RegistrationForm extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string',
-            'cpf_cnpj' => ['required', 'string', new CpfOrCnpj],
-            'crea_cau' => 'nullable|min:8|max:11',
-            'email' => 'required|string|email',
-            'username' => 'required|string|min:3',
-            'password' => 'required|min:6|confirmed'
+            'name' => 'required',
+            'cpf_cnpj' => ['required', new CpfOrCnpj, 'unique:people'],
+            'crea_cau' => 'bail|nullable|min:8|max:11|unique:people',
+            'email' => 'required|email|unique:people',
+            'username' => 'required|string|min:3|unique:users',
+            'password' => 'required|min:6|confirmed',
         ];
     }
 
@@ -45,7 +45,7 @@ class RegistrationForm extends FormRequest
 
         $role = $person->crea_cau ? 'engenheiro-cliente' : 'cliente';
 
-        User::create([
+        return User::create([
             'email' => $person->email,
             'username' => $this->input('username'),
             'password' => bcrypt($this->input('password')),

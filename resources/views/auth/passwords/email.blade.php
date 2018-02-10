@@ -2,6 +2,10 @@
 
 @section ('title', 'Alteração de senha')
 
+@section ('sidebar')
+    @include ('layouts.sidebar')
+@endsection
+
 @section ('content')
     <div class="row mt-5">
         <div class="col-md-6 mx-auto">

@@ -2,6 +2,10 @@
 
 namespace ProjetoDigital\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
+use ProjetoDigital\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 use ProjetoDigital\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -25,7 +29,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/dashboard';
+    protected $redirectTo = '/redirect';
 
     /**
      * Create a new controller instance.
@@ -35,6 +39,32 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    protected function credentials(Request $request)
+    {
+        $credentials = $request->only($this->username(), 'password');
+        $credentials['active'] = 1;
+
+        return $credentials;
+    }
+
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        $user = User::where($request->only($this->username()))->first();
+
+        if (! is_null($user) &&
+            ! $user->isActive() &&
+            Hash::check($request->input('password'), $user->password)
+        ) {
+            $this->alert('Sua conta não está ativada!', 'danger');
+
+            return redirect('/login');
+        }
+
+        throw ValidationException::withMessages([
+            $this->username() => [trans('auth.failed')],
+        ]);
     }
 
     public function username()

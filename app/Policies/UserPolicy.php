@@ -18,12 +18,7 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
-        return $user->hasAnyRole(
-            'admin',
-            'secretario',
-            'engenheiro',
-            'estagiario'
-        );
+        return $user->hasAnyRole('admin', 'secretario', 'engenheiro', 'estagiario');
     }
 
     /**

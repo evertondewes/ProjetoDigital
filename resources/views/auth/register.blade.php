@@ -2,6 +2,10 @@
 
 @section ('title', 'Cadastro')
 
+@section ('sidebar')
+    @include ('layouts.sidebar')
+@endsection
+
 @section ('content')
     <div class="row my-5">
         <div class="col-md-6 mx-auto">
@@ -16,27 +20,27 @@
 
                         <div class="form-group">
                             <label for="name">Nome / Empresa:</label>
-                            <input type="text" id="name" class="form-control" name="name">
+                            <input type="text" id="name" class="form-control" name="name" value="{{ old('name') }}">
                         </div>
 
                         <div class="form-group">
                             <label for="cpf_cnpj">CPF / CNPJ:</label>
-                            <input type="text" id="cpf_cnpj" class="form-control" name="cpf_cnpj">
+                            <input type="text" id="cpf_cnpj" class="form-control" name="cpf_cnpj" value="{{ old('cpf_cnpj') }}">
                         </div>
 
                         <div class="form-group">
                             <label for="crea_cau">CREA / CAU: <span class="text-muted">(Opcional)</span></label>
-                            <input type="text" id="crea_cau" class="form-control" name="crea_cau">
+                            <input type="text" id="crea_cau" class="form-control" name="crea_cau" value="{{ old('crea_cau') }}">
                         </div>
 
                         <div class="form-group">
                             <label for="email">E-mail:</label>
-                            <input type="email" id="email" class="form-control" name="email">
+                            <input type="email" id="email" class="form-control" name="email" value="{{ old('email') }}">
                         </div>
 
                         <div class="form-group">
                             <label for="username">Nome de usuário:</label>
-                            <input type="text" id="username" class="form-control" name="username">
+                            <input type="text" id="username" class="form-control" name="username" value="{{ old('username') }}">
                         </div>
 
                         <div class="form-group">
@@ -50,8 +54,8 @@
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="text-uppercase btn btn-outline-primary btn-custom">
-                                Cadastrar
+                            <button type="submit" class="btn btn-outline-primary btn-custom">
+                                Confirmar
                             </button>
                         </div>
                     </form>

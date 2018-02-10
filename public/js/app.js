@@ -12898,6 +12898,8 @@ __webpack_require__(1);
 
 __webpack_require__(5);
 
+var sidebarWidth = 210;
+
 $('#sidebar').find('.navbar .close').click(function () {
     $('#sidebar').css('display', 'none');
     $('#content').css('margin-left', '0');
@@ -12906,7 +12908,7 @@ $('#sidebar').find('.navbar .close').click(function () {
 
 $('.sidebar-burger').click(function () {
     $('#sidebar').css('display', 'block');
-    $('#content').css('margin-left', '250px');
+    $('#content').css('margin-left', sidebarWidth + 'px');
     $('.sidebar-burger').hide();
 });
 
