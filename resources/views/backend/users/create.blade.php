@@ -16,28 +16,28 @@
 
                 @if ($full)
                     <div class="form-group row">
-                        <label for="name" class="col-sm-3 col-form-label text-right">Nome:</label>
+                        <label for="name" class="col-sm-3 col-form-label text-left text-sm-right">Nome:</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="cpf_cnpj" class="col-sm-3 col-form-label text-right">CPF:</label>
+                        <label for="cpf_cnpj" class="col-sm-3 col-form-label text-left text-sm-right">CPF:</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="cpf_cnpj" name="cpf_cnpj" value="{{ old('cpf_cnpj') }}">
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="crea_cau" class="col-sm-3 col-form-label text-right">CREA / CAU:</label>
+                        <label for="crea_cau" class="col-sm-3 col-form-label text-left text-sm-right">CREA / CAU:</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="crea_cau" name="crea_cau" value="{{ old('crea_cau') }}" placeholder="Opcional...">
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="email" class="col-sm-3 col-form-label text-right">E-mail:</label>
+                        <label for="email" class="col-sm-3 col-form-label text-left text-sm-right">E-mail:</label>
                         <div class="col-sm-9">
                             <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}">
                         </div>
@@ -45,28 +45,28 @@
                 @endif
 
                 <div class="form-group row">
-                    <label for="username" class="col-sm-3 col-form-label text-right">Nome de usuário:</label>
+                    <label for="username" class="col-sm-3 col-form-label text-left text-sm-right">Nome de usuário:</label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" id="username" name="username" value="{{ old('username') }}">
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="password" class="col-sm-3 col-form-label text-right">Senha:</label>
+                    <label for="password" class="col-sm-3 col-form-label text-left text-sm-right">Senha:</label>
                     <div class="col-sm-9">
                         <input type="password" class="form-control" id="password" name="password">
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="password_confirmation" class="col-sm-3 col-form-label text-right">Confirme a senha:</label>
+                    <label for="password_confirmation" class="col-sm-3 col-form-label text-left text-sm-right">Confirme a senha:</label>
                     <div class="col-sm-9">
                         <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="access" class="col-sm-3 col-form-label text-right">Acesso:</label>
+                    <label for="access" class="col-sm-3 col-form-label text-left text-sm-right">Acesso:</label>
                     <div class="col-sm-9">
                         <select class="form-control" name="access" id="access">
                             <option value="admin">Administrador</option>

@@ -1,6 +1,6 @@
 @extends ('layouts.master')
 
-@section ('title', 'Conta pendentes de ativação')
+@section ('title', 'Contas pendentes de ativação')
 
 @section ('content')
     <div class="row mt-4">

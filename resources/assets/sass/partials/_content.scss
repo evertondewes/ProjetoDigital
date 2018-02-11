@@ -9,3 +9,13 @@
 .sidebar-burger {
   display: none;
 }
+
+@media screen and (max-width: 768px) {
+  #content {
+    margin-left: 0;
+  }
+
+  .sidebar-burger {
+    display: inline-block;
+  }
+}

@@ -17,7 +17,7 @@
 
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
                         <a class="dropdown-item" href="#" onclick="event.preventDefault(); $('#logout-form').submit();">
-                            Sair
+                            <i class="fa fa-sign-out"></i> Sair
                         </a>
                         <form id="logout-form" class="d-none" method="POST" action="/logout">
                             {{ csrf_field() }}

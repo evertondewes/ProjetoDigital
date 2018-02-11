@@ -13090,6 +13090,7 @@ a.text-dark:focus {
 
 @media screen and (max-width: 768px) {
   #sidebar {
+    display: none;
     width: 100vw;
   }
 }
@@ -13104,6 +13105,16 @@ a.text-dark:focus {
 
 .sidebar-burger {
   display: none;
+}
+
+@media screen and (max-width: 768px) {
+  #content {
+    margin-left: 0;
+  }
+
+  .sidebar-burger {
+    display: inline-block;
+  }
 }
 
 body {
