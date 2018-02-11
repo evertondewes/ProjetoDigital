@@ -6,18 +6,23 @@ Route::get('/help', 'PagesController@help');
 
 Auth::routes();
 
-Route::get('/redirect', 'RedirectionsController@redirect');
+Route::get('/redirect-user', 'RedirectionsController@redirectUser');
 
-Route::group(['middleware' => 'customer'], function () {
+Route::middleware('customer')->group(function () {
     Route::get('/dashboard', 'DashboardController@index');
 });
 
-Route::group([
-    'prefix' => 'backend',
-    'middleware' => 'backend',
-    'namespace' => 'Backend',
-], function () {
-    Route::resource('users', 'UsersController');
+Route::group(['prefix' => 'backend', 'namespace' => 'Backend'], function () {
+    Route::middleware('backend')->group(function () {
+        Route::resource('users', 'UsersController');
 
-    Route::get('/dashboard', 'DashboardController@index');
+        Route::get('/dashboard', 'DashboardController@index');
+
+        Route::get('/pending-accounts', 'PendingAccountsController@index');
+        Route::get('/pending-accounts/{user}', 'PendingAccountsController@show');
+        Route::post('/pending-accounts/{user}', 'PendingAccountsController@activate');
+    });
+
+    Route::get('/mandatory', 'RemainingRegistrationController@create');
+    Route::post('/mandatory', 'RemainingRegistrationController@store');
 });

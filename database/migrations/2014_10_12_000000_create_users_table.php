@@ -21,9 +21,12 @@ class CreateUsersTable extends Migration
             $table->integer('role_id')->unsigned();
             $table->integer('person_id')->nullable()->unsigned();
             $table->boolean('active')->default(false);
+            $table->integer('created_by')->nullable()->unsigned();
+            $table->foreign('created_by')->references('id')->on('users');
+            $table->integer('deleted_by')->nullable()->unsigned();
+            $table->foreign('deleted_by')->references('id')->on('users');
             $table->rememberToken();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

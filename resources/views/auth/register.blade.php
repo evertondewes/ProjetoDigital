@@ -2,10 +2,6 @@
 
 @section ('title', 'Cadastro')
 
-@section ('sidebar')
-    @include ('layouts.sidebar')
-@endsection
-
 @section ('content')
     <div class="row my-5">
         <div class="col-md-6 mx-auto">

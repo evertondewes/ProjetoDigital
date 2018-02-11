@@ -5,6 +5,8 @@ namespace ProjetoDigital\Http;
 use ProjetoDigital\Http\Middleware\Backend;
 use ProjetoDigital\Http\Middleware\Customer;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use ProjetoDigital\Http\Middleware\RedirectIfFullRegistered;
+use ProjetoDigital\Http\Middleware\RedirectIfNotFullRegistered;
 
 class Kernel extends HttpKernel
 {
@@ -43,6 +45,11 @@ class Kernel extends HttpKernel
             'throttle:60,1',
             'bindings',
         ],
+
+        'backend' => [
+            Backend::class,
+            RedirectIfNotFullRegistered::class,
+        ],
     ];
 
     /**
@@ -59,7 +66,7 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \ProjetoDigital\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'backend'  => Backend::class,
         'customer' => Customer::class,
+        'not-full-registered' => RedirectIfFullRegistered::class,
     ];
 }

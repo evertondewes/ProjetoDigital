@@ -15,7 +15,9 @@ class Backend
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->check() && auth()->user()->isBackendWorker()) {
+        $user = $request->user();
+
+        if (auth()->check() && $user->isBackendWorker() && $user->isActive()) {
             return $next($request);
         }
 

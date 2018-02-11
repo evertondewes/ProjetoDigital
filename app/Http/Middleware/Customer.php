@@ -15,7 +15,9 @@ class Customer
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->check() && auth()->user()->isCustomer()) {
+        $user = $request->user();
+
+        if (auth()->check() && $user->isCustomer() && $user->isActive()) {
             return $next($request);
         }
 

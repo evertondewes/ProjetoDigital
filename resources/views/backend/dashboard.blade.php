@@ -7,5 +7,7 @@
 @endsection
 
 @section ('content')
-    <h2 class="text-center mt-5">Painel de controle</h2>
+    <h2 class="text-center mt-4">
+        <i class="fa fa-tachometer"></i> Painel de controle
+    </h2>
 @endsection

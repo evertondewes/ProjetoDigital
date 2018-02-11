@@ -15,6 +15,8 @@
   top: 0;
   height: 100%;
   width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 #sidebar .navbar .close {
@@ -35,13 +37,6 @@
 #sidebar .list-group .list-group-item {
   border-right: none !important;
   border-radius: 0 !important;
-}
-
-#sidebar .list-group .list-group-item.active {
-  z-index: 2;
-  color: #495057;
-  background-color: #e9ecef;
-  border-color: rgba(0, 0, 0, .125);
 }
 
 @media screen and (max-width: 768px) {

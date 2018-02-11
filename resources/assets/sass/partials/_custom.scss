@@ -6,6 +6,10 @@ label {
   font-weight: bold;
 }
 
+.table thead th {
+  border-bottom-width: 1px;
+}
+
 .text-decoration-none,
 .text-decoration-none:hover {
   text-decoration: none;
@@ -41,4 +45,11 @@ a[class*='outline-primary'] {
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   line-height: 1.5;
+}
+
+.list-group-item.active {
+  z-index: 2;
+  color: #495057;
+  background-color: #e9ecef;
+  border-color: rgba(0, 0, 0, .125);
 }

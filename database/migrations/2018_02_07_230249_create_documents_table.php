@@ -15,7 +15,7 @@ class CreateDocumentsTable extends Migration
     {
         Schema::create('document_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('name')->unique();
         });
 
         Schema::create('documents', function (Blueprint $table) {

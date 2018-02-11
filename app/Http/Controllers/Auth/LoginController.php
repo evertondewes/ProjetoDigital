@@ -29,7 +29,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/redirect';
+    protected $redirectTo = '/redirect-user';
 
     /**
      * Create a new controller instance.
@@ -57,7 +57,7 @@ class LoginController extends Controller
             ! $user->isActive() &&
             Hash::check($request->input('password'), $user->password)
         ) {
-            $this->alert('Sua conta não está ativada!', 'danger');
+            $this->alert('Esta conta não está ativada!', 'danger');
 
             return redirect('/login');
         }

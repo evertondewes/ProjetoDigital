@@ -11,7 +11,9 @@
 <body>
     <main id="app">
         <div id="sidebar">
-            @yield ('sidebar')
+            @section ('sidebar')
+                @include ('layouts.sidebar')
+            @show
         </div>
 
         <div id="content">

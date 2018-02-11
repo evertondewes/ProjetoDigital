@@ -1,5 +1,6 @@
 <?php
 
+use ProjetoDigital\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -21,5 +22,8 @@ class UsersTableSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
+        // TESTE
+        factory(User::class, 45)->create();
     }
 }

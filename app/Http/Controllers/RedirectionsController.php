@@ -4,15 +4,14 @@ namespace ProjetoDigital\Http\Controllers;
 
 class RedirectionsController extends Controller
 {
-    public function __construct()
+    public function redirectUser()
     {
-        $this->middleware('auth');
-    }
+        if (auth()->check()) {
+            return auth()->user()->isBackendWorker()
+                ? redirect('/backend/dashboard')
+                : redirect('/dashboard');
+        }
 
-    public function redirect()
-    {
-        return auth()->user()->isBackendWorker()
-            ? redirect('/backend/dashboard')
-            : redirect('/dashboard');
+        return redirect('/');
     }
 }
