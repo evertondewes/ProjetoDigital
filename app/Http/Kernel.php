@@ -50,6 +50,11 @@ class Kernel extends HttpKernel
             Backend::class,
             RedirectIfNotFullRegistered::class,
         ],
+
+        'customer' => [
+            Customer::class,
+            RedirectIfNotFullRegistered::class,
+        ],
     ];
 
     /**
@@ -66,7 +71,6 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \ProjetoDigital\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'customer' => Customer::class,
         'not-full-registered' => RedirectIfFullRegistered::class,
     ];
 }

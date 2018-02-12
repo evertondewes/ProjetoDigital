@@ -38,7 +38,7 @@ class RegistrationForm extends FormRequest
         return [
             'name' => 'required',
             'cpf_cnpj' => ['required', new CpfOrCnpj, 'unique:people'],
-            'crea_cau' => 'bail|nullable|min:8|max:11|unique:people',
+            'crea_cau' => 'bail|required_if:access,engenheiro,engenheiro-cliente|nullable|min:8|max:11|unique:people',
             'email' => 'required|email|unique:people',
         ];
     }

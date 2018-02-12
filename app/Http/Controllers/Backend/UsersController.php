@@ -17,8 +17,8 @@ class UsersController extends Controller
     public function index()
     {
         $filter = request('filter') ?? 1;
-        $order = request('order') ?: 'asc';
-        $by = request('by') ?: 'id';
+        $order = request('order') ?? 'asc';
+        $by = request('by') ?? 'id';
 
         $users = User::where('active', $filter)
             ->orderBy($by, $order)
@@ -66,10 +66,16 @@ class UsersController extends Controller
             'username' => ['required', 'string', 'min:3', new IgnoreIfEqualTo($username, 'users')],
         ]);
 
-        $user->update([
+        $active = request()->has('active');
+
+        $updatedData = [
             'username' => request('username'),
-            'active' => request()->has('active'),
-        ]);
+            'active' => $active,
+        ];
+
+        $updatedData[$active ? 'created_by' : 'deleted_by'] = auth()->id();
+
+        $user->update($updatedData);
 
         $this->alert('Alteração salva com sucesso!');
 

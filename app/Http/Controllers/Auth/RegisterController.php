@@ -21,10 +21,7 @@ class RegisterController extends Controller
     {
         $form->persist();
 
-        $this->alert(
-            'Cadastro efetuado com sucesso! Aguarde a ativação da sua conta.',
-            'success'
-        );
+        $this->alert('Cadastro efetuado com sucesso! Aguarde a ativação da sua conta.');
 
         return redirect('/login');
     }

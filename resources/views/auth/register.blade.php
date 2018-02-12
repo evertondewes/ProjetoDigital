@@ -25,7 +25,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="crea_cau">CREA / CAU: <span class="text-muted">(Opcional)</span></label>
+                            <label for="crea_cau">CREA / CAU: <span class="text-muted">(Para responsáveis técnicos)</span></label>
                             <input type="text" id="crea_cau" class="form-control" name="crea_cau" value="{{ old('crea_cau') }}">
                         </div>
 

@@ -18,7 +18,7 @@ class RedirectIfNotFullRegistered
         $user = $request->user();
 
         if (auth()->check() && is_null($user->person_id)) {
-            return redirect('/backend/mandatory');
+            return redirect('/mandatory');
         }
 
         return $next($request);

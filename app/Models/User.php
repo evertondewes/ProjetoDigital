@@ -39,4 +39,9 @@ class User extends Authenticatable
 
         return $this;
     }
+
+    public function isEngineer()
+    {
+        return $this->hasAnyRole('engenheiro', 'engenheiro-cliente');
+    }
 }

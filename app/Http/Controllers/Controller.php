@@ -11,9 +11,9 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function alert($message, $class = 'success', $name = null)
+    public function alert($message, $class = 'success', $name = 'status')
     {
-        session()->flash($name ?? 'status', $message);
+        session()->flash($name, $message);
         session()->flash('class', $class);
     }
 }

@@ -13,25 +13,29 @@
             <div class="col-md-6 mx-auto">
                 <h4>Por favor, complete o seu cadastro para que possa ter acesso ao sistema</h4>
 
+                @include ('layouts.status')
+
                 <div class="card mt-3">
                     <div class="card-body">
-                        <form method="POST" action="/backend/mandatory">
+                        <form method="POST" action="/mandatory">
                             {{ csrf_field() }}
 
                             <div class="form-group">
-                                <label for="name">Nome:</label>
+                                <label for="name">Nome / Empresa:</label>
                                 <input type="text" id="name" class="form-control" name="name" value="{{ old('name') }}">
                             </div>
 
                             <div class="form-group">
-                                <label for="cpf_cnpj">CPF:</label>
+                                <label for="cpf_cnpj">CPF / CNPJ:</label>
                                 <input type="text" id="cpf_cnpj" class="form-control" name="cpf_cnpj" value="{{ old('cpf_cnpj') }}">
                             </div>
 
-                            <div class="form-group">
-                                <label for="crea_cau">CREA / CAU: <span class="text-muted">(Opcional)</span></label>
-                                <input type="text" id="crea_cau" class="form-control" name="crea_cau" value="{{ old('crea_cau') }}">
-                            </div>
+                            @if (auth()->user()->isEngineer())
+                                <div class="form-group">
+                                    <label for="crea_cau">CREA / CAU:</label>
+                                    <input type="text" id="crea_cau" class="form-control" name="crea_cau" value="{{ old('crea_cau') }}">
+                                </div>
+                            @endif
 
                             <div class="form-group">
                                 <label for="email">E-mail:</label>
