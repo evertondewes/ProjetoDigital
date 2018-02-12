@@ -89,17 +89,17 @@
 
         <div class="col-md-4">
             <div class="card">
-                <div class="card-header bg-primary text-center text-white py-2">
+                <div class="card-header bg-white text-center py-2">
                     Cadastrar conta...
                 </div>
 
                 <div class="card-body p-0">
                     <div class="list-group list-group-flush">
-                        <a href="{{ url()->current() }}" class="list-group-item list-group-item-action">
+                        <a href="{{ url()->current() }}" class="list-group-item">
                             Apenas de acesso
                         </a>
 
-                        <a href="{{ url()->current() }}?account=full" class="list-group-item list-group-item-action">
+                        <a href="{{ url()->current() }}?account=full" class="list-group-item">
                             Completa
                         </a>
                     </div>

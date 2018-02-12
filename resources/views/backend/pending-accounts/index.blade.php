@@ -5,7 +5,9 @@
 @section ('content')
     <div class="row mt-4">
         <div class="col-md-6 mx-auto">
-            <h2 class="text-center">Contas pendentes de ativação</h2>
+            <h2 class="text-center">
+                <i class="fa fa-address-card-o"></i> Contas pendentes de ativação
+            </h2>
 
             @include ('layouts.status')
 

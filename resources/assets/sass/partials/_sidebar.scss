@@ -5,11 +5,11 @@
   left: 0;
   width: $sidebar-width;
   z-index: 500;
-  border-right: 1px solid rgba(0, 0, 0, .125);
+  border-right: 1px solid $border-color;
 }
 
 #sidebar #sidebar-body {
-  background-color: $light;
+  background-color: $body-bg;
   position: relative;
   left: 0;
   top: 0;
@@ -24,19 +24,20 @@
   top: 2px;
   right: 8px;
   outline: none;
-}
-
-#sidebar .list-group {
-  border-radius: 0 !important;
-}
-
-#sidebar .list-group nav.list-group a {
-  text-indent: .6em;
+  font-size: 2.2rem;
 }
 
 #sidebar .list-group .list-group-item {
   border-right: none !important;
   border-radius: 0 !important;
+}
+
+#sidebar .list-group .list-group a {
+  text-indent: .6em;
+}
+
+#sidebar .list-group > .collapse .list-group-item:last-of-type {
+  border-bottom: none;
 }
 
 @media screen and (max-width: 768px) {

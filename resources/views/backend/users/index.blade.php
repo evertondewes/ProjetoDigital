@@ -66,7 +66,7 @@
                         <tr>
                             <td>{{ $user->id }}</td>
                             <td>
-                                <a class="text-info" href="/backend/users/{{ $user->id }}">{{ $user->username }}</a>
+                                <a href="/backend/users/{{ $user->id }}">{{ $user->username }}</a>
                             </td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->role->description }}</td>

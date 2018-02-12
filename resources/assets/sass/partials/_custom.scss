@@ -1,9 +1,14 @@
 body {
-  font-size: .9rem;
+  font-size: $font-size-base;
+  color: $text-color;
 }
 
 label {
   font-weight: bold;
+}
+
+.navbar-light .navbar-brand {
+  color: darken($text-color, 15%);
 }
 
 .table thead th {
@@ -20,36 +25,12 @@ label {
   border-width: 2px;
 }
 
-button[class*='primary'],
-a[class*='primary'] {
-  color: #fff !important;
-}
-
-button[class*='outline-primary'],
-a[class*='outline-primary'] {
-  color: $primary !important;
-
-  &:hover,
-  &:active {
-    color: #fff !important;
-  }
-}
-
-.margin-top-1-px {
-  margin-top: 1px;
-}
-
 .nav-custom-link {
   display: inline-block;
   border: 2px solid transparent;
   padding: 0.375rem 0.75rem;
-  font-size: 1rem;
-  line-height: 1.5;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
 }
 
-.list-group-item.active {
-  z-index: 2;
-  color: #495057;
-  background-color: #e9ecef;
-  border-color: rgba(0, 0, 0, .125);
-}
+
