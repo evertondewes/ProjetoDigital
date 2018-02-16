@@ -13,8 +13,16 @@ class CreateProjectsTable extends Migration
      */
     public function up()
     {
+        Schema::create('project_types', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name')->unique();
+            $table->string('description');
+        });
+
         Schema::create('projects', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('project_type_id')->unsigned();
+            $table->foreign('project_type_id')->references('id')->on('project_types');
             $table->integer('deleted_by')->nullable()->unsigned();
             $table->foreign('deleted_by')->references('id')->on('users');
             $table->softDeletes();
