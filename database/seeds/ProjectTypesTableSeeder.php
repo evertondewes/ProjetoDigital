@@ -12,12 +12,12 @@ class ProjectTypesTableSeeder extends Seeder
     public function run()
     {
         DB::table('project_types')->insert([
-            ['name' => 'Edificação Nova', 'description' => 'Edificações Novas'],
-            ['name' => 'Ampliação de Edificação', 'description' => 'Ampliação de Edificação'],
-            ['name' => 'Reforma de Edificação', 'description' => 'Reforma de Edificação'],
-            ['name' => 'Regularização de Edificação', 'description' => 'Regularização de Edificação'],
-            ['name' => 'Desmembramento / Remembramento de Lotes', 'description' => 'Desmembramento / Remembramento de Lotes'],
-            ['name' => 'Certidões', 'description' => 'Certidões'],
+            ['name' => 'edificacao_nova', 'description' => 'Edificações Novas'],
+            ['name' => 'edificacao_ampliacao', 'description' => 'Ampliação de Edificação'],
+            ['name' => 'edificacao_reforma', 'description' => 'Reforma de Edificação'],
+            ['name' => 'edificacao_regularizacao', 'description' => 'Regularização de Edificação'],
+            ['name' => 'lotes_desmembramento_remembramento', 'description' => 'Desmembramento / Remembramento de Lote'],
+            ['name' => 'certidao', 'description' => 'Certidão'],
         ]);
     }
 }
