@@ -28,6 +28,15 @@ class User extends Authenticatable
         $this->active = true;
 
         $this->save();
+
+        return $this;
+    }
+
+    public function email($email)
+    {
+        $this->email = $email;
+
+        return $this;
     }
 
     public function createdBy($id)

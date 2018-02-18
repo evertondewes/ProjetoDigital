@@ -30,6 +30,19 @@
             </nav>
         </div>
 
+        <a href="#collapsePeopleOption" class="list-group-item" data-toggle="collapse">
+            <i class="fa fa-user-circle-o"></i> Pessoas
+        </a>
+        <div class="collapse" id="collapsePeopleOption">
+            <nav class="list-group">
+                @can ('view', auth()->user())
+                    <a href="/backend/people" class="list-group-item">
+                        <i class="fa fa-list-alt"></i> Listar
+                    </a>
+                @endcan
+            </nav>
+        </div>
+
         <a href="/backend/pending-accounts" class="list-group-item">
             <i class="fa fa-address-card-o"></i> Contas pendentes
         </a>

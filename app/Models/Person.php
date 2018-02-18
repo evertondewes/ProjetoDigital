@@ -12,4 +12,9 @@ class Person extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function phoneNumbers()
+    {
+        return $this->hasMany(PhoneNumber::class);
+    }
 }

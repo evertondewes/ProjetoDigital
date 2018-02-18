@@ -29,6 +29,7 @@
                     <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
                         Ordenar por:
                     </button>
+
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="{{ url()->current() }}?by=id&filter={{ $filter }}">
                             Id
@@ -74,9 +75,9 @@
                             <td>
                                 @can ('update', $user)
                                     <a href="/backend/users/{{ $user->id }}/edit">Editar</a>
+                                @else
+                                    {{ '###' }}
                                 @endcan
-
-                                {{ \Gate::denies('update', $user) && \Gate::denies('delete', $user) ? '###' : '' }}
                             </td>
                         </tr>
                     @endforeach

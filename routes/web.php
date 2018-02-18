@@ -20,9 +20,14 @@ Route::group([
     'namespace' => 'Backend',
     'middleware' => 'backend'
 ], function () {
-    Route::resource('users', 'UsersController');
-
     Route::get('/dashboard', 'DashboardController@index');
+
+    Route::resource('users', 'UsersController', ['except' => ['destroy']]);
+
+    Route::get('/people', 'PeopleController@index');
+    Route::get('/people/{person}', 'PeopleController@show');
+    Route::get('/people/{person}/add-user', 'PeopleController@showAddUserForm');
+    Route::post('/people/{person}', 'PeopleController@addUser');
 
     Route::get('/pending-accounts', 'PendingAccountsController@index');
     Route::get('/pending-accounts/{user}', 'PendingAccountsController@show');

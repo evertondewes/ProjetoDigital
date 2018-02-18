@@ -5,6 +5,7 @@ namespace ProjetoDigital\Http\Controllers;
 use ProjetoDigital\Models\Person;
 use ProjetoDigital\Models\Address;
 use ProjetoDigital\Models\PhoneNumber;
+use ProjetoDigital\Repositories\Rules;
 
 class RemainingRegistrationController extends Controller
 {
@@ -18,9 +19,12 @@ class RemainingRegistrationController extends Controller
         return view('remaining-register');
     }
 
-    public function store()
+    public function store(Rules $rules)
     {
-        $this->validate(request(), $this->validationRules());
+        $this->validate(
+            request(),
+            $rules->remainingRegistration(auth()->user()->isEngineer())
+        );
 
         $person = Person::create(request([
             'name', 'email', 'cpf_cnpj', 'crea_cau'
@@ -41,19 +45,5 @@ class RemainingRegistrationController extends Controller
         ]);
 
         return redirect('/redirect-user');
-    }
-
-    protected function validationRules()
-    {
-        $rules = config('validation.rules.people');
-        $rules += ['password' => config('validation.rules.users')['password']];
-        $rules += config('validation.rules.addresses');
-        $rules += config('validation.rules.phone_numbers');
-
-        if (auth()->user()->isEngineer()) {
-            $rules['crea_cau'] = str_replace('nullable', 'required', $rules['crea_cau']);
-        }
-
-        return $rules;
     }
 }

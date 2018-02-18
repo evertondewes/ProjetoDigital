@@ -176,6 +176,7 @@ return [
         // ProjetoDigital\Providers\BroadcastServiceProvider::class,
         ProjetoDigital\Providers\EventServiceProvider::class,
         ProjetoDigital\Providers\RouteServiceProvider::class,
+        ProjetoDigital\Providers\RepositoryServiceProvider::class,
 
     ],
 

@@ -24,6 +24,6 @@ class UsersTableSeeder extends Seeder
         ]);
 
         // TESTE
-        factory(User::class, 45)->create();
+        // factory(User::class, 45)->create();
     }
 }

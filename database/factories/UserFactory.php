@@ -17,7 +17,7 @@ $factory->define(ProjetoDigital\Models\User::class, function (Faker $faker) {
     return [
         'email' => $faker->unique()->safeEmail,
         'username' => $faker->unique()->userName,
-        'password' => $faker->password,
+        'password' => bcrypt($faker->password),
         'role_id' => 4,
         'active' => true,
     ];

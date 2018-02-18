@@ -113,14 +113,14 @@
                         <div class="form-group">
                             <label for="access">Acesso:</label>
                             <select class="form-control" name="access" id="access">
-                                @foreach ($roles as $role)
+                                @foreach ($roles->all() as $role)
                                     <option value="{{ $role->name }}">{{ $role->description }}</option>
                                 @endforeach
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Cadastrar</button>
+                            <button type="submit" class="btn btn-primary btn-custom">Cadastrar</button>
                         </div>
                     </form>
                 </div>
