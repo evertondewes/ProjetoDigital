@@ -26,6 +26,10 @@
     </main>
 
     @section ('scripts')
+        <script>
+            window.old = JSON.parse('{!! htmlspecialchars(json_encode(old()), ENT_NOQUOTES) !!}');
+        </script>
+
         <script src="/js/app.js"></script>
     @show
 </body>

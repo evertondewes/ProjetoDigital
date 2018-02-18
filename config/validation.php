@@ -15,5 +15,17 @@ return [
             'username' => 'required|string|min:3|unique:users',
             'password' => 'required|min:6|confirmed',
         ],
+
+        'addresses' => [
+            'number' => 'required|numeric',
+            'street' => 'required',
+            'district' => 'required',
+            'city_id' => 'required',
+        ],
+
+        'phone_numbers' => [
+            'phone' => 'required',
+            'area_code' => 'required|numeric',
+        ],
     ],
 ];

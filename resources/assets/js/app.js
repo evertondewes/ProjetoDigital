@@ -4,6 +4,14 @@ require('popper.js');
 
 require('bootstrap');
 
+// --------------------------------------------------------------
+var areaCode = $('#area_code');
+
+if (window.old.hasOwnProperty('area_code') && areaCode.length) {
+    areaCode.val(window.old.area_code);
+}
+// --------------------------------------------------------------
+
 var sidebarWidth = 210;
 
 $('#sidebar').find('.navbar .close').click(function () {

@@ -123,6 +123,12 @@ return [
         'crea_cau' => 'CREA / CAU',
         'username' => 'Nome de usuário',
         'password' => 'Senha',
+        'access' => 'Acesso',
+        'number' => 'Número',
+        'street' => 'Rua',
+        'district' => 'Bairro',
+        'phone' => 'Telefone',
+        'area_code' => 'DDD',
     ],
 
 ];

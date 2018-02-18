@@ -5,6 +5,8 @@ namespace ProjetoDigital\Http\Requests;
 use ProjetoDigital\Models\User;
 use ProjetoDigital\Models\Role;
 use ProjetoDigital\Models\Person;
+use ProjetoDigital\Models\Address;
+use ProjetoDigital\Models\PhoneNumber;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RegistrationForm extends FormRequest
@@ -20,6 +22,14 @@ class RegistrationForm extends FormRequest
 
         if ($this->hasAnyDataOf('people')) {
             $rules += config('validation.rules.people');
+        }
+
+        if ($this->hasAnyDataOf('addresses')) {
+            $rules += config('validation.rules.addresses');
+        }
+
+        if ($this->hasAnyDataOf('phone_numbers')) {
+            $rules += config('validation.rules.phone_numbers');
         }
 
         $rules += config('validation.rules.users');
@@ -38,6 +48,14 @@ class RegistrationForm extends FormRequest
     {
         if ($this->hasAnyDataOf('people')) {
             $person = $this->createPerson();
+
+            if ($this->hasAnyDataOf('addresses')) {
+                $this->createAddress($person->id);
+            }
+
+            if ($this->hasAnyDataOf('phone_numbers')) {
+                $this->createPhoneNumber($person->id);
+            }
         }
 
         $role = $this->normalizeRole($person ?? null);
@@ -49,14 +67,28 @@ class RegistrationForm extends FormRequest
         ]);
     }
 
-    public function createPerson()
+    protected function createPerson()
     {
         return Person::create(
             $this->only(['name', 'email', 'cpf_cnpj', 'crea_cau'])
         );
     }
 
-    public function createUser(array $additional = null)
+    protected function createAddress($personId)
+    {
+        return Address::create($this->only([
+            'number', 'street', 'district', 'city_id'
+        ]) + ['person_id' => $personId]);
+    }
+
+    protected function createPhoneNumber($personId)
+    {
+        return PhoneNumber::create($this->only([
+            'phone', 'area_code'
+        ]) + ['person_id' => $personId]);
+    }
+
+    protected function createUser(array $additional = null)
     {
         $data = [
             'username' => $this->input('username'),
