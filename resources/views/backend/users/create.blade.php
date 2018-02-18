@@ -60,12 +60,9 @@
                         <div class="form-group">
                             <label for="access">Acesso:</label>
                             <select class="form-control" name="access" id="access">
-                                <option value="admin">Administrador</option>
-                                <option value="secretario">Secretário de obras</option>
-                                <option value="engenheiro">Engenheiro / Arquiteto</option>
-                                <option value="estagiario">Estagiário</option>
-                                <option value="engenheiro-cliente">Responsável técnico</option>
-                                <option value="cliente">Cliente</option>
+                                @foreach ($roles as $role)
+                                    <option value="{{ $role->name }}">{{ $role->description }}</option>
+                                @endforeach
                             </select>
                         </div>
 

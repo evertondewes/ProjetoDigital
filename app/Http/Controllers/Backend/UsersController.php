@@ -2,8 +2,8 @@
 
 namespace ProjetoDigital\Http\Controllers\Backend;
 
+use ProjetoDigital\Models\Role;
 use ProjetoDigital\Models\User;
-use ProjetoDigital\Rules\IgnoreIfEqualTo;
 use ProjetoDigital\Http\Controllers\Controller;
 use ProjetoDigital\Http\Requests\RegistrationForm;
 
@@ -33,15 +33,14 @@ class UsersController extends Controller
     public function create()
     {
         $full = request('account') ?? false;
+        $roles = Role::all();
 
-        return view('backend.users.create', compact('full'));
+        return view('backend.users.create', compact('full', 'roles'));
     }
 
     public function store(RegistrationForm $form)
     {
-        $form->persist()
-            ->createdBy(auth()->id())
-            ->activate();
+        $form->persist()->createdBy(auth()->id())->activate();
 
         $this->alert('Cadastro efetuado com sucesso!');
 
@@ -60,19 +59,13 @@ class UsersController extends Controller
 
     public function update(User $user)
     {
-        $username = $user->username;
-
         $this->validate(request(), [
-            'username' => ['required', 'string', 'min:3', new IgnoreIfEqualTo($username, 'users')],
+            'username' => $user->rules('username') . ',username,' . $user->id,
         ]);
 
         $active = request()->has('active');
 
-        $updatedData = [
-            'username' => request('username'),
-            'active' => $active,
-        ];
-
+        $updatedData = ['username' => request('username'), 'active' => $active];
         $updatedData[$active ? 'created_by' : 'deleted_by'] = auth()->id();
 
         $user->update($updatedData);

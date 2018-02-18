@@ -22,9 +22,11 @@
                     </a>
                 @endcan
 
-                <a href="/backend/users" class="list-group-item">
-                    <i class="fa fa-list-alt"></i> Listar
-                </a>
+                @can ('view', auth()->user())
+                    <a href="/backend/users" class="list-group-item">
+                        <i class="fa fa-list-alt"></i> Listar
+                    </a>
+                @endcan
             </nav>
         </div>
 

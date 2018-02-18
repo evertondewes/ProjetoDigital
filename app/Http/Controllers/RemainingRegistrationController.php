@@ -3,7 +3,6 @@
 namespace ProjetoDigital\Http\Controllers;
 
 use ProjetoDigital\Models\Person;
-use ProjetoDigital\Rules\CpfOrCnpj;
 
 class RemainingRegistrationController extends Controller
 {
@@ -23,26 +22,19 @@ class RemainingRegistrationController extends Controller
 
         $person = Person::create(request(['name', 'email', 'cpf_cnpj', 'crea_cau']));
 
-        $user = auth()->user();
-
-        $user->person_id = $person->id;
-        $user->email = $person->email;
-        $user->password = bcrypt(request('password'));
-
-        $user->save();
+        auth()->user()->update([
+            'person_id' => $person->id,
+            'email' => $person->email,
+            'password' => bcrypt(request('password')),
+        ]);
 
         return redirect('/redirect-user');
     }
 
     protected function validationRules()
     {
-        $rules = [
-            'name' => 'required',
-            'cpf_cnpj' => ['required', new CpfOrCnpj, 'unique:people'],
-            'crea_cau' => 'bail|nullable|min:8|max:11|unique:people',
-            'email' => 'required|email|unique:people',
-            'password' => 'required|min:6|confirmed',
-        ];
+        $rules = config('validation.rules.people');
+        $rules += ['password' => config('validation.rules.users')['password']];
 
         if (auth()->user()->isEngineer()) {
             $rules['crea_cau'] = str_replace('nullable', 'required', $rules['crea_cau']);

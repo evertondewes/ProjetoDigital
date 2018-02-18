@@ -17,7 +17,7 @@ class RolesTableSeeder extends Seeder
             ['name' => 'secretario', 'description' => 'Secretário de obras'],
             ['name' => 'engenheiro', 'description' => 'Engenheiro'],
             ['name' => 'estagiario', 'description' => 'Estagiário'],
-            ['name' => 'engenheiro-cliente', 'description' => 'Responsável técnico'],
+            ['name' => 'responsavel_tecnico', 'description' => 'Responsável técnico'],
             ['name' => 'cliente', 'description' => 'Cliente'],
         ]);
     }

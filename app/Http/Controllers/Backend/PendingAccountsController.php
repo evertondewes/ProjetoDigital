@@ -19,8 +19,14 @@ class PendingAccountsController extends Controller
         return view('backend.pending-accounts.index', compact('accounts'));
     }
 
-    public function show(User $user)
+    public function show($id)
     {
+        $user = User::find($id);
+
+        if ($user->isActive()) {
+            return back();
+        }
+
         return view('backend.pending-accounts.show', compact('user'));
     }
 

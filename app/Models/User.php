@@ -2,15 +2,12 @@
 
 namespace ProjetoDigital\Models;
 
-use ProjetoDigital\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable, HasRoles;
-
-    protected $guarded = [];
+    use Notifiable, HasRoles, ModelTrait;
 
     protected $hidden = [
         'password', 'remember_token',
@@ -38,10 +35,5 @@ class User extends Authenticatable
         $this->created_by = $id;
 
         return $this;
-    }
-
-    public function isEngineer()
-    {
-        return $this->hasAnyRole('engenheiro', 'engenheiro-cliente');
     }
 }

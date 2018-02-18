@@ -47,5 +47,6 @@ class CreateProjectsTable extends Migration
     {
         Schema::dropIfExists('project_user');
         Schema::dropIfExists('projects');
+        Schema::dropIfExists('project_types');
     }
 }

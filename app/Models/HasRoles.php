@@ -1,8 +1,7 @@
 <?php
 
-namespace ProjetoDigital;
+namespace ProjetoDigital\Models;
 
-use ProjetoDigital\Models\Role;
 use Illuminate\Support\Facades\DB;
 
 trait HasRoles
@@ -17,9 +16,14 @@ trait HasRoles
         return $this->hasAnyRole('admin', 'secretario', 'engenheiro', 'estagiario');
     }
 
+    public function isEngineer()
+    {
+        return $this->hasAnyRole('engenheiro', 'responsavel_tecnico');
+    }
+
     public function isCustomer()
     {
-        return $this->hasAnyRole('cliente', 'engenheiro-cliente');
+        return $this->hasAnyRole('cliente', 'responsavel_tecnico');
     }
 
     public function hasAnyRole($roles)
@@ -32,7 +36,7 @@ trait HasRoles
     public function scopeCustomer($query)
     {
         $roles = DB::table('roles')
-            ->where('name', 'engenheiro-cliente')
+            ->where('name', 'responsavel_tecnico')
             ->orWhere('name', 'cliente')
             ->pluck('id')
             ->toArray();

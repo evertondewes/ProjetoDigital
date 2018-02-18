@@ -5,7 +5,6 @@ namespace ProjetoDigital\Http\Requests;
 use ProjetoDigital\Models\User;
 use ProjetoDigital\Models\Role;
 use ProjetoDigital\Models\Person;
-use ProjetoDigital\Rules\CpfOrCnpj;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RegistrationForm extends FormRequest
@@ -19,65 +18,66 @@ class RegistrationForm extends FormRequest
     {
         $rules = [];
 
-        if ($this->hasPersonData()) {
-            $rules += $this->personRules();
+        if ($this->hasAnyDataOf('people')) {
+            $rules += config('validation.rules.people');
         }
 
-        $rules += $this->userRules();
+        $rules += config('validation.rules.users');
 
         return $rules;
     }
 
-    protected function hasPersonData()
+    protected function hasAnyDataOf($table)
     {
-        return $this->has('name', 'cpf_cnpj', 'crea_cau', 'email');
-    }
-
-    protected function personRules()
-    {
-        return [
-            'name' => 'required',
-            'cpf_cnpj' => ['required', new CpfOrCnpj, 'unique:people'],
-            'crea_cau' => 'bail|required_if:access,engenheiro,engenheiro-cliente|nullable|min:8|max:11|unique:people',
-            'email' => 'required|email|unique:people',
-        ];
-    }
-
-    protected function userRules()
-    {
-        return [
-            'username' => 'required|string|min:3|unique:users',
-            'password' => 'required|min:6|confirmed',
-        ];
+        return $this->hasAny(
+            ...array_keys(config("validation.rules.{$table}"))
+        );
     }
 
     public function persist()
     {
-        $person = null;
-
-        if ($this->hasPersonData()) {
-            $person = Person::create(
-                $this->only(['name', 'email', 'cpf_cnpj', 'crea_cau'])
-            );
+        if ($this->hasAnyDataOf('people')) {
+            $person = $this->createPerson();
         }
 
-        $role = $this->normalizeRole($person);
+        $role = $this->normalizeRole($person ?? null);
 
-        return User::create([
-            'email' => is_null($person) ? 'email@temporario.com' : $person->email,
+        return $this->createUser([
+            'email' => isset($person) ? $person->email : 'email@temporario.com',
+            'role_id' => Role::where('name', $role)->first()->id,
+            'person_id' => isset($person) ? $person->id : null,
+        ]);
+    }
+
+    public function createPerson()
+    {
+        return Person::create(
+            $this->only(['name', 'email', 'cpf_cnpj', 'crea_cau'])
+        );
+    }
+
+    public function createUser(array $additional = null)
+    {
+        $data = [
             'username' => $this->input('username'),
             'password' => bcrypt($this->input('password')),
-            'role_id' => Role::where('name', $role)->first()->id,
-            'person_id' => is_null($person) ? null : $person->id,
-        ]);
+        ];
+
+        return is_null($additional)
+            ? User::create($data)
+            : User::create($data + $additional);
     }
 
     protected function normalizeRole($person)
     {
-        if (is_null($person) || $this->has('access')) {
+        if ($this->has('access')) {
             return $this->input('access');
         }
 
-        return $person->crea_cau ? 'engenheiro-cliente' : 'cliente';
+        if ($person) {
+            return $person->crea_cau ? 'responsavel_tecnico' : 'cliente';
+        }
+
+        return 'cliente';
     }
 }

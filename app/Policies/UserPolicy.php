@@ -12,7 +12,7 @@ class UserPolicy
     /**
      * Determine whether the user can view the model.
      *
-     * @param  \ProjetoDigital\Models\User  $user
+     * @param  \ProjetoDigital\Models\User $user
      * @param  \ProjetoDigital\Models\User  $model
      * @return mixed
      */
