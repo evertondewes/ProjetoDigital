@@ -116,14 +116,13 @@
         </div>
     </div>
 
+    <script>
+        window.old = JSON.parse('{!! htmlspecialchars(json_encode(old()), ENT_NOQUOTES) !!}');
+        window.appCity = '{{ env('CITY') }}';
+    </script>
+
     <script src="/js/app.js"></script>
 
     <script src="/js/load-states-and-cities.js"></script>
-
-    <script>
-        if (window.old.hasOwnProperty('area_code')) {
-            $('#area_code').val(window.old.area_code);
-        }
-    </script>
 </body>
 </html>

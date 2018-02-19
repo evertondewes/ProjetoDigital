@@ -26,9 +26,15 @@ $(function () {
                 cityId.empty();
 
                 cities.forEach(function (city) {
-                    cityId.append(
-                        '<option value="' + city.id + '">' + city.name + '</option>'
-                    );
+                    var properties = {
+                        text: city.name,
+                        value: city.id,
+                        selected: city.name.toLowerCase() === window.appCity.toLowerCase()
+                    };
+
+                    var option = $('<option>', properties);
+
+                    cityId.append(option);
                 });
             })
             .fail(function () {

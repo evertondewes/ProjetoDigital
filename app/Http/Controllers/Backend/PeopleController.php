@@ -16,7 +16,7 @@ class PeopleController extends Controller
 
         $people = Person::orderBy($by, $order)->paginate(10);
 
-        return view('backend.people.index', compact('people'));
+        return view('backend.people.index', compact('people', 'order', 'by'));
     }
 
     public function show(Person $person)

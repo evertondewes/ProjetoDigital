@@ -65,6 +65,10 @@
                     @endforeach
                 </tbody>
             </table>
+
+            <div class="d-flex justify-content-center mt-4 mb-5">
+                {{ $people->appends(['order' => $order, 'by' => $by])->links('vendor.pagination.bootstrap-4') }}
+            </div>
         </div>
     </div>
 @endsection

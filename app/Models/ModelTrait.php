@@ -2,6 +2,8 @@
 
 namespace ProjetoDigital\Models;
 
+use ProjetoDigital\Facades\Rules;
+
 trait ModelTrait
 {
     public function __construct(array $attributes = [])
@@ -13,10 +15,6 @@ trait ModelTrait
 
     public function rules($column = null)
     {
-        if (is_null($column)) {
-            return config("validation.rules.{$this->getTable()}");
-        }
-
-        return config("validation.rules.{$this->getTable()}.{$column}");
+        return Rules::table($this->getTable(), $column);
     }
 }
