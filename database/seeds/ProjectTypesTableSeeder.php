@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ProjectTypesTableSeeder extends Seeder
 {
@@ -12,7 +13,7 @@ class ProjectTypesTableSeeder extends Seeder
     public function run()
     {
         DB::table('project_types')->insert([
-            ['name' => 'edificacao_nova', 'description' => 'Edificações Novas'],
+            ['name' => 'edificacao_nova', 'description' => 'Edificação Nova'],
             ['name' => 'edificacao_ampliacao', 'description' => 'Ampliação de Edificação'],
             ['name' => 'edificacao_reforma', 'description' => 'Reforma de Edificação'],
             ['name' => 'edificacao_regularizacao', 'description' => 'Regularização de Edificação'],

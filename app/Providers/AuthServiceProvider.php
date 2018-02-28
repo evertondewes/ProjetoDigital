@@ -2,9 +2,12 @@
 
 namespace ProjetoDigital\Providers;
 
+use ProjetoDigital\Models\Project;
 use ProjetoDigital\Models\User;
-use Illuminate\Support\Facades\Gate;
+use ProjetoDigital\Models\Person;
+use ProjetoDigital\Policies\ProjectPolicy;
 use ProjetoDigital\Policies\UserPolicy;
+use ProjetoDigital\Policies\PersonPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -16,6 +19,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         User::class => UserPolicy::class,
+        Person::class => PersonPolicy::class,
+        Project::class => ProjectPolicy::class,
     ];
 
     /**

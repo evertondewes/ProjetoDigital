@@ -27,5 +27,18 @@ return [
             'phone' => 'required',
             'area_code' => 'required|numeric',
         ],
+
+        'projects' => [
+            'description' => 'required|string',
+            'project_type_id' => 'required|numeric',
+            'username' => 'required|exists:users',
+        ],
+
+        'project_addresses' => [
+            'complement' => 'required',
+            'street' => 'required',
+            'district' => 'required',
+            'area' => 'required|numeric',
+        ],
     ],
 ];

@@ -26,14 +26,14 @@ trait DealsWithUserRegistration
     protected function createAddress($personId)
     {
         return Address::create($this->only([
-                'number', 'street', 'district', 'city_id'
+            'number', 'street', 'district', 'city_id'
         ]) + ['person_id' => $personId]);
     }
 
     protected function createPhoneNumber($personId)
     {
         return PhoneNumber::create($this->only([
-                'phone', 'area_code'
+            'phone', 'area_code'
         ]) + ['person_id' => $personId]);
     }
 

@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             ProjectTypesTableSeeder::class,
             StatesTableSeeder::class,
             CitiesTableSeeder::class,
+            EventTypesTableSeeder::class,
         ]);
     }
 }

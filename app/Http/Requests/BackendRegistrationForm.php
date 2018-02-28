@@ -6,7 +6,7 @@ use ProjetoDigital\Facades\Rules;
 use ProjetoDigital\Facades\Roles;
 use Illuminate\Foundation\Http\FormRequest;
 
-class BackendUserRegistrationForm extends FormRequest
+class BackendRegistrationForm extends FormRequest
 {
     use DealsWithUserRegistration;
 

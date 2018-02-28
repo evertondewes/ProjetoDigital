@@ -2,6 +2,6 @@
 
 namespace ProjetoDigital\Repositories;
 
-class Roles extends DatabaseRepository
+class Cities extends DatabaseRepository
 {
 }

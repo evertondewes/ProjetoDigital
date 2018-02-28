@@ -9,7 +9,7 @@
 }
 
 #sidebar #sidebar-body {
-  background-color: $body-bg;
+  background-color: $white;
   position: relative;
   left: 0;
   top: 0;
@@ -34,10 +34,6 @@
 
 #sidebar .list-group .list-group a {
   text-indent: .6em;
-}
-
-#sidebar .list-group > .collapse .list-group-item:last-of-type {
-  border-bottom: none;
 }
 
 @media screen and (max-width: 768px) {

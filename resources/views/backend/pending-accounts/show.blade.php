@@ -35,6 +35,7 @@
 
                     <form method="POST" action="/backend/pending-accounts/{{ $user->id }}">
                         {{ csrf_field() }}
+                        {{ method_field('PATCH') }}
 
                         <div class="form-group">
                             <button class="btn btn-success btn-custom" type="submit">

@@ -13058,7 +13058,7 @@ a.text-dark:focus {
 }
 
 #sidebar #sidebar-body {
-  background-color: #fafcfd;
+  background-color: #fff;
   position: relative;
   left: 0;
   top: 0;
@@ -13083,10 +13083,6 @@ a.text-dark:focus {
 
 #sidebar .list-group .list-group a {
   text-indent: .6em;
-}
-
-#sidebar .list-group > .collapse .list-group-item:last-of-type {
-  border-bottom: none;
 }
 
 @media screen and (max-width: 768px) {

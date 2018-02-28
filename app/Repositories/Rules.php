@@ -43,4 +43,9 @@ class Rules
             + $this->rules['addresses']
             + $this->rules['phone_numbers'];
     }
+
+    public function project()
+    {
+        return $this->rules['projects'] + $this->rules['project_addresses'];
+    }
 }

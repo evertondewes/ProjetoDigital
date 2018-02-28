@@ -13,6 +13,8 @@ Route::post('/mandatory', 'RemainingRegistrationController@store');
 
 Route::middleware('customer')->group(function () {
     Route::get('/dashboard', 'DashboardController@index');
+
+    Route::resource('projects', 'ProjectsController');
 });
 
 Route::group([
@@ -31,5 +33,5 @@ Route::group([
 
     Route::get('/pending-accounts', 'PendingAccountsController@index');
     Route::get('/pending-accounts/{user}', 'PendingAccountsController@show');
-    Route::post('/pending-accounts/{user}', 'PendingAccountsController@activate');
+    Route::patch('/pending-accounts/{user}', 'PendingAccountsController@activate');
 });

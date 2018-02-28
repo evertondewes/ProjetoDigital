@@ -5,7 +5,7 @@ namespace ProjetoDigital\Http\Controllers\Backend;
 use ProjetoDigital\Models\User;
 use ProjetoDigital\Repositories\Roles;
 use ProjetoDigital\Http\Controllers\Controller;
-use ProjetoDigital\Http\Requests\BackendUserRegistrationForm;
+use ProjetoDigital\Http\Requests\BackendRegistrationForm;
 
 class UsersController extends Controller
 {
@@ -37,7 +37,7 @@ class UsersController extends Controller
         return view('backend.users.create', compact('full', 'roles'));
     }
 
-    public function store(BackendUserRegistrationForm $form)
+    public function store(BackendRegistrationForm $form)
     {
         $form->persist()->createdBy(auth()->id())->activate();
 
