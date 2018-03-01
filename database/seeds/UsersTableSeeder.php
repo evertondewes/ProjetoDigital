@@ -39,7 +39,7 @@ class UsersTableSeeder extends Seeder
             'created_at' => now(),
         ],[
             'person_id' => 4,
-            'email' => 'antoinelavoisier@exemplo.com',
+            'email' => 'antoine.lavoisier@exemplo.com',
             'username' => 'est.antoinelavoisier',
             'password' => bcrypt(env('ROOT_PASSWORD')),
             'active' => true,
