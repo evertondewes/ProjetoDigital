@@ -2,9 +2,9 @@
 
 namespace ProjetoDigital\Http\Requests;
 
-use ProjetoDigital\Facades\Cities;
-use ProjetoDigital\Facades\Users;
 use ProjetoDigital\Facades\Rules;
+use ProjetoDigital\Facades\Cities;
+use ProjetoDigital\Facades\People;
 use ProjetoDigital\Models\Project;
 use ProjetoDigital\Models\ProjectAddress;
 use Illuminate\Foundation\Http\FormRequest;
@@ -13,7 +13,7 @@ class ProjectForm extends FormRequest
 {
     public function authorize()
     {
-        return auth()->user()->hasAnyRole('responsavel_tecnico');
+        return auth()->user()->isTechnicalManager();
     }
 
     public function rules()
@@ -25,7 +25,7 @@ class ProjectForm extends FormRequest
     {
         $project = Project::create($this->only(['description', 'project_type_id']));
         $project->users()->attach(auth()->id());
-        $project->users()->attach(Users::id($this->input('username')));
+        $project->people()->attach(People::id($this->input('cpf_cnpj')));
 
         $this->createAddress($project);
 
@@ -35,8 +35,8 @@ class ProjectForm extends FormRequest
     public function update(Project $project)
     {
         $project->update($this->only(['description', 'project_type_id']));
-        $project->users()->detach($project->owner->id);
-        $project->users()->attach(Users::id($this->input('username')));
+        $project->people()->detach(People::id($this->input('cpf_cnpj')));
+        $project->people()->attach(People::id($this->input('cpf_cnpj')));
 
         $this->createAddress($project);
 

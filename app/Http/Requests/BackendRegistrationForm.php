@@ -8,7 +8,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class BackendRegistrationForm extends FormRequest
 {
-    use DealsWithUserRegistration;
+    use PersistsRegistrationData, ChecksFormFields;
 
     public function authorize()
     {

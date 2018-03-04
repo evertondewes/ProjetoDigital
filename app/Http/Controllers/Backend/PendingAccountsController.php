@@ -9,12 +9,7 @@ class PendingAccountsController extends Controller
 {
     public function index()
     {
-        $accounts = User::customer()
-            ->where('active', false)
-            ->whereNotNull('person_id')
-            ->whereNull('created_by')
-            ->latest()
-            ->get();
+        $accounts = User::pending()->latest()->get();
 
         return view('backend.pending-accounts.index', compact('accounts'));
     }

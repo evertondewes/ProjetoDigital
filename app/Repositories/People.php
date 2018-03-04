@@ -2,6 +2,6 @@
 
 namespace ProjetoDigital\Repositories;
 
-class Users extends DatabaseRepository
+class People extends DatabaseRepository
 {
 }

@@ -2,9 +2,10 @@
 
 namespace ProjetoDigital\Http\Controllers;
 
+use ProjetoDigital\Facades\Cities;
+use ProjetoDigital\Facades\People;
 use ProjetoDigital\Models\Project;
 use ProjetoDigital\Models\ProjectType;
-use ProjetoDigital\Repositories\Users;
 use ProjetoDigital\Http\Requests\ProjectForm;
 
 class ProjectsController extends Controller
@@ -16,9 +17,13 @@ class ProjectsController extends Controller
 
     public function index()
     {
-        return view('customer.projects.index', [
-            'projects' => auth()->user()->projects()->latest()->paginate(10),
-        ]);
+        $user = auth()->user();
+
+        $projects = $user->isTechnicalManager()
+            ? $user->projects()->latest()->paginate(10)
+            : $user->person->projects()->latest()->paginate(10);
+
+        return view('customer.projects.index', compact('projects'));
     }
 
     public function create()
@@ -28,12 +33,22 @@ class ProjectsController extends Controller
         ]);
     }
 
-    public function store(ProjectForm $form, Users $users)
+    public function store(ProjectForm $form)
     {
-        if ($users->find($form->input('username'))->role->name !== 'cliente') {
-            $this->alert('O usuário fornecido não é um cliente', 'danger');
+        if (is_null(People::find($form->input('cpf_cnpj')))) {
+            $this->validate($form, $form->rules());
 
-            return back();
+            $projectData = [
+                'project' => $form->only(['description', 'project_type_id']),
+                'address' => $form->only(['complement', 'street', 'district', 'area']),
+                'owner' => $form->only(['cpf_cnpj']),
+            ];
+
+            $projectData['address'] += ['city_id' => Cities::id(env('CITY'))];
+
+            session(['project_data' => $projectData]);
+
+            return redirect('/projects/owners/add');
         }
 
         $form->persist();
@@ -56,10 +71,10 @@ class ProjectsController extends Controller
         ]);
     }
 
-    public function update(Project $project, ProjectForm $form, Users $users)
+    public function update(Project $project, ProjectForm $form)
     {
-        if ($users->find($form->input('username'))->role->name !== 'cliente') {
-            $this->alert('O usuário fornecido não é um cliente', 'danger');
+        if (is_null(People::find($form->input('cpf_cnpj')))) {
+            $this->alert('O CPF / CNPJ fornecido não existe!', 'danger');
 
             return back();
         }

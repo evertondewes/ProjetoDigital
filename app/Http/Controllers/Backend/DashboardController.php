@@ -3,11 +3,19 @@
 namespace ProjetoDigital\Http\Controllers\Backend;
 
 use ProjetoDigital\Http\Controllers\Controller;
+use ProjetoDigital\Models\Project;
+use ProjetoDigital\Models\User;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        return view('backend.dashboard');
+        $count = [
+            'users' => User::count(),
+            'projects' => Project::count(),
+            'pending-accounts' => User::pending()->count(),
+        ];
+
+        return view('backend.dashboard', compact('count'));
     }
 }

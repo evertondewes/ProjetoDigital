@@ -2,7 +2,7 @@
 
 namespace ProjetoDigital\Models;
 
-use Illuminate\Support\Facades\DB;
+use ProjetoDigital\Facades\Roles;
 
 trait HasRoles
 {
@@ -40,12 +40,6 @@ trait HasRoles
 
     public function scopeCustomer($query)
     {
-        $roles = DB::table('roles')
-            ->where('name', 'responsavel_tecnico')
-            ->orWhere('name', 'cliente')
-            ->pluck('id')
-            ->toArray();
-
-        return $query->whereIn('role_id', $roles);
+        return $query->whereIn('role_id', Roles::id(['cliente', 'responsavel_tecnico']));
     }
 }

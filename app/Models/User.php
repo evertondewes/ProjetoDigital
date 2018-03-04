@@ -50,4 +50,21 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Project::class);
     }
+
+    public function scopePending($query)
+    {
+        return $query->customer()
+            ->where('active', false)
+            ->whereNotNull('person_id')
+            ->whereNull('created_by');
+    }
+
+    public function hasProject(Project $project)
+    {
+        if ($this->isTechnicalManager()) {
+            return in_array($this->id, $project->users->pluck('id')->all());
+        }
+
+        return in_array($this->person->id, $project->people->pluck('id')->all());
+    }
 }

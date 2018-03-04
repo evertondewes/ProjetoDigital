@@ -26,6 +26,11 @@ class Project extends Model
         return $this->belongsToMany(User::class);
     }
 
+    public function people()
+    {
+        return $this->belongsToMany(Person::class);
+    }
+
     public function events()
     {
         return $this->hasMany(Event::class);
@@ -55,7 +60,7 @@ class Project extends Model
 
     public function getOwnerAttribute()
     {
-        return $this->filterUser('cliente');
+        return $this->people()->first();
     }
 
     protected function filterUser($roleName)
@@ -69,6 +74,8 @@ class Project extends Model
     public function deletedBy($id)
     {
         $this->deleted_by = $id;
+
+        $this->save();
 
         return $this;
     }

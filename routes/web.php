@@ -15,6 +15,9 @@ Route::middleware('customer')->group(function () {
     Route::get('/dashboard', 'DashboardController@index');
 
     Route::resource('projects', 'ProjectsController');
+
+    Route::get('/projects/owners/add', 'OwnersController@create');
+    Route::post('/projects/owners', 'OwnersController@store');
 });
 
 Route::group([

@@ -53,7 +53,7 @@
                             <td>{{ $person->email }}</td>
                             <td>{{ $person->cpf_cnpj }}</td>
                             <td>
-                                @can ('create', $person->users()->first())
+                                @can ('create', \ProjetoDigital\Models\User::class)
                                     <a href="/backend/people/{{ $person->id }}/add-user">
                                         Adicionar conta
                                     </a>

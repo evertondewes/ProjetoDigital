@@ -6,6 +6,7 @@ use ProjetoDigital\Http\Middleware\Backend;
 use ProjetoDigital\Http\Middleware\Customer;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use ProjetoDigital\Http\Middleware\SanitizeCpfAndCnpj;
+use ProjetoDigital\Http\Middleware\MustHaveSessionData;
 use ProjetoDigital\Http\Middleware\RedirectIfFullRegistered;
 use ProjetoDigital\Http\Middleware\RedirectIfNotFullRegistered;
 
@@ -74,5 +75,6 @@ class Kernel extends HttpKernel
         'guest' => \ProjetoDigital\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'not-full-registered' => RedirectIfFullRegistered::class,
+        'must-have-session-data' => MustHaveSessionData::class,
     ];
 }

@@ -127,8 +127,10 @@ return [
         'number' => 'Número',
         'street' => 'Rua',
         'district' => 'Bairro',
+        'complement' => 'Complemento',
         'phone' => 'Telefone',
         'area_code' => 'DDD',
+        'area' => 'Área',
     ],
 
 ];

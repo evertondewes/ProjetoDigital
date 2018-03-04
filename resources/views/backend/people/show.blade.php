@@ -25,26 +25,40 @@
                         @endif
 
 
-                        <strong>Usuários: </strong>
+                        @if (count($person->users))
+                            <strong>Usuários: </strong>
 
-                        <ul>
-                            @foreach ($person->users as $user)
-                                <li>{{ $user->username }} - ({{ $user->role->description }})</li>
-                            @endforeach
-                        </ul>
+                            <ul>
+                                @foreach ($person->users as $user)
+                                    <li>{{ $user->username }} - ({{ $user->role->description }})</li>
+                                @endforeach
+                            </ul>
+                        @endif
 
-                        <strong>Telefones: </strong>
+                        @if (count($person->phoneNumbers))
+                            <strong>Telefone(s): </strong>
 
-                        <ul>
-                            @foreach ($person->phoneNumbers as $phone)
-                                <li>({{ $phone->area_code }}) {{ $phone->phone }}</li>
-                            @endforeach
-                        </ul>
+                            <ul>
+                                @foreach ($person->phoneNumbers as $phone)
+                                    <li>({{ $phone->area_code }}) {{ $phone->phone }}</li>
+                                @endforeach
+                            </ul>
+                        @endif
 
-                        @can ('create', $person->users()->first())
-                            <a class="btn btn-outline-primary btn-custom" href="/backend/people/{{ $person->id }}/add-user">
-                                Adicionar conta
-                            </a>
+                        @if (count($person->addresses))
+                            <p>
+                                <strong>Endereço: </strong>
+
+                                {{ $person->formatted_address }}
+                            </p>
+                        @endif
+
+                        @can ('create', \ProjetoDigital\Models\User::class)
+                            <p>
+                                <a class="btn btn-outline-primary btn-custom" href="/backend/people/{{ $person->id }}/add-user">
+                                    Adicionar conta
+                                </a>
+                            </p>
                         @endcan
                     </div>
                 </div>

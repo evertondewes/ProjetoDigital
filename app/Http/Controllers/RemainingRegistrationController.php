@@ -2,13 +2,14 @@
 
 namespace ProjetoDigital\Http\Controllers;
 
-use ProjetoDigital\Models\Person;
-use ProjetoDigital\Models\Address;
-use ProjetoDigital\Models\PhoneNumber;
+use Illuminate\Support\Facades\DB;
 use ProjetoDigital\Repositories\Rules;
+use ProjetoDigital\Http\Requests\PersistsRegistrationData;
 
 class RemainingRegistrationController extends Controller
 {
+    use PersistsRegistrationData;
+
     public function __construct()
     {
         $this->middleware('not-full-registered');
@@ -26,23 +27,17 @@ class RemainingRegistrationController extends Controller
             $rules->remainingRegistration(auth()->user()->isEngineer())
         );
 
-        $person = Person::create(request([
-            'name', 'email', 'cpf_cnpj', 'crea_cau'
-        ]));
+        DB::transaction(function () {
+            $person = $this->createPerson();
+            $this->createAddress($person->id);
+            $this->createPhoneNumber($person->id);
 
-        Address::create(request([
-            'number', 'street', 'district', 'city_id'
-        ]) + ['person_id' => $person->id]);
-
-        PhoneNumber::create(request([
-            'phone', 'area_code'
-        ]) + ['person_id' => $person->id]);
-
-        auth()->user()->update([
-            'person_id' => $person->id,
-            'email' => $person->email,
-            'password' => bcrypt(request('password')),
-        ]);
+            auth()->user()->update([
+                'person_id' => $person->id,
+                'email' => $person->email,
+                'password' => bcrypt(request('password')),
+            ]);
+        });
 
         return redirect('/redirect-user');
     }

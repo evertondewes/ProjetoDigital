@@ -13,7 +13,7 @@
     </h2>
 
     <p class="text-center">
-        <a href="/redirect-user">Voltar</a>
+        <a href="{{ url()->previous() }}">Voltar</a>
     </p>
 
     <script src="/js/app.js"></script>

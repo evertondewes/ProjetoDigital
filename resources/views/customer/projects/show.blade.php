@@ -47,28 +47,33 @@
                         </p>
 
                         <p>
-                            <strong>Cliente: </strong>
-                            {{ $project->owner->person->name }}
-                        </p>
-
-                        <p>
                             <strong>CREA / CAU: </strong>
                             {{ $project->technical_manager->person->crea_cau }}
                         </p>
 
-                        <a href="/projects/{{ $project->id }}/edit" class="btn btn-success btn-custom btn-block">Editar</a>
+                        <p>
+                            <strong>Cliente: </strong>
+                            {{ $project->owner->name }}
+                        </p>
+
+                        @can ('update', $project)
+                            <a href="/projects/{{ $project->id }}/edit" class="btn btn-success btn-custom btn-block">Editar</a>
+                        @endcan
+
                         <a href="#" class="btn btn-success btn-custom btn-block">Histórico</a>
                         <a href="#" class="btn btn-success btn-custom btn-block">Pagamentos</a>
                         <a href="#" class="btn btn-success btn-custom btn-block">Anexos</a>
 
-                        <form class="mt-2" method="POST" action="/projects/{{ $project->id }}">
-                            {{ csrf_field() }}
-                            {{ method_field('DELETE') }}
+                        @can ('delete', $project)
+                            <form class="mt-2" method="POST" action="/projects/{{ $project->id }}">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
 
-                            <button type="submit" class="btn btn-danger btn-custom btn-block">
-                                Excluir
-                            </button>
-                        </form>
+                                <button type="submit" class="btn btn-danger btn-custom btn-block">
+                                    Excluir
+                                </button>
+                            </form>
+                        @endcan
                     </div>
                 </div>
             </div>

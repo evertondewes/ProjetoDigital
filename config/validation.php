@@ -31,7 +31,7 @@ return [
         'projects' => [
             'description' => 'required|string',
             'project_type_id' => 'required|numeric',
-            'username' => 'required|exists:users',
+            'cpf_cnpj' => ['required', new CpfOrCnpj],
         ],
 
         'project_addresses' => [

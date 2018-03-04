@@ -36,21 +36,21 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="username">Nome de usuário (do cliente):</label>
-                            <input type="text" class="form-control" id="username" name="username" value="{{ $project->owner->username }}">
+                            <label for="cpf_cnpj">CPF / CNPJ (do cliente):</label>
+                            <input type="text" class="form-control" id="cpf_cnpj" name="cpf_cnpj" value="{{ $project->owner->cpf_cnpj }}">
                         </div>
 
                         <h4 class="text-center">Localização</h4>
 
                         <div class="form-row form-group">
-                            <div class="col-4 col-sm-3">
-                                <label for="complement">Complemento:</label>
-                                <input type="text" id="complement" class="form-control" name="complement" value="{{ $project->address->complement }}">
-                            </div>
-
-                            <div class="col-8 col-sm-9">
+                            <div class="col-6">
                                 <label for="street">Rua:</label>
                                 <input type="text" id="street" class="form-control" name="street" value="{{ $project->address->street }}">
+                            </div>
+
+                            <div class="col-6">
+                                <label for="complement">Complemento:</label>
+                                <input type="text" id="complement" class="form-control" name="complement" value="{{ $project->address->complement }}">
                             </div>
                         </div>
 

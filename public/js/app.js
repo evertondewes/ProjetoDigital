@@ -12898,14 +12898,6 @@ __webpack_require__(1);
 
 __webpack_require__(5);
 
-// --------------------------------------------------------------
-var areaCode = $('#area_code');
-
-if (window.old.hasOwnProperty('area_code') && areaCode.length) {
-    areaCode.val(window.old.area_code);
-}
-// --------------------------------------------------------------
-
 var sidebarWidth = 210;
 
 $('#sidebar').find('.navbar .close').click(function () {
