@@ -16,6 +16,8 @@ class DashboardController extends Controller
             'pending-accounts' => User::pending()->count(),
         ];
 
-        return view('backend.dashboard', compact('count'));
+        $events = auth()->user()->events()->latest()->limit(5)->get();
+
+        return view('backend.dashboard', compact('count', 'events'));
     }
 }

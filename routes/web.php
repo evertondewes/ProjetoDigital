@@ -37,4 +37,12 @@ Route::group([
     Route::get('/pending-accounts', 'PendingAccountsController@index');
     Route::get('/pending-accounts/{user}', 'PendingAccountsController@show');
     Route::patch('/pending-accounts/{user}', 'PendingAccountsController@activate');
+
+    Route::get('/projects', 'ProjectsController@index');
+    Route::get('/projects/{project}', 'ProjectsController@show');
+
+    Route::get('/projects/{project}/events', 'EventsController@index');
+    Route::get('/projects/{project}/events/create', 'EventsController@create');
+    Route::post('/projects/{project}/events', 'EventsController@store');
+    Route::get('/projects/{project}/events/{event}', 'EventsController@show');
 });

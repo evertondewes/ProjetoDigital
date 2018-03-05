@@ -12,4 +12,14 @@ class Event extends Model
     {
         return $this->belongsTo(Project::class);
     }
+
+    public function eventType()
+    {
+        return $this->belongsTo(EventType::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

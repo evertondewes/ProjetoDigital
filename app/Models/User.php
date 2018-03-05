@@ -67,4 +67,9 @@ class User extends Authenticatable
 
         return in_array($this->person->id, $project->people->pluck('id')->all());
     }
+
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
 }

@@ -7,7 +7,7 @@ return [
         'people' => [
             'name' => 'required',
             'cpf_cnpj' => ['required', new CpfOrCnpj, 'unique:people'],
-            'crea_cau' => 'bail|required_if:access,engenheiro,responsavel_tecnico|nullable|min:8|max:11|unique:people',
+            'crea_cau' => 'bail|required_if:access,engenheiro,responsavel_tecnico|nullable|min:10|max:13|unique:people',
             'email' => 'required|email|unique:people',
         ],
 

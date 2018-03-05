@@ -22,11 +22,9 @@
                     </a>
                 @endcan
 
-                @can ('view', auth()->user())
-                    <a href="/backend/users" class="list-group-item">
-                        <i class="fa fa-list-alt"></i> Listar
-                    </a>
-                @endcan
+                <a href="/backend/users" class="list-group-item">
+                    <i class="fa fa-list-alt"></i> Listar
+                </a>
             </nav>
         </div>
 
@@ -35,16 +33,18 @@
         </a>
         <div class="collapse" id="collapsePeopleOption">
             <nav class="list-group">
-                @can ('view', auth()->user())
-                    <a href="/backend/people" class="list-group-item">
-                        <i class="fa fa-list-alt"></i> Listar
-                    </a>
-                @endcan
+                <a href="/backend/people" class="list-group-item">
+                    <i class="fa fa-list-alt"></i> Listar
+                </a>
             </nav>
         </div>
 
         <a href="/backend/pending-accounts" class="list-group-item">
             <i class="fa fa-address-card-o"></i> Contas pendentes
+        </a>
+
+        <a href="/backend/projects" class="list-group-item">
+            <i class="fa fa-file-text"></i> Solicitações
         </a>
     </nav>
 </div>

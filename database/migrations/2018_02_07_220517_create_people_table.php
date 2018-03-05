@@ -18,7 +18,7 @@ class CreatePeopleTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('cpf_cnpj', 14)->unique();
-            $table->string('crea_cau', 10)->nullable()->unique();
+            $table->string('crea_cau', 13)->nullable()->unique();
             $table->timestamps();
             $table->softDeletes();
         });

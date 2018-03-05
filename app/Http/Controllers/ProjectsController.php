@@ -73,12 +73,6 @@ class ProjectsController extends Controller
 
     public function update(Project $project, ProjectForm $form)
     {
-        if (is_null(People::find($form->input('cpf_cnpj')))) {
-            $this->alert('O CPF / CNPJ fornecido não existe!', 'danger');
-
-            return back();
-        }
-
         $form->update($project);
 
         $this->alert('Solicitação atualizada com sucesso!');

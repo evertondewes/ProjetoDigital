@@ -21,7 +21,7 @@
                 </div>
 
                 <div class="card-footer">
-                    <a class="text-white" href="#">Ver detalhes</a>
+                    <a class="text-white" href="/backend/users">Ver detalhes</a>
                 </div>
             </div>
         </div>
@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="card-footer">
-                    <a class="text-white" href="#">Ver detalhes</a>
+                    <a class="text-white" href="/backend/projects">Ver detalhes</a>
                 </div>
             </div>
         </div>
@@ -49,9 +49,29 @@
                 </div>
 
                 <div class="card-footer">
-                    <a class="text-white" href="#">Ver detalhes</a>
+                    <a class="text-white" href="/backend/pending-accounts">Ver detalhes</a>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            @if (count($events))
+                <h4 class="text-center mt-4">Seus últimos eventos</h4>
+
+                <ul class="list-group mt-3">
+                    @foreach ($events as $event)
+                        <li class="list-group-item text-center">
+                            {{ $event->eventType->description }} - Projeto Nº {{ $event->project->id }}
+                        </li>
+                    @endforeach
+                </ul>
+            @else
+                <p class="alert alert-warning text-center mt-3">
+                    Seus últimos eventos serão exibidos aqui!
+                </p>
+            @endif
         </div>
     </div>
 @endsection

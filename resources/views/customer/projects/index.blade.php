@@ -37,7 +37,7 @@
                                             ? $project->lastEvent()->updated_at->format('j/m/Y')
                                             : $project->created_at->format('j/m/Y')
                                     }}</td>
-                                <td>{{ $project->lastEvent()->description ?? 'Em Análise' }}</td>
+                                <td>{{ $project->lastEvent()->eventType->description ?? 'Em Análise' }}</td>
                             </tr>
                         @endforeach
                     </tbody>

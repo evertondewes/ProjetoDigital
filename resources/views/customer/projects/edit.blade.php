@@ -35,11 +35,6 @@
                             <input type="text" class="form-control" id="description" name="description" value="{{ $project->description }}">
                         </div>
 
-                        <div class="form-group">
-                            <label for="cpf_cnpj">CPF / CNPJ (do cliente):</label>
-                            <input type="text" class="form-control" id="cpf_cnpj" name="cpf_cnpj" value="{{ $project->owner->cpf_cnpj }}">
-                        </div>
-
                         <h4 class="text-center">Localização</h4>
 
                         <div class="form-row form-group">

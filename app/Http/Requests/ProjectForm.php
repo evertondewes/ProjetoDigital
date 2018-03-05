@@ -18,7 +18,7 @@ class ProjectForm extends FormRequest
 
     public function rules()
     {
-        return Rules::project();
+        return array_except(Rules::project(), ['cpf_cnpj']);
     }
 
     public function persist()
@@ -35,8 +35,6 @@ class ProjectForm extends FormRequest
     public function update(Project $project)
     {
         $project->update($this->only(['description', 'project_type_id']));
-        $project->people()->detach(People::id($this->input('cpf_cnpj')));
-        $project->people()->attach(People::id($this->input('cpf_cnpj')));
 
         $this->createAddress($project);
 
