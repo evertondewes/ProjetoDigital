@@ -5,6 +5,7 @@ namespace ProjetoDigital\Http\Controllers\Backend;
 use ProjetoDigital\Models\Event;
 use ProjetoDigital\Models\Project;
 use ProjetoDigital\Models\EventType;
+use ProjetoDigital\Repositories\Rules;
 use ProjetoDigital\Http\Controllers\Controller;
 
 class EventsController extends Controller
@@ -25,12 +26,9 @@ class EventsController extends Controller
         ]);
     }
 
-    public function store(Project $project)
+    public function store(Project $project, Rules $rules)
     {
-        $this->validate(request(), [
-            'event_type_id' => 'required|numeric',
-            'description' => 'required|string',
-        ]);
+        $this->validate(request(), $rules->table('events'));
 
         Event::create([
             'event_type_id' => request('event_type_id'),

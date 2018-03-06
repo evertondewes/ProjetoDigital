@@ -15,7 +15,7 @@
                 <div class="card-body">
                     <h4 class="text-center">Solicitação</h4>
 
-                    <form method="POST" action="/projects/{{ $project->id }}">
+                    <form id="edit-form" method="POST" action="/projects/{{ $project->id }}">
                         {{ csrf_field() }}
                         {{ method_field('PATCH') }}
 
@@ -60,11 +60,19 @@
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-custom">Salvar</button>
+                            <button type="submit" class="btn btn-primary btn-custom" data-form-id="#edit-form" data-toggle="modal" data-target="#are-you-sure-modal">Salvar</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
+    @include ('layouts.are-you-sure')
+@endsection
+
+@section ('scripts')
+    @parent
+
+    <script src="/js/are-you-sure.js"></script>
 @endsection

@@ -15,7 +15,7 @@ class Rules
 
     public function registration()
     {
-        return $this->people() + $this->table('users');
+        return $this->people() + $this->rules['users'];
     }
 
     public function remainingRegistration($isEngineer)

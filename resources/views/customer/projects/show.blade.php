@@ -65,11 +65,11 @@
                         <a href="#" class="btn btn-success btn-custom btn-block">Anexos</a>
 
                         @can ('delete', $project)
-                            <form class="mt-2" method="POST" action="/projects/{{ $project->id }}">
+                            <form id="delete-form" class="mt-2" method="POST" action="/projects/{{ $project->id }}">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
 
-                                <button type="submit" class="btn btn-danger btn-custom btn-block">
+                                <button type="submit" class="btn btn-danger btn-custom btn-block" data-form-id="#delete-form" data-toggle="modal" data-target="#are-you-sure-modal">
                                     Excluir
                                 </button>
                             </form>
@@ -79,4 +79,12 @@
             </div>
         </div>
     </div>
+
+    @include ('layouts.are-you-sure')
+@endsection
+
+@section ('scripts')
+    @parent
+
+    <script src="/js/are-you-sure.js"></script>
 @endsection

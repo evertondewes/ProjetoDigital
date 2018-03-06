@@ -23,7 +23,7 @@
                 </p>
 
                 <p>
-                    <strong>Data de criação: </strong>{{ $event->created_at }}
+                    <strong>Data de criação: </strong>{{ $event->created_at->format('j/m/Y') }}
                 </p>
             </div>
         </div>

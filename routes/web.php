@@ -18,6 +18,8 @@ Route::middleware('customer')->group(function () {
 
     Route::get('/projects/owners/add', 'OwnersController@create');
     Route::post('/projects/owners', 'OwnersController@store');
+
+    Route::get('/projects/{project}/historic', 'ProjectsController@showHistoric');
 });
 
 Route::group([

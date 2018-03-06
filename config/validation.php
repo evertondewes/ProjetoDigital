@@ -40,5 +40,10 @@ return [
             'district' => 'required',
             'area' => 'required|numeric',
         ],
+
+        'events' => [
+            'event_type_id' => 'required|numeric',
+            'description' => 'required|string',
+        ],
     ],
 ];

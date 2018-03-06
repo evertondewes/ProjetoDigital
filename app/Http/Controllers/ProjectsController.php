@@ -88,4 +88,11 @@ class ProjectsController extends Controller
 
         return redirect('/projects');
     }
+
+    public function showHistoric(Project $project)
+    {
+        return view('customer.projects.historic', [
+            'events' => $project->events()->latest()->get(),
+        ]);
+    }
 }

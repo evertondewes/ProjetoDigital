@@ -8,6 +8,14 @@
             </li>
         </ul>
 
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url()->previous() }}">
+                    <i class="fa fa-arrow-left"></i> Voltar
+                </a>
+            </li>
+        </ul>
+
         <ul class="navbar-nav ml-auto">
             @auth
                 <li class="nav-item dropdown">

@@ -37,10 +37,10 @@
     </div>
 
     @include ('layouts.are-you-sure')
+@endsection
 
-    @section ('scripts')
-        @parent
+@section ('scripts')
+    @parent
 
-        <script src="/js/are-you-sure.js"></script>
-    @endsection
+    <script src="/js/are-you-sure.js"></script>
 @endsection

@@ -63,7 +63,7 @@
                 <ul class="list-group mt-3">
                     @foreach ($events as $event)
                         <li class="list-group-item text-center">
-                            {{ $event->eventType->description }} - Projeto Nº {{ $event->project->id }}
+                            {{ $event->eventType->description }} - Projeto Nº {{ $event->project()->withTrashed()->first()->id }}
                         </li>
                     @endforeach
                 </ul>
