@@ -60,7 +60,7 @@
                             <a href="/projects/{{ $project->id }}/edit" class="btn btn-success btn-custom btn-block">Editar</a>
                         @endcan
 
-                        <a href="#" class="btn btn-success btn-custom btn-block">Histórico</a>
+                        <a href="/projects/{{ $project->id }}/historic" class="btn btn-success btn-custom btn-block">Histórico</a>
                         <a href="#" class="btn btn-success btn-custom btn-block">Pagamentos</a>
                         <a href="#" class="btn btn-success btn-custom btn-block">Anexos</a>
 
