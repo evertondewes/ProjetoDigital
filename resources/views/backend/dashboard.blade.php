@@ -60,13 +60,31 @@
             @if (count($events))
                 <h4 class="text-center mt-4">Seus últimos eventos</h4>
 
-                <ul class="list-group mt-3">
-                    @foreach ($events as $event)
-                        <li class="list-group-item text-center">
-                            {{ $event->eventType->description }} - Projeto Nº {{ $event->project()->withTrashed()->first()->id }}
-                        </li>
-                    @endforeach
-                </ul>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Situação</th>
+                            <th>Projeto</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach ($events as $event)
+                            <tr>
+                                <td>{{ $event->eventType->description }}</td>
+                                <td>{{ $event->project()->withTrashed()->first()->id }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+
+                {{--<ul class="list-group mt-3">--}}
+                    {{--@foreach ($events as $event)--}}
+                        {{--<li class="list-group-item text-center">--}}
+                            {{--{{ $event->eventType->description }} - Projeto Nº {{ $event->project()->withTrashed()->first()->id }}--}}
+                        {{--</li>--}}
+                    {{--@endforeach--}}
+                {{--</ul>--}}
             @else
                 <p class="alert alert-warning text-center mt-3">
                     Seus últimos eventos serão exibidos aqui!

@@ -11,6 +11,20 @@ Route::get('/redirect-user', 'RedirectionsController@redirectUser');
 Route::get('/mandatory', 'RemainingRegistrationController@create');
 Route::post('/mandatory', 'RemainingRegistrationController@store');
 
+Route::get('/profile', 'ProfilesController@show');
+Route::get('/profile/email', 'ProfilesController@editEmail');
+Route::patch('/profile/email', 'ProfilesController@updateEmail');
+Route::get('/profile/username', 'ProfilesController@editUsername');
+Route::patch('/profile/username', 'ProfilesController@updateUsername');
+Route::get('/profile/password', 'ProfilesController@editPassword');
+Route::patch('/profile/password', 'ProfilesController@updatePassword');
+Route::get('/profile/address', 'ProfilesController@editAddress');
+Route::patch('/profile/address', 'ProfilesController@updateAddress');
+Route::get('/profile/phone-numbers', 'ProfilesController@showPhoneNumbers');
+Route::post('/profile/phone-numbers', 'ProfilesController@storePhoneNumber');
+Route::delete('/profile/{phoneNumber}/phone-numbers', 'ProfilesController@destroyPhoneNumber');
+Route::delete('/profile', 'ProfilesController@destroy');
+
 Route::middleware('customer')->group(function () {
     Route::get('/dashboard', 'DashboardController@index');
 

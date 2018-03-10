@@ -2,12 +2,13 @@
 
 namespace ProjetoDigital\Providers;
 
-use ProjetoDigital\Models\Project;
 use ProjetoDigital\Models\User;
 use ProjetoDigital\Models\Person;
-use ProjetoDigital\Policies\ProjectPolicy;
+use ProjetoDigital\Models\Project;
+use Illuminate\Support\Facades\Gate;
 use ProjetoDigital\Policies\UserPolicy;
 use ProjetoDigital\Policies\PersonPolicy;
+use ProjetoDigital\Policies\ProjectPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -31,5 +32,10 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+
+        Gate::define('delete-phone-number', function ($user, $phoneNumber) {
+            return in_array($phoneNumber->id, $user->person->phoneNumbers->pluck('id')->all()) &&
+                count($user->person->phoneNumbers) > 1;
+        });
     }
 }

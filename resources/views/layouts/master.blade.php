@@ -25,6 +25,8 @@
         </div>
     </main>
 
+    @include ('layouts.are-you-sure')
+
     @section ('scripts')
         <script>
             window.old = JSON.parse('{!! htmlspecialchars(json_encode(old()), ENT_NOQUOTES) !!}');
@@ -32,6 +34,7 @@
         </script>
 
         <script src="/js/app.js"></script>
+        <script src="/js/are-you-sure.js"></script>
     @show
 </body>
 </html>

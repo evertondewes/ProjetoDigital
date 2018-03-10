@@ -30,7 +30,7 @@
 
                         <div class="form-group">
                             <label for="cpf_cnpj">CPF / CNPJ:</label>
-                            <input type="text" id="cpf_cnpj" class="form-control" name="cpf_cnpj" value="{{ old('cpf_cnpj') ?: session('project_data')['owner']['cpf_cnpj'] }}">
+                            <input type="text" id="cpf_cnpj" class="form-control" name="cpf_cnpj" value="{{ old('cpf_cnpj') ?: session('project_data')['owner']['cpf_cnpj'] }}" placeholder="Somente números.">
                         </div>
 
                         <div class="form-group">
@@ -85,7 +85,7 @@
 
                             <div class="col-8 col-sm-9">
                                 <label for="phone">Telefone:</label>
-                                <input class="form-control" type="text" name="phone" id="phone" value="{{ old('phone') }}">
+                                <input class="form-control" type="text" name="phone" id="phone" value="{{ old('phone') }}" placeholder="Somente números.">
                             </div>
                         </div>
 

@@ -20,7 +20,7 @@
                         </a>
                     </li>
                 @empty
-                    <p class="alert alert-warning">
+                    <p class="alert alert-warning text-center">
                         Nenhuma conta pendente de ativação.
                     </p>
                 @endforelse

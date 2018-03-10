@@ -34,4 +34,9 @@ class Person extends Model
 
         return "{$address->street} {$address->number}, {$address->district}";
     }
+
+    public function getAddressAttribute()
+    {
+        return $this->addresses()->latest()->first();
+    }
 }

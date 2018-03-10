@@ -4,14 +4,18 @@
 
 @section ('content')
     <div class="row my-4">
-        <div class="col-md-6 mx-auto">
+        <div class="col-md-8">
             <div class="card">
-                <div class="card-body">
-                    <h4 class="text-center">
-                        {{ $project->projectType->description }} - Nº {{ $project->id }}
-                    </h4>
+                <div class="card-header bg-white text-center">
+                    {{ $project->projectType->description }}
+                </div>
 
-                    <div class="mt-4">
+                <div class="card-body">
+                    <div>
+                        <p>
+                            <strong>Número: </strong>{{ $project->id }}
+                        </p>
+
                         <p>
                             <strong>Solicitado em: </strong>{{ $project->created_at->format('j/m/Y') }}
                         </p>
@@ -55,36 +59,11 @@
                             <strong>Cliente: </strong>
                             {{ $project->owner->name }}
                         </p>
-
-                        @can ('update', $project)
-                            <a href="/projects/{{ $project->id }}/edit" class="btn btn-success btn-custom btn-block">Editar</a>
-                        @endcan
-
-                        <a href="/projects/{{ $project->id }}/historic" class="btn btn-success btn-custom btn-block">Histórico</a>
-                        <a href="#" class="btn btn-success btn-custom btn-block">Pagamentos</a>
-                        <a href="#" class="btn btn-success btn-custom btn-block">Anexos</a>
-
-                        @can ('delete', $project)
-                            <form id="delete-form" class="mt-2" method="POST" action="/projects/{{ $project->id }}">
-                                {{ csrf_field() }}
-                                {{ method_field('DELETE') }}
-
-                                <button type="submit" class="btn btn-danger btn-custom btn-block" data-form-id="#delete-form" data-toggle="modal" data-target="#are-you-sure-modal">
-                                    Excluir
-                                </button>
-                            </form>
-                        @endcan
                     </div>
                 </div>
             </div>
         </div>
+
+        @include ('customer.projects.menu')
     </div>
-
-    @include ('layouts.are-you-sure')
-@endsection
-
-@section ('scripts')
-    @parent
-
-    <script src="/js/are-you-sure.js"></script>
 @endsection

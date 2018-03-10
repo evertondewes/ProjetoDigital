@@ -25,7 +25,17 @@ class User extends Authenticatable
 
     public function activate()
     {
-        $this->active = true;
+        return $this->setActive(true);
+    }
+
+    public function deactivate()
+    {
+        return $this->setActive(false);
+    }
+
+    public function setActive($active)
+    {
+        $this->active = (bool) $active;
 
         $this->save();
 

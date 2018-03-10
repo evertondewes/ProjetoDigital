@@ -3,15 +3,15 @@
 @section ('title', 'Editar projeto')
 
 @section ('content')
-    <h2 class="text-center mt-4">
-        <i class="fa fa-pencil-square-o"></i> Editar solicitação
-    </h2>
-
     <div class="row my-4">
-        <div class="col-md-8 mx-auto">
+        <div class="col-md-8">
             @include ('layouts.status')
 
             <div class="card">
+                <div class="card-header bg-white text-center">
+                    Editar solicitação
+                </div>
+
                 <div class="card-body">
                     <h4 class="text-center">Solicitação</h4>
 
@@ -66,13 +66,7 @@
                 </div>
             </div>
         </div>
+
+        @include ('customer.projects.menu')
     </div>
-
-    @include ('layouts.are-you-sure')
-@endsection
-
-@section ('scripts')
-    @parent
-
-    <script src="/js/are-you-sure.js"></script>
 @endsection

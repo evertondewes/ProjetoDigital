@@ -8,13 +8,15 @@
             </li>
         </ul>
 
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url()->previous() }}">
-                    <i class="fa fa-arrow-left"></i> Voltar
-                </a>
-            </li>
-        </ul>
+        @auth
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url()->previous() }}">
+                        <i class="fa fa-arrow-left"></i> Voltar
+                    </a>
+                </li>
+            </ul>
+        @endauth
 
         <ul class="navbar-nav ml-auto">
             @auth
@@ -24,6 +26,12 @@
                     </a>
 
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
+                        <a class="dropdown-item" href="/profile">
+                            <i class="fa fa-cog"></i> Minha conta
+                        </a>
+
+                        <div class="dropdown-divider"></div>
+
                         <a class="dropdown-item" href="#" onclick="event.preventDefault(); $('#logout-form').submit();">
                             <i class="fa fa-sign-out"></i> Sair
                         </a>

@@ -4,14 +4,18 @@
 
 @section ('content')
     <div class="row my-4">
-        <div class="col-md-6 mx-auto">
+        <div class="col-md-8">
             <div class="card">
-                <div class="card-body">
-                    <h4 class="text-center">
-                        {{ $project->projectType->description }} - Nº {{ $project->id }}
-                    </h4>
+                <div class="card-header bg-white text-center">
+                    {{ $project->projectType->description }}
+                </div>
 
-                    <div class="mt-4">
+                <div class="card-body">
+                    <div>
+                        <p>
+                            <strong>Número: </strong>{{ $project->id }}
+                        </p>
+
                         <p>
                             <strong>Solicitado em: </strong>{{ $project->created_at->format('j/m/Y') }}
                         </p>
@@ -55,18 +59,11 @@
                             <strong>Cliente: </strong>
                             {{ $project->owner->name }}
                         </p>
-
-                        <a href="/backend/projects/{{ $project->id }}/events" class="btn btn-success btn-custom btn-block">
-                            Eventos
-                        </a>
-                        <a href="/backend/projects/{{ $project->id }}/events/create" class="btn btn-success btn-custom btn-block">
-                            Adicionar evento
-                        </a>
-                        <a href="#" class="btn btn-success btn-custom btn-block">Pagamentos</a>
-                        <a href="#" class="btn btn-success btn-custom btn-block">Anexos</a>
                     </div>
                 </div>
             </div>
         </div>
+
+        @include ('backend.projects.menu')
     </div>
 @endsection

@@ -123,6 +123,7 @@ return [
         'crea_cau' => 'CREA / CAU',
         'username' => 'Nome de usuário',
         'password' => 'Senha',
+        'current_password' => 'Senha atual',
         'access' => 'Acesso',
         'number' => 'Número',
         'street' => 'Rua',

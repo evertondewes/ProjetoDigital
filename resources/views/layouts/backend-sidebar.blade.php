@@ -46,5 +46,7 @@
         <a href="/backend/projects" class="list-group-item">
             <i class="fa fa-file-text"></i> Solicitações
         </a>
+
+        @include ('layouts.last-sidebar-items')
     </nav>
 </div>

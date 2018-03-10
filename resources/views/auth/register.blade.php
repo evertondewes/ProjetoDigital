@@ -22,7 +22,7 @@
                         <div class="form-row form-group">
                             <div class="col-12 col-md-6 mb-3 mb-md-0">
                                 <label for="cpf_cnpj">CPF / CNPJ:</label>
-                                <input type="text" id="cpf_cnpj" class="form-control" name="cpf_cnpj" value="{{ old('cpf_cnpj') }}">
+                                <input type="text" id="cpf_cnpj" class="form-control" name="cpf_cnpj" value="{{ old('cpf_cnpj') }}" placeholder="Somente números.">
                             </div>
 
                             <div class="col-12 col-md-6">
@@ -100,7 +100,7 @@
 
                             <div class="col-8 col-sm-9">
                                 <label for="phone">Telefone:</label>
-                                <input class="form-control" type="text" name="phone" id="phone" value="{{ old('phone') }}">
+                                <input class="form-control" type="text" name="phone" id="phone" value="{{ old('phone') }}" placeholder="Somente números.">
                             </div>
                         </div>
 

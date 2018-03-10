@@ -13,6 +13,11 @@ trait ModelTrait
         static::unguard();
     }
 
+    public function updateRule($column)
+    {
+        return $this->rules($column) . ",{$column},{$this->id}";
+    }
+
     public function rules($column = null)
     {
         return Rules::table($this->getTable(), $column);

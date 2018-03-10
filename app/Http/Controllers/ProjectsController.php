@@ -92,6 +92,7 @@ class ProjectsController extends Controller
     public function showHistoric(Project $project)
     {
         return view('customer.projects.historic', [
+            'project' => $project,
             'events' => $project->events()->latest()->get(),
         ]);
     }

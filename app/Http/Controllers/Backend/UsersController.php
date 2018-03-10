@@ -59,7 +59,7 @@ class UsersController extends Controller
     public function update(User $user)
     {
         $this->validate(request(), [
-            'username' => $user->rules('username') . ',username,' . $user->id,
+            'username' => $user->updateRule('username'),
         ]);
 
         $active = request()->has('active');

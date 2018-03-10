@@ -3,17 +3,13 @@
 @section ('title', 'Criar evento')
 
 @section ('content')
-    <h2 class="text-center mt-4">
-        <i class="fa fa-pencil-square-o"></i> Cadastrar evento
-    </h2>
-
     <div class="row my-4">
-        <div class="col-md-8 mx-auto">
+        <div class="col-md-8">
             @include ('layouts.status')
 
             <div class="card">
                 <div class="card-header bg-white text-center">
-                    Evento
+                    Adicionar evento
                 </div>
 
                 <div class="card-body">
@@ -45,5 +41,7 @@
                 </div>
             </div>
         </div>
+
+        @include ('backend.projects.menu')
     </div>
 @endsection

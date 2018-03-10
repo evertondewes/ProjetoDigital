@@ -27,5 +27,7 @@
                 </a>
             </nav>
         </div>
+
+        @include ('layouts.last-sidebar-items')
     </nav>
 </div>
