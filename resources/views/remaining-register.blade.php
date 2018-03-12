@@ -28,7 +28,7 @@
                             <div class="form-row form-group">
                                 <div class="col-12 {{ auth()->user()->isEngineer() ? 'col-md-6' : 'col-md-12' }} mb-3 mb-md-0">
                                     <label for="cpf_cnpj">CPF / CNPJ:</label>
-                                    <input type="text" id="cpf_cnpj" class="form-control" name="cpf_cnpj" value="{{ old('cpf_cnpj') }}" placeholder="Somente números.">
+                                    <input type="text" id="cpf_cnpj" class="form-control" name="cpf_cnpj" value="{{ old('cpf_cnpj') }}">
                                 </div>
 
                                 @if (auth()->user()->isEngineer())
@@ -119,6 +119,7 @@
     <script>
         window.old = JSON.parse('{!! htmlspecialchars(json_encode(old()), ENT_NOQUOTES) !!}');
         window.appCity = '{{ env('CITY') }}';
+        window.appState = '{{ env('STATE') }}';
     </script>
 
     <script src="/js/app.js"></script>

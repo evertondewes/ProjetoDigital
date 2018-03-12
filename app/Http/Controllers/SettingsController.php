@@ -8,23 +8,18 @@ use ProjetoDigital\Models\PhoneNumber;
 use ProjetoDigital\Models\User;
 use ProjetoDigital\Repositories\Rules;
 
-class ProfilesController extends Controller
+class SettingsController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function show()
     {
-        return view('profiles.show', [
+        return view('settings.show', [
             'user' => auth()->user(),
         ]);
     }
 
     public function editEmail()
     {
-        return view('profiles.email', [
+        return view('settings.email', [
             'user' => auth()->user(),
         ]);
     }
@@ -36,14 +31,14 @@ class ProfilesController extends Controller
         $user->person->users()->update(request(['email']));
         $user->person->update(request(['email']));
 
-        $this->alert('Email atualizado com sucesso!');
+        $this->alert('E-mail atualizado com sucesso!');
 
         return back();
     }
 
     public function editUsername()
     {
-        return view('profiles.username', [
+        return view('settings.username', [
             'user' => auth()->user(),
         ]);
     }
@@ -63,7 +58,7 @@ class ProfilesController extends Controller
 
     public function editPassword()
     {
-        return view('profiles.password', [
+        return view('settings.password', [
             'user' => auth()->user(),
         ]);
     }
@@ -89,7 +84,7 @@ class ProfilesController extends Controller
 
     public function editAddress()
     {
-        return view('profiles.address', [
+        return view('settings.address', [
             'user' => auth()->user(),
         ]);
     }
@@ -113,7 +108,7 @@ class ProfilesController extends Controller
     {
         $phoneNumbers = auth()->user()->person->phoneNumbers;
 
-        return view('profiles.phone-numbers', compact('phoneNumbers'));
+        return view('settings.phone-numbers', compact('phoneNumbers'));
     }
 
     public function storePhoneNumber(Rules $rules)

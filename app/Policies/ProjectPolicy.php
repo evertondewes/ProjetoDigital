@@ -19,8 +19,7 @@ class ProjectPolicy
      */
     public function view(User $user, Project $project)
     {
-        return $user->hasAnyRole('cliente', 'responsavel_tecnico') &&
-            $user->hasProject($project);
+        return $user->isCustomer() && $user->hasProject($project);
     }
 
     /**
@@ -31,7 +30,7 @@ class ProjectPolicy
      */
     public function create(User $user)
     {
-        return $user->hasAnyRole('responsavel_tecnico');
+        return $user->isTechnicalManager();
     }
 
     /**
@@ -43,8 +42,7 @@ class ProjectPolicy
      */
     public function update(User $user, Project $project)
     {
-        return $user->hasAnyRole('responsavel_tecnico') &&
-            $user->hasProject($project);
+        return $user->isTechnicalManager() && $user->hasProject($project);
     }
 
     /**
@@ -56,7 +54,6 @@ class ProjectPolicy
      */
     public function delete(User $user, Project $project)
     {
-        return $user->hasAnyRole('responsavel_tecnico') &&
-            $user->hasProject($project);
+        return $user->isTechnicalManager() && $user->hasProject($project);
     }
 }

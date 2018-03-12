@@ -5,7 +5,7 @@ namespace ProjetoDigital\Http;
 use ProjetoDigital\Http\Middleware\Backend;
 use ProjetoDigital\Http\Middleware\Customer;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
-use ProjetoDigital\Http\Middleware\SanitizeCpfAndCnpj;
+use ProjetoDigital\Http\Middleware\ServerRequirements;
 use ProjetoDigital\Http\Middleware\MustHaveSessionData;
 use ProjetoDigital\Http\Middleware\RedirectIfFullRegistered;
 use ProjetoDigital\Http\Middleware\RedirectIfNotFullRegistered;
@@ -25,7 +25,7 @@ class Kernel extends HttpKernel
         \ProjetoDigital\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \ProjetoDigital\Http\Middleware\TrustProxies::class,
-        SanitizeCpfAndCnpj::class,
+        ServerRequirements::class,
     ];
 
     /**

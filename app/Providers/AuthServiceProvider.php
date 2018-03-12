@@ -2,10 +2,16 @@
 
 namespace ProjetoDigital\Providers;
 
+use ProjetoDigital\Models\Event;
+use ProjetoDigital\Models\EventDocument;
+use ProjetoDigital\Models\ProjectDocument;
 use ProjetoDigital\Models\User;
 use ProjetoDigital\Models\Person;
 use ProjetoDigital\Models\Project;
 use Illuminate\Support\Facades\Gate;
+use ProjetoDigital\Policies\EventDocumentPolicy;
+use ProjetoDigital\Policies\EventPolicy;
+use ProjetoDigital\Policies\ProjectDocumentPolicy;
 use ProjetoDigital\Policies\UserPolicy;
 use ProjetoDigital\Policies\PersonPolicy;
 use ProjetoDigital\Policies\ProjectPolicy;
@@ -22,6 +28,9 @@ class AuthServiceProvider extends ServiceProvider
         User::class => UserPolicy::class,
         Person::class => PersonPolicy::class,
         Project::class => ProjectPolicy::class,
+        ProjectDocument::class => ProjectDocumentPolicy::class,
+        EventDocument::class => EventDocumentPolicy::class,
+        Event::class => EventPolicy::class,
     ];
 
     /**

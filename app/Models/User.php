@@ -56,6 +56,13 @@ class User extends Authenticatable
         return $this;
     }
 
+    public function deletedBy($id)
+    {
+        $this->deleted_by = $id;
+
+        return $this;
+    }
+
     public function projects()
     {
         return $this->belongsToMany(Project::class);
@@ -76,6 +83,11 @@ class User extends Authenticatable
         }
 
         return in_array($this->person->id, $project->people->pluck('id')->all());
+    }
+
+    public function hasEvent(Event $event)
+    {
+        return $this->id === $event->user_id;
     }
 
     public function events()

@@ -1,17 +1,17 @@
 @extends ('layouts.master')
 
-@section ('title', 'Exibir projeto')
+@section ('title', 'Exibir evento')
 
 @section ('content')
     <div class="row my-4">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header bg-white text-center">
-                    {{ $project->projectType->description }}
+                    Evento
                 </div>
 
                 <div class="card-body">
-                    @include ('layouts.projects.info')
+                    @include ('layouts.events.info')
                 </div>
             </div>
 
@@ -21,19 +21,19 @@
                 </div>
 
                 <div class="card-body">
-                    @if (count($project->projectDocuments))
+                    @if (count($event->eventDocuments))
                         <table class="table">
                             <tbody>
-                            @foreach ($project->projectDocuments as $projectDocument)
-                                <tr>
-                                    <th>{{ $projectDocument->name }}</th>
-                                    <td class="text-right">
-                                        <a class="btn btn-success btn-sm" href="/project-docs/{{ $projectDocument->id }}">
-                                            Baixar
-                                        </a>
-                                    </td>
-                                </tr>
-                            @endforeach
+                                @foreach ($event->eventDocuments as $document)
+                                    <tr>
+                                        <th>{{ $document->name }}</th>
+                                        <td class="text-right">
+                                            <a href="/event-docs/{{ $document->id }}" class="btn btn-success btn-sm">
+                                                Baixar
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     @else
@@ -45,6 +45,6 @@
             </div>
         </div>
 
-        @include ('backend.projects.menu')
+        @include ('customer.projects.menu')
     </div>
 @endsection

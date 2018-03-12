@@ -22,4 +22,9 @@ class Event extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function eventDocuments()
+    {
+        return $this->hasMany(EventDocument::class);
+    }
 }

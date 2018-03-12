@@ -13,7 +13,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form method="POST" action="/backend/projects/{{ $project->id }}/events">
+                    <form method="POST" action="/backend/projects/{{ $project->id }}/events" enctype="multipart/form-data">
                         {{ csrf_field() }}
 
                         <div class="form-group">
@@ -30,6 +30,11 @@
                         <div class="form-group">
                             <label for="description">Descrição:</label>
                             <input id="description" class="form-control" type="text" name="description" value="{{ old('description') }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="event_documents">Adicionar arquivos:</label>
+                            <input type="file" id="event_documents" class="form-control" name="event_documents[]" multiple>
                         </div>
 
                         <div class="form-group">

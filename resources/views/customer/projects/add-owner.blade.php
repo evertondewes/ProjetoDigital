@@ -2,10 +2,6 @@
 
 @section ('title', 'Cadastrar dados do cliente')
 
-@section ('sidebar')
-    @include ('layouts.sidebar')
-@endsection
-
 @section ('content')
     <div class="row my-4">
         <div class="col-md-8 mx-auto">
@@ -30,7 +26,7 @@
 
                         <div class="form-group">
                             <label for="cpf_cnpj">CPF / CNPJ:</label>
-                            <input type="text" id="cpf_cnpj" class="form-control" name="cpf_cnpj" value="{{ old('cpf_cnpj') ?: session('project_data')['owner']['cpf_cnpj'] }}" placeholder="Somente números.">
+                            <input type="text" id="cpf_cnpj" class="form-control" name="cpf_cnpj" value="{{ old('cpf_cnpj') ?: session('project_data')['owner']['cpf_cnpj'] }}">
                         </div>
 
                         <div class="form-group">

@@ -36,6 +36,11 @@ class Project extends Model
         return $this->hasMany(Event::class);
     }
 
+    public function projectDocuments()
+    {
+        return $this->hasMany(ProjectDocument::class);
+    }
+
     public function lastEvent()
     {
         return $this->events()->latest()->first();

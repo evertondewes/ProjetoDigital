@@ -1,6 +1,6 @@
-@extends ('profiles.layout')
+@extends ('settings.layout')
 
-@section ('profile-content')
+@section ('settings-content')
     <h4 class="text-center mb-4">Dados pessoais</h4>
 
     <div class="form-group">
@@ -81,4 +81,5 @@
             @endforeach
         </ul>
     </div>
+
 @endsection

@@ -51,25 +51,22 @@ class UsersController extends Controller
         return view('backend.users.show', compact('user'));
     }
 
-    public function edit(User $user)
+    public function activate(User $user)
     {
-        return view('backend.users.edit', compact('user'));
+        $user->activate();
+
+        $this->alert('Usuário ativado com sucesso!');
+
+        return back();
     }
 
-    public function update(User $user)
+    public function deactivate(User $user)
     {
-        $this->validate(request(), [
-            'username' => $user->updateRule('username'),
-        ]);
+        $this->authorize('delete', $user);
 
-        $active = request()->has('active');
+        $user->deletedBy(auth()->id())->deactivate();
 
-        $updatedData = ['username' => request('username'), 'active' => $active];
-        $updatedData[$active ? 'created_by' : 'deleted_by'] = auth()->id();
-
-        $user->update($updatedData);
-
-        $this->alert('Alteração salva com sucesso!');
+        $this->alert('Usuário desativado com sucesso!');
 
         return back();
     }

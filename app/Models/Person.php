@@ -3,6 +3,7 @@
 namespace ProjetoDigital\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Respect\Validation\Validator as Respect;
 
 class Person extends Model
 {
@@ -38,5 +39,27 @@ class Person extends Model
     public function getAddressAttribute()
     {
         return $this->addresses()->latest()->first();
+    }
+
+    public function getCpfCnpjAttribute($value)
+    {
+        $value = preg_replace('/\D+/', '', $value);
+
+        $result = '';
+
+        if (Respect::cpf()->validate($value)) {
+            $result .= substr($value, 0, 3) . '.';
+            $result .= substr($value, 3, 3) . '.';
+            $result .= substr($value, 6, 3) . '-';
+        } elseif (Respect::cnpj()->validate($value)) {
+            $result .= substr($value, 0, 2) . '.';
+            $result .= substr($value, 2, 3) . '.';
+            $result .= substr($value, 5, 3) . '/';
+            $result .= substr($value, 8, 4) . '-';
+        }
+
+        $result .= substr($value, -2);
+
+        return $result;
     }
 }

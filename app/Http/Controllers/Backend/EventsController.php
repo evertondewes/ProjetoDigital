@@ -3,6 +3,7 @@
 namespace ProjetoDigital\Http\Controllers\Backend;
 
 use ProjetoDigital\Models\Event;
+use ProjetoDigital\Models\EventDocument;
 use ProjetoDigital\Models\Project;
 use ProjetoDigital\Models\EventType;
 use ProjetoDigital\Repositories\Rules;
@@ -30,23 +31,29 @@ class EventsController extends Controller
     {
         $this->validate(request(), $rules->table('events'));
 
-        Event::create([
+        $event = $project->events()->create([
             'event_type_id' => request('event_type_id'),
             'description' => request('description'),
-            'project_id' => $project->id,
             'user_id' => auth()->id(),
         ]);
+
+        foreach ((array) request()->file('event_documents') as $file) {
+            $event->eventDocuments()->create([
+                'name' => $file->getClientOriginalName(),
+                'path' => $file->store('public/event_documents'),
+            ]);
+        }
 
         $this->alert('Evento cadastrado com sucesso!');
 
         return back();
     }
 
-    public function show(Project $project, Event $event)
+    public function show(Event $event)
     {
         return view('backend.events.show', [
             'event' => $event,
-            'project' => $project,
+            'project' => $event->project,
         ]);
     }
 }

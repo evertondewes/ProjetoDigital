@@ -1,7 +1,7 @@
-@extends ('profiles.layout')
+@extends ('settings.layout')
 
-@section ('profile-content')
-    <form method="POST" action="/profile/address">
+@section ('settings-content')
+    <form method="POST" action="/settings/address">
         {{ csrf_field() }}
         {{ method_field('PATCH') }}
 

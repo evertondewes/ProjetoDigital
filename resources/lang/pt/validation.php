@@ -132,6 +132,7 @@ return [
         'phone' => 'Telefone',
         'area_code' => 'DDD',
         'area' => 'Área',
+        'project_documents' => 'Adicionar arquivos',
     ],
 
 ];

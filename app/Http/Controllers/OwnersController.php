@@ -6,11 +6,6 @@ use ProjetoDigital\Http\Requests\PendingOwnerForm;
 
 class OwnersController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('must-have-session-data:project_data')->only('create');
-    }
-
     public function create()
     {
         return view('customer.projects.add-owner');

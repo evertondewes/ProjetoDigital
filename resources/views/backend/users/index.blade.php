@@ -6,7 +6,7 @@
     <div class="row mt-4">
         <div class="col-md-8 mx-auto">
             <h2 class="text-center">
-                <i class="fa fa-list-alt"></i> Listar usuários
+                <i class="fa fa-list-alt"></i> Usuários
             </h2>
 
             <div class="mt-4 d-sm-flex justify-content-between">
@@ -58,7 +58,6 @@
                         <th>E-mail</th>
                         <th>Perfil</th>
                         <th>Status</th>
-                        <th>Ação</th>
                     </tr>
                 </thead>
 
@@ -72,13 +71,6 @@
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->role->description }}</td>
                             <td>{{ $user->isActive() ? 'Ativado' : 'Desativado' }}</td>
-                            <td>
-                                @can ('update', $user)
-                                    <a href="/backend/users/{{ $user->id }}/edit">Editar</a>
-                                @else
-                                    {{ '###' }}
-                                @endcan
-                            </td>
                         </tr>
                     @endforeach
                 </tbody>

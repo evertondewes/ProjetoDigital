@@ -77,14 +77,6 @@
                         @endforeach
                     </tbody>
                 </table>
-
-                {{--<ul class="list-group mt-3">--}}
-                    {{--@foreach ($events as $event)--}}
-                        {{--<li class="list-group-item text-center">--}}
-                            {{--{{ $event->eventType->description }} - Projeto Nº {{ $event->project()->withTrashed()->first()->id }}--}}
-                        {{--</li>--}}
-                    {{--@endforeach--}}
-                {{--</ul>--}}
             @else
                 <p class="alert alert-warning text-center mt-3">
                     Seus últimos eventos serão exibidos aqui!

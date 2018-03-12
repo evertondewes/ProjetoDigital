@@ -18,17 +18,20 @@
                     </a>
                 @endcan
 
+                <a href="/projects/{{ $project->id }}/docs" class="list-group-item">Anexos</a>
+
                 <a href="#" class="list-group-item">Pagamentos</a>
-                <a href="#" class="list-group-item">Anexos</a>
 
-                <a href="#" class="list-group-item" data-form-id="#delete-form" data-toggle="modal" data-target="#are-you-sure-modal">
-                    Excluir
-                </a>
+                @can ('delete', $project)
+                    <a href="#" class="list-group-item text-danger" data-form-id="#delete-form" data-toggle="modal" data-target="#are-you-sure-modal">
+                        Excluir
+                    </a>
 
-                <form id="delete-form" class="d-none" method="POST" action="/projects/{{ $project->id }}">
-                    {{ csrf_field() }}
-                    {{ method_field('DELETE') }}
-                </form>
+                    <form id="delete-form" class="d-none" method="POST" action="/projects/{{ $project->id }}">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                    </form>
+                @endcan
             </div>
         </div>
     </div>

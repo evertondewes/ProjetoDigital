@@ -12,13 +12,17 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            PeopleTableSeeder::class,
             RolesTableSeeder::class,
+            PeopleTableSeeder::class, // temporário
             UsersTableSeeder::class,
             ProjectTypesTableSeeder::class,
             StatesTableSeeder::class,
             CitiesTableSeeder::class,
             EventTypesTableSeeder::class,
+
+            // temporário
+            PhoneNumbersTableSeeder::class,
+            AddressesTableSeeder::class,
         ]);
     }
 }

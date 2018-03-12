@@ -13,11 +13,11 @@
                 </div>
 
                 <div class="card-body">
-                    @yield('profile-content')
+                    @yield('settings-content')
                 </div>
             </div>
         </div>
 
-        @include ('profiles.menu')
+        @include ('settings.menu')
     </div>
 @endsection

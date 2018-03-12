@@ -36,17 +36,15 @@ class ProjectsController extends Controller
     public function store(ProjectForm $form)
     {
         if (is_null(People::find($form->input('cpf_cnpj')))) {
-            $this->validate($form, $form->rules());
-
             $projectData = [
-                'project' => $form->only(['description', 'project_type_id']),
+                'project' => $form->only(['description', 'project_type_id', 'project_documents']),
                 'address' => $form->only(['complement', 'street', 'district', 'area']),
                 'owner' => $form->only(['cpf_cnpj']),
             ];
 
             $projectData['address'] += ['city_id' => Cities::id(env('CITY'))];
 
-            session(['project_data' => $projectData]);
+            session()->flash('project_data', $projectData);
 
             return redirect('/projects/owners/add');
         }
@@ -87,13 +85,5 @@ class ProjectsController extends Controller
         $this->alert('Solicitação excluída com sucesso!');
 
         return redirect('/projects');
-    }
-
-    public function showHistoric(Project $project)
-    {
-        return view('customer.projects.historic', [
-            'project' => $project,
-            'events' => $project->events()->latest()->get(),
-        ]);
     }
 }

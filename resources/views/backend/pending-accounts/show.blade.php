@@ -5,33 +5,40 @@
 @section ('content')
     <div class="row mt-4">
         <div class="col-md-6 mx-auto">
-            <h2 class="text-center">Ativar conta</h2>
-
             <div class="card">
+                <div class="card-header bg-white text-center">
+                    Ativar conta
+                </div>
+
                 <div class="card-body">
-                    <p>
-                        <strong>Nome: </strong>{{ $user->person->name }}
-                    </p>
-
-                    <p>
-                        <strong>CPF / CNPJ: </strong>{{ $user->person->cpf_cnpj }}
-                    </p>
-
-                    <p>
-                        <strong>CREA / CAU: </strong>{{ $user->person->crea_cau ?? 'Não cadastrado' }}
-                    </p>
-
-                    <p>
-                        <strong>E-mail: </strong>{{ $user->person->email }}
-                    </p>
-
-                    <p>
-                        <strong>Nome de usuário: </strong>{{ $user->username }}
-                    </p>
-
-                    <p>
-                        <strong>Data de cadastro: </strong>{{ $user->created_at->format('j/m/Y') }}
-                    </p>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>Nome:</th>
+                                <td>{{ $user->person->name }}</td>
+                            </tr>
+                            <tr>
+                                <th>CPF / CNPJ:</th>
+                                <td>{{ $user->person->cpf_cnpj }}</td>
+                            </tr>
+                            <tr>
+                                <th>CREA / CAU:</th>
+                                <td>{{ $user->person->crea_cau ?: 'Não cadastrado' }}</td>
+                            </tr>
+                            <tr>
+                                <th>E-mail:</th>
+                                <td>{{ $user->person->email }}</td>
+                            </tr>
+                            <tr>
+                                <th>Nome de usuário:</th>
+                                <td>{{ $user->username }}</td>
+                            </tr>
+                            <tr>
+                                <th>Data de cadastro:</th>
+                                <td>{{ $user->created_at->format('j/m/Y') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
 
                     <form method="POST" action="/backend/pending-accounts/{{ $user->id }}">
                         {{ csrf_field() }}

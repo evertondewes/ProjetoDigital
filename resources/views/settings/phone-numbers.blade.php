@@ -1,6 +1,6 @@
-@extends ('profiles.layout')
+@extends ('settings.layout')
 
-@section ('profile-content')
+@section ('settings-content')
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -25,7 +25,7 @@
                             </a>
                         </td>
 
-                        <form class="d-none" id="delete-form" method="POST" action="/profile/{{ $phoneNumber->id }}/phone-numbers">
+                        <form class="d-none" id="delete-form" method="POST" action="/settings/{{ $phoneNumber->id }}/phone-numbers">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
                         </form>
@@ -37,7 +37,7 @@
 
     <hr>
 
-    <form method="POST" action="/profile/phone-numbers">
+    <form method="POST" action="/settings/phone-numbers">
         {{ csrf_field() }}
 
         <div class="form-row form-group">

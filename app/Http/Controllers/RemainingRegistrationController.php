@@ -10,11 +10,6 @@ class RemainingRegistrationController extends Controller
 {
     use PersistsRegistrationData;
 
-    public function __construct()
-    {
-        $this->middleware('not-full-registered');
-    }
-
     public function create()
     {
         return view('remaining-register');

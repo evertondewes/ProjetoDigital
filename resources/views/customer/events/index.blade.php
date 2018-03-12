@@ -18,6 +18,7 @@
                                 <th>Data</th>
                                 <th>Situação</th>
                                 <th>Descrição</th>
+                                <th>Ação</th>
                             </tr>
                             </thead>
 
@@ -27,6 +28,9 @@
                                     <td>{{ $event->created_at->format('j/m/Y') }}</td>
                                     <td>{{ $event->eventType->description }}</td>
                                     <td>{{ $event->description }}</td>
+                                    <td>
+                                        <a href="/events/{{ $event->id }}">Ver detalhes</a>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>

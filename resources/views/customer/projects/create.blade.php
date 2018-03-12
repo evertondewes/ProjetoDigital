@@ -15,7 +15,7 @@
                 <div class="card-body">
                     <h4 class="text-center">Solicitação</h4>
 
-                    <form method="POST" action="/projects">
+                    <form method="POST" action="/projects" enctype="multipart/form-data">
                         {{ csrf_field() }}
 
                         <div class="form-group">
@@ -61,6 +61,13 @@
                         <div class="form-group">
                             <label for="area">Área:</label>
                             <input type="number" id="area" class="form-control" name="area" value="{{ old('area') }}">
+                        </div>
+
+                        <h4 class="text-center">Anexos</h4>
+                        
+                        <div class="form-group">
+                            <label for="project_documents">Arquivos:</label>
+                            <input type="file" id="project_documents" class="form-control" name="project_documents[]" multiple>
                         </div>
 
                         <div class="form-group">

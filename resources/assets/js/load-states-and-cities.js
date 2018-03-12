@@ -6,12 +6,18 @@ $(function () {
         $.get(api)
             .done(function (states) {
                 states.forEach(function (state) {
-                    $('#state_id').append(
-                        '<option value="' + state.id + '">' + state.abbreviation + '</option>'
-                    );
+                    var properties = {
+                        text: state.abbreviation,
+                        value: state.id,
+                        selected: state.abbreviation.toUpperCase() === window.appState.toUpperCase()
+                    };
+
+                    var option = $('<option>', properties);
+
+                    $('#state_id').append(option);
                 });
 
-                $('#state_id').val(43).change(); // RS
+                $('#state_id').change();
             })
             .fail(function () {
                 console.log('Erro ao carregar os estados!');

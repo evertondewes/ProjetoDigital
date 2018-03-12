@@ -6,61 +6,75 @@
     <div class="row mt-4">
         <div class="col-md-6 mx-auto">
             <div class="card">
+                <div class="card-header bg-white text-center">
+                    {{ $person->name }}
+                </div>
+
                 <div class="card-body">
-                    <h4 class="text-center">{{ $person->name }}</h4>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>E-mail:</th>
+                                <td>{{ $person->email }}</td>
+                            </tr>
+                            <tr>
+                                <th>CPF / CNPJ:</th>
+                                <td>{{ $person->cpf_cnpj }}</td>
+                            </tr>
 
-                    <div class="mt-4">
+                            @if ($person->crea_cau)
+                                <tr>
+                                    <th>CREA / CAU:</th>
+                                    <td>{{ $person->crea_cau }}</td>
+                                </tr>
+                            @endif
+
+                            @if (count($person->users))
+                                <tr>
+                                    <th>Usuários:</th>
+                                    <td>
+                                        <ul class="p-0 m-0 list-unstyled">
+                                            @foreach ($person->users as $user)
+                                                <li>
+                                                    <a href="/backend/users/{{ $user->id }}">
+                                                        {{ $user->username }} ({{ $user->role->description }})
+                                                    </a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </td>
+                                </tr>
+                            @endif
+
+                            @if (count($person->phoneNumbers))
+                                <tr>
+                                    <th>Telefone(s): </th>
+                                    <td>
+                                        <ul class="p-0 m-0 list-unstyled">
+                                            @foreach ($person->phoneNumbers as $phone)
+                                                <li>({{ $phone->area_code }}) {{ $phone->phone }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </td>
+                                </tr>
+                            @endif
+
+                            @if (count($person->addresses))
+                                <tr>
+                                    <th>Endereço: </th>
+                                    <td>{{ $person->formatted_address }}</td>
+                                </tr>
+                            @endif
+                        </tbody>
+                    </table>
+
+                    @can ('create', \ProjetoDigital\Models\User::class)
                         <p>
-                            <strong>E-mail: </strong>{{ $person->email }}
+                            <a class="btn btn-outline-primary btn-custom" href="/backend/people/{{ $person->id }}/add-user">
+                                Adicionar conta
+                            </a>
                         </p>
-
-                        <p>
-                            <strong>CPF / CNPJ: </strong>{{ $person->cpf_cnpj }}
-                        </p>
-
-                        @if ($person->crea_cau)
-                            <p>
-                                <strong>CREA / CAU: </strong>{{ $person->crea_cau }}
-                            </p>
-                        @endif
-
-
-                        @if (count($person->users))
-                            <strong>Usuários: </strong>
-
-                            <ul>
-                                @foreach ($person->users as $user)
-                                    <li>{{ $user->username }} - ({{ $user->role->description }})</li>
-                                @endforeach
-                            </ul>
-                        @endif
-
-                        @if (count($person->phoneNumbers))
-                            <strong>Telefone(s): </strong>
-
-                            <ul>
-                                @foreach ($person->phoneNumbers as $phone)
-                                    <li>({{ $phone->area_code }}) {{ $phone->phone }}</li>
-                                @endforeach
-                            </ul>
-                        @endif
-
-                        @if (count($person->addresses))
-                            <p>
-                                <strong>Endereço: </strong>
-
-                                {{ $person->formatted_address }}
-                            </p>
-                        @endif
-
-                        @can ('create', \ProjetoDigital\Models\User::class)
-                            <p>
-                                <a class="btn btn-outline-primary btn-custom" href="/backend/people/{{ $person->id }}/add-user">
-                                    Adicionar conta
-                                </a>
-                            </p>
-                        @endcan
-                    </div>
+                    @endcan
                 </div>
             </div>
         </div>

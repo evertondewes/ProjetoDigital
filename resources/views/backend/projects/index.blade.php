@@ -6,7 +6,7 @@
     <div class="row mt-4">
         <div class="col-md-8 mx-auto">
             <h2 class="text-center">
-                <i class="fa fa-list-alt"></i> Listar solicitações
+                <i class="fa fa-list-alt"></i> Solicitações
             </h2>
 
             <table class="table table-bordered mt-3">
@@ -30,7 +30,7 @@
                                 </a>
                             </td>
                             <td>{{ $project->people()->first()->name }}</td>
-                            <td>{{ $project->lastEvent()->description ?? 'Em Análise' }}</td>
+                            <td>{{ $project->lastEvent()->eventType->description ?? 'Em Análise' }}</td>
                             <td>
                                 <a href="/backend/projects/{{ $project->id }}/events/create">
                                     Adicionar evento

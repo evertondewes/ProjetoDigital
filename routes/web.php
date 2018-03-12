@@ -1,39 +1,56 @@
 <?php
 
-Route::get('/', 'PagesController@index');
-Route::get('/about', 'PagesController@about');
-Route::get('/help', 'PagesController@help');
+Route::middleware('guest')->group(function () {
+    Route::get('/', 'PagesController@index');
+    Route::get('/about', 'PagesController@about');
+    Route::get('/help', 'PagesController@help');
+});
 
 Auth::routes();
 
 Route::get('/redirect-user', 'RedirectionsController@redirectUser');
 
-Route::get('/mandatory', 'RemainingRegistrationController@create');
-Route::post('/mandatory', 'RemainingRegistrationController@store');
+Route::middleware('not-full-registered')->group(function () {
+    Route::get('/mandatory', 'RemainingRegistrationController@create');
+    Route::post('/mandatory', 'RemainingRegistrationController@store');
+});
 
-Route::get('/profile', 'ProfilesController@show');
-Route::get('/profile/email', 'ProfilesController@editEmail');
-Route::patch('/profile/email', 'ProfilesController@updateEmail');
-Route::get('/profile/username', 'ProfilesController@editUsername');
-Route::patch('/profile/username', 'ProfilesController@updateUsername');
-Route::get('/profile/password', 'ProfilesController@editPassword');
-Route::patch('/profile/password', 'ProfilesController@updatePassword');
-Route::get('/profile/address', 'ProfilesController@editAddress');
-Route::patch('/profile/address', 'ProfilesController@updateAddress');
-Route::get('/profile/phone-numbers', 'ProfilesController@showPhoneNumbers');
-Route::post('/profile/phone-numbers', 'ProfilesController@storePhoneNumber');
-Route::delete('/profile/{phoneNumber}/phone-numbers', 'ProfilesController@destroyPhoneNumber');
-Route::delete('/profile', 'ProfilesController@destroy');
+Route::middleware('auth')->group(function () {
+    Route::get('/settings', 'SettingsController@show');
+    Route::get('/settings/email', 'SettingsController@editEmail');
+    Route::patch('/settings/email', 'SettingsController@updateEmail');
+    Route::get('/settings/username', 'SettingsController@editUsername');
+    Route::patch('/settings/username', 'SettingsController@updateUsername');
+    Route::get('/settings/password', 'SettingsController@editPassword');
+    Route::patch('/settings/password', 'SettingsController@updatePassword');
+    Route::get('/settings/address', 'SettingsController@editAddress');
+    Route::patch('/settings/address', 'SettingsController@updateAddress');
+    Route::get('/settings/phone-numbers', 'SettingsController@showPhoneNumbers');
+    Route::post('/settings/phone-numbers', 'SettingsController@storePhoneNumber');
+    Route::delete('/settings/{phoneNumber}/phone-numbers', 'SettingsController@destroyPhoneNumber');
+    Route::delete('/settings', 'SettingsController@destroy');
+
+    Route::get('/project-docs/{projectDocument}', 'ProjectDocumentsController@download');
+    Route::delete('/project-docs/{projectDocument}', 'ProjectDocumentsController@destroy');
+
+    Route::get('/event-docs/{eventDocument}', 'Backend\EventDocumentsController@download');
+});
 
 Route::middleware('customer')->group(function () {
     Route::get('/dashboard', 'DashboardController@index');
 
     Route::resource('projects', 'ProjectsController');
 
-    Route::get('/projects/owners/add', 'OwnersController@create');
+    Route::get('/projects/owners/add', 'OwnersController@create')
+        ->middleware('must-have-session-data:project_data');
+
     Route::post('/projects/owners', 'OwnersController@store');
 
-    Route::get('/projects/{project}/historic', 'ProjectsController@showHistoric');
+    Route::get('/projects/{project}/docs', 'ProjectDocumentsController@index');
+    Route::post('/projects/{project}/docs', 'ProjectDocumentsController@store');
+
+    Route::get('/projects/{project}/historic', 'EventsController@index');
+    Route::get('/events/{event}', 'EventsController@show');
 });
 
 Route::group([
@@ -43,7 +60,9 @@ Route::group([
 ], function () {
     Route::get('/dashboard', 'DashboardController@index');
 
-    Route::resource('users', 'UsersController', ['except' => ['destroy']]);
+    Route::resource('users', 'UsersController', ['except' => ['destroy', 'edit', 'update']]);
+    Route::patch('/users/{user}', 'UsersController@activate');
+    Route::delete('/users/{user}', 'UsersController@deactivate');
 
     Route::get('/people', 'PeopleController@index');
     Route::get('/people/{person}', 'PeopleController@show');
@@ -60,5 +79,8 @@ Route::group([
     Route::get('/projects/{project}/events', 'EventsController@index');
     Route::get('/projects/{project}/events/create', 'EventsController@create');
     Route::post('/projects/{project}/events', 'EventsController@store');
-    Route::get('/projects/{project}/events/{event}', 'EventsController@show');
+    Route::get('/events/{event}', 'EventsController@show');
+
+    Route::post('/events/{event}/docs', 'EventDocumentsController@store');
+    Route::delete('/event-docs/{eventDocument}', 'EventDocumentsController@destroy');
 });

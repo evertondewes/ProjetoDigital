@@ -1,4 +1,4 @@
-<a href="/profile" class="list-group-item">
+<a href="/settings" class="list-group-item">
     <i class="fa fa-cog"></i> Minha conta
 </a>
 

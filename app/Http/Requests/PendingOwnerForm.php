@@ -35,9 +35,7 @@ class PendingOwnerForm extends FormRequest
             $project->users()->attach(auth()->id());
             $project->people()->attach(People::id($this->input('cpf_cnpj')));
 
-            ProjectAddress::create(
-                session('project_data')['address'] + ['project_id' => $project->id]
-            );
+            $project->projectAddresses()->create(session('project_data')['address']);
         });
 
         session()->forget('project_data');

@@ -3,10 +3,6 @@
 @section ('title', 'Criar usuário')
 
 @section ('content')
-    <h2 class="text-center mt-4">
-        <i class="fa fa-pencil-square-o"></i> Cadastrar usuário
-    </h2>
-
     <div class="row my-4">
         <div class="col-md-8">
             @include ('layouts.status')
@@ -28,8 +24,8 @@
 
                             <div class="form-row form-group">
                                 <div class="col-12 col-md-6 mb-3 mb-md-0">
-                                    <label for="cpf_cnpj">CPF:</label>
-                                    <input type="text" id="cpf_cnpj" class="form-control" name="cpf_cnpj" value="{{ old('cpf_cnpj') }}" placeholder="Somente números.">
+                                    <label for="cpf_cnpj">CPF / CNPJ:</label>
+                                    <input type="text" id="cpf_cnpj" class="form-control" name="cpf_cnpj" value="{{ old('cpf_cnpj') }}">
                                 </div>
 
                                 <div class="col-12 col-md-6">
@@ -127,7 +123,7 @@
             </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-4 order-first order-md-last mb-3 mb-md-0">
             <div class="card">
                 <div class="card-header bg-white text-center">
                     Cadastrar conta...

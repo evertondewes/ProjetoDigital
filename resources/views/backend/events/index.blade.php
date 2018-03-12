@@ -31,8 +31,8 @@
                                     <td>{{ $event->created_at->format('j/m/Y') }}</td>
                                     <td>{{ $event->user->username }}</td>
                                     <td>
-                                        <a href="/backend/projects/{{ $project->id }}/events/{{ $event->id }}">
-                                            Ver
+                                        <a href="/backend/events/{{ $event->id }}">
+                                            Ver detalhes
                                         </a>
                                     </td>
                                 </tr>

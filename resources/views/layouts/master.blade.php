@@ -31,6 +31,7 @@
         <script>
             window.old = JSON.parse('{!! htmlspecialchars(json_encode(old()), ENT_NOQUOTES) !!}');
             window.appCity = '{{ env('CITY') }}';
+            window.appState = '{{ env('STATE') }}';
         </script>
 
         <script src="/js/app.js"></script>

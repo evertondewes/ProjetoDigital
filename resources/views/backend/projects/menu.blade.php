@@ -1,4 +1,4 @@
-<div class="col-md-4">
+<div class="col-md-4 order-first order-md-last mb-3 mb-md-0">
     <div class="card">
         <div class="card-header bg-white text-center">
             Opções
@@ -17,7 +17,6 @@
                 </a>
 
                 <a href="#" class="list-group-item">Pagamentos</a>
-                <a href="#" class="list-group-item">Anexos</a>
             </div>
         </div>
     </div>

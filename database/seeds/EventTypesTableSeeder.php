@@ -13,7 +13,6 @@ class EventTypesTableSeeder extends Seeder
     public function run()
     {
         DB::table('event_types')->insert([
-            ['name' => 'em_analise', 'description' => 'Em Análise'],
             ['name' => 'aprovado', 'description' => 'Aprovado'],
             ['name' => 'indeferido', 'description' => 'Indeferido'],
             ['name' => 'pendencias', 'description' => 'Pendências'],

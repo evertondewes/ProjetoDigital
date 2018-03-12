@@ -27,7 +27,7 @@ class PendingAccountsController extends Controller
 
     public function activate(User $user)
     {
-        $user->createdBy(auth()->id())->activate();
+        $user->activate();
 
         $this->alert('Conta ativada com sucesso!');
 

@@ -26,7 +26,7 @@
                     </a>
 
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="/profile">
+                        <a class="dropdown-item" href="/settings">
                             <i class="fa fa-cog"></i> Minha conta
                         </a>
 

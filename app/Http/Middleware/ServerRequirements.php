@@ -4,7 +4,7 @@ namespace ProjetoDigital\Http\Middleware;
 
 use Closure;
 
-class SanitizeCpfAndCnpj
+class ServerRequirements
 {
     /**
      * Handle an incoming request.
@@ -15,6 +15,10 @@ class SanitizeCpfAndCnpj
      */
     public function handle($request, Closure $next)
     {
+        if (! env('STATE') || ! env('CITY')) {
+            abort(500, 'A localização do sistema não foi configurada!');
+        }
+
         if ($request->has('cpf_cnpj')) {
             $sanitized = preg_replace('/\D+/', '', $request->input('cpf_cnpj'));
 
