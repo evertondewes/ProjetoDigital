@@ -11,6 +11,13 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    public function dangerResponse($message)
+    {
+        $this->alert($message, 'danger');
+
+        return back();
+    }
+
     public function alert($message, $class = 'success', $name = 'status')
     {
         session()->flash($name, $message);

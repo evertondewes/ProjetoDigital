@@ -41,10 +41,8 @@ Route::middleware('customer')->group(function () {
 
     Route::resource('projects', 'ProjectsController');
 
-    Route::get('/projects/owners/add', 'OwnersController@create')
-        ->middleware('must-have-session-data:project_data');
-
-    Route::post('/projects/owners', 'OwnersController@store');
+    Route::get('/owners/add/{project?}', 'OwnersController@create');
+    Route::post('/owners/{project?}', 'OwnersController@store');
 
     Route::get('/projects/{project}/docs', 'ProjectDocumentsController@index');
     Route::post('/projects/{project}/docs', 'ProjectDocumentsController@store');

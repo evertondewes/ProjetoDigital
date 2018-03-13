@@ -34,25 +34,23 @@ class ProjectForm extends FormRequest
             $project->users()->attach(auth()->id());
             $project->people()->attach(People::id($this->input('cpf_cnpj')));
 
-            $files = $this->file('project_documents');
-
-            foreach ((array) $files as $file) {
+            foreach ((array) $this->file('project_documents') as $file) {
                 $project->projectDocuments()->create([
                     'name' => $file->getClientOriginalName(),
-                    'path' => $file->store('public/project_documents'),
+                    'path' => $file->store('project_documents'),
                 ]);
             }
 
             $this->createAddress($project);
 
             DB::commit();
+
+            return $project;
         } catch (Exception $e) {
             DB::rollback();
 
             throw $e;
         }
-
-        return $project;
     }
 
     public function update(Project $project)

@@ -20,12 +20,12 @@
 
                     @if (count($phoneNumbers) > 1)
                         <td>
-                            <a class="text-danger" href="#" onclick="$('#delete-form').submit();">
+                            <a class="text-danger" href="#"  data-form-id="#delete-phone-{{ $phoneNumber->id }}-form" data-toggle="modal" data-target="#are-you-sure-modal">
                                 Excluir
                             </a>
                         </td>
 
-                        <form class="d-none" id="delete-form" method="POST" action="/settings/{{ $phoneNumber->id }}/phone-numbers">
+                        <form class="d-none" id="delete-phone-{{ $phoneNumber->id }}-form" method="POST" action="/settings/{{ $phoneNumber->id }}/phone-numbers">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
                         </form>

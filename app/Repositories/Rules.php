@@ -2,8 +2,6 @@
 
 namespace ProjetoDigital\Repositories;
 
-use Illuminate\Support\Arr;
-
 class Rules
 {
     protected $rules = [];
@@ -15,7 +13,7 @@ class Rules
 
     public function registration()
     {
-        return $this->people() + $this->rules['users'];
+        return $this->people() + $this->table('users');
     }
 
     public function remainingRegistration($isEngineer)
@@ -30,22 +28,29 @@ class Rules
         return $result;
     }
 
-    public function table($table, $column = null)
+    public function update($table, $column, $id)
     {
-        $column = is_null($column) ? '' : ".{$column}";
-
-        return Arr::get($this->rules, "{$table}{$column}");
+        return $this->table($table, $column) . ",{$column},{$id}";
     }
 
     public function people()
     {
-        return $this->rules['people']
-            + $this->rules['addresses']
-            + $this->rules['phone_numbers'];
+        return $this->table('people')
+            + $this->table('addresses')
+            + $this->table('phone_numbers');
     }
 
     public function project()
     {
-        return $this->rules['projects'] + $this->rules['project_addresses'];
+        return $this->table('projects') + $this->table('project_addresses');
+    }
+
+    public function table($table, $column = null)
+    {
+        if (! $column) {
+            return $this->rules[$table];
+        }
+
+        return $this->rules[$table][$column];
     }
 }

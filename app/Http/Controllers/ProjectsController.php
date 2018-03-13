@@ -36,17 +36,7 @@ class ProjectsController extends Controller
     public function store(ProjectForm $form)
     {
         if (is_null(People::find($form->input('cpf_cnpj')))) {
-            $projectData = [
-                'project' => $form->only(['description', 'project_type_id', 'project_documents']),
-                'address' => $form->only(['complement', 'street', 'district', 'area']),
-                'owner' => $form->only(['cpf_cnpj']),
-            ];
-
-            $projectData['address'] += ['city_id' => Cities::id(env('CITY'))];
-
-            session()->flash('project_data', $projectData);
-
-            return redirect('/projects/owners/add');
+            return $this->personNotFoundResponse($form);
         }
 
         $form->persist();
@@ -54,6 +44,28 @@ class ProjectsController extends Controller
         $this->alert('Solicitação cadastrada com sucesso!');
 
         return back();
+    }
+
+    protected function personNotFoundResponse(ProjectForm $form)
+    {
+        $projectData = [
+            'project' => $form->only(['description', 'project_type_id']),
+            'address' => $form->only(['complement', 'street', 'district', 'area']),
+            'owner' => $form->only(['cpf_cnpj']),
+        ];
+
+        $projectData['address'] += ['city_id' => Cities::id(env('CITY'))];
+
+        foreach ((array) $form->file('project_documents') as $file) {
+            $projectData['documents'][] = [
+                'name' => $file->getClientOriginalName(),
+                'path' => $file->store('temp'),
+            ];
+        }
+
+        session()->flash('project_data', $projectData);
+
+        return redirect('/owners/add');
     }
 
     public function show(Project $project)

@@ -4,17 +4,25 @@
 
 @section ('content')
     <div class="row my-4">
-        <div class="col-md-8 mx-auto">
-            <h3 class="text-center">
-                O CPF / CNPJ fornecido ainda não está cadastrado no sistema.&nbsp;
-                Por favor, cadastre os dados pessoais do seu cliente para prosseguir.
-            </h3>
+        <div class="col-md-8">
+            @if (is_null($project))
+                <h3 class="text-center mb-4">
+                    O CPF / CNPJ fornecido ainda não está cadastrado no sistema.&nbsp;
+                    Por favor, cadastre os dados pessoais do seu cliente para prosseguir.
+                </h3>
+            @endif
 
             @include ('layouts.status')
 
-            <div class="card mt-4">
+            <div class="card">
+                @if (! is_null($project))
+                    <div class="card-header text-center">
+                        Adicionar cliente
+                    </div>
+                @endif
+
                 <div class="card-body">
-                    <form method="POST" action="/projects/owners">
+                    <form method="POST" action="{{ is_null($project) ? '/owners' : "/owners/{$project->id}" }}">
                         {{ csrf_field() }}
 
                         <h4 class="text-center mb-4">Dados pessoais</h4>
@@ -85,17 +93,17 @@
                             </div>
                         </div>
 
-                        <div class="form-group d-flex justify-content-between">
+                        <div class="form-group">
                             <button type="submit" class="btn btn-outline-primary btn-custom">
                                 Confirmar
                             </button>
-
-                            <a class="btn btn-outline-danger btn-custom" href="/">Cancelar</a>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+
+        @include ('customer.projects.menu')
     </div>
 @endsection
 

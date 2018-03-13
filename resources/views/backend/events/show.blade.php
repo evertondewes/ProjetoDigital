@@ -8,7 +8,7 @@
             @include ('layouts.status')
 
             <div class="card">
-                <div class="card-header bg-white text-center">
+                <div class="card-header text-center">
                     Evento
                 </div>
 
@@ -18,7 +18,7 @@
             </div>
 
             <div class="card my-3">
-                <div class="card-header bg-white text-center">
+                <div class="card-header text-center">
                     Anexos
                 </div>
 
@@ -36,11 +36,11 @@
 
                                         @can ('delete', $document)
                                             <a href="#" class="btn btn-danger btn-sm"
-                                               data-form-id="#doc-delete-form" data-toggle="modal" data-target="#are-you-sure-modal">
+                                               data-form-id="#delete-doc-{{ $document->id }}-form" data-toggle="modal" data-target="#are-you-sure-modal">
                                                 Excluir
                                             </a>
 
-                                            <form class="d-none" id="doc-delete-form" method="POST" action="/backend/event-docs/{{ $document->id }}">
+                                            <form class="d-none" id="delete-doc-{{ $document->id }}-form" method="POST" action="/backend/event-docs/{{ $document->id }}">
                                                 {{ csrf_field() }}
                                                 {{ method_field('DELETE') }}
                                             </form>

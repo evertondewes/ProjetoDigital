@@ -1,6 +1,6 @@
 <div class="col-md-4 order-first order-md-last mb-3 mb-md-0">
     <div class="card">
-        <div class="card-header bg-white text-center">
+        <div class="card-header text-center">
             Opções
         </div>
 

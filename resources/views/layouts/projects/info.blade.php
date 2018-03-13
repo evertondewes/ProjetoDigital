@@ -40,8 +40,8 @@
             <td>{{ $project->technical_manager->person->crea_cau }}</td>
         </tr>
         <tr>
-            <th>Cliente:</th>
-            <td>{{ $project->owner->name }}</td>
+            <th>Cliente(s):</th>
+            <td>{{ implode(', ', $project->people->pluck('name')->all()) }}</td>
         </tr>
     </tbody>
 </table>

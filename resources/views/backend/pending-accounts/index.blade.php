@@ -5,26 +5,36 @@
 @section ('content')
     <div class="row mt-4">
         <div class="col-md-6 mx-auto">
-            <h2 class="text-center">
-                <i class="fa fa-address-card-o"></i> Contas pendentes de ativação
-            </h2>
-
             @include ('layouts.status')
 
-            <ul class="list-group mt-4">
-                @forelse ($accounts as $account)
-                    <li class="list-group-item d-flex align-items-center justify-content-between">
-                        <span>{{ $account->person->email }}</span>
-                        <a class="btn btn-outline-info btn-custom" href="/backend/pending-accounts/{{ $account->id }}">
-                            Avaliar
-                        </a>
-                    </li>
-                @empty
-                    <p class="alert alert-warning text-center">
-                        Nenhuma conta pendente de ativação.
-                    </p>
-                @endforelse
-            </ul>
+            @if (count($accounts))
+                <div class="card">
+                    <div class="card-header text-center">
+                        Contas pendentes de ativação
+                    </div>
+
+                    <div class="card-body">
+                        <table class="table">
+                            <tbody>
+                                @foreach ($accounts as $account)
+                                    <tr>
+                                        <th>{{ $account->person->email }}</th>
+                                        <td class="text-center">
+                                            <a class="btn btn-outline-info btn-custom" href="/backend/pending-accounts/{{ $account->id }}">
+                                                Avaliar
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            @else
+                <p class="alert alert-warning text-center">
+                    Nenhuma conta pendente de ativação!
+                </p>
+            @endif
         </div>
     </div>
 @endsection

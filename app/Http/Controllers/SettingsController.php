@@ -28,6 +28,12 @@ class SettingsController extends Controller
     {
         $user = auth()->user();
 
+        if (! Hash::check(request('password'), $user->password)) {
+            return $this->dangerResponse('Senha incorreta! Tente novamente.');
+        }
+
+        $this->validate(request(), ['email' => $user->person->updateRule('email')]);
+
         $user->person->users()->update(request(['email']));
         $user->person->update(request(['email']));
 
@@ -46,6 +52,10 @@ class SettingsController extends Controller
     public function updateUsername()
     {
         $user = auth()->user();
+
+        if (! Hash::check(request('password'), $user->password)) {
+            return $this->dangerResponse('Senha incorreta! Tente novamente.');
+        }
 
         $this->validate(request(), ['username' => $user->updateRule('username')]);
 
@@ -68,9 +78,7 @@ class SettingsController extends Controller
         $user = auth()->user();
 
         if (! Hash::check(request('current_password'), $user->password)) {
-            $this->alert('Senha atual incorreta! Tente novamente.', 'danger');
-
-            return back();
+            return $this->dangerResponse('Senha atual incorreta! Tente novamente.');
         }
 
         $this->validate(request(), ['password' => $rules->table('users', 'password')]);

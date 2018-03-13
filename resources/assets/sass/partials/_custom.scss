@@ -15,7 +15,9 @@ label {
   color: darken($text-color, 15%);
 }
 
-.table thead th {
+.table thead th,
+.table thead td
+{
   border-bottom-width: 1px;
 }
 

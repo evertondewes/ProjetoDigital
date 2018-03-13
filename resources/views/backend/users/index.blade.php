@@ -5,12 +5,7 @@
 @section ('content')
     <div class="row mt-4">
         <div class="col-md-8 mx-auto">
-            <h2 class="text-center">
-                <i class="fa fa-list-alt"></i> Usuários
-            </h2>
-
-            <div class="mt-4 d-sm-flex justify-content-between">
-
+            <div class="d-sm-flex align-items-center justify-content-between">
                 <a id="filter-link" class="d-none" href="#"></a>
 
                 <div class="custom-control custom-radio">
@@ -52,6 +47,10 @@
 
             <table class="table table-bordered mt-3">
                 <thead>
+                    <tr class="text-center bg-light">
+                        <td colspan="5">Usuários</td>
+                    </tr>
+
                     <tr>
                         <th>Id</th>
                         <th>Nome de usuário</th>

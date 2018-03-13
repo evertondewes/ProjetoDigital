@@ -5,16 +5,16 @@
 @section ('content')
     <div class="row mt-4">
         <div class="col-md-8 mx-auto">
-            <h2 class="text-center">
-                <i class="fa fa-list-alt"></i> Solicitações
-            </h2>
-
-            <table class="table table-bordered mt-3">
+            <table class="table table-bordered">
                 <thead>
+                    <tr class="text-center bg-light">
+                        <td colspan="5">Solicitações</td>
+                    </tr>
+
                     <tr>
                         <th>Id</th>
                         <th>Tipo</th>
-                        <th>Cliente</th>
+                        <th>Cliente(s)</th>
                         <th>Situação</th>
                         <th>Ação</th>
                     </tr>
@@ -29,7 +29,7 @@
                                     {{ $project->projectType->description }}
                                 </a>
                             </td>
-                            <td>{{ $project->people()->first()->name }}</td>
+                            <td>{{ implode(', ', $project->people->pluck('name')->all()) }}</td>
                             <td>{{ $project->lastEvent()->eventType->description ?? 'Em Análise' }}</td>
                             <td>
                                 <a href="/backend/projects/{{ $project->id }}/events/create">

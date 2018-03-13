@@ -1,6 +1,6 @@
 <div class="col-md-4">
     <div class="card">
-        <div class="card-header bg-white text-center">
+        <div class="card-header text-center">
             Opções
         </div>
 
@@ -15,6 +15,12 @@
                 @can ('update', $project)
                     <a href="/projects/{{ $project->id }}/edit" class="list-group-item">
                         Editar
+                    </a>
+                @endcan
+
+                @can ('add-owner', $project)
+                    <a href="/owners/add/{{ $project->id }}" class="list-group-item">
+                        Adicionar cliente
                     </a>
                 @endcan
 

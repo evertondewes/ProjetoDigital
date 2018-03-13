@@ -11,6 +11,7 @@ use ProjetoDigital\Models\Project;
 use Illuminate\Support\Facades\Gate;
 use ProjetoDigital\Policies\EventDocumentPolicy;
 use ProjetoDigital\Policies\EventPolicy;
+use ProjetoDigital\Policies\OwnerPolicy;
 use ProjetoDigital\Policies\ProjectDocumentPolicy;
 use ProjetoDigital\Policies\UserPolicy;
 use ProjetoDigital\Policies\PersonPolicy;
@@ -45,6 +46,12 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('delete-phone-number', function ($user, $phoneNumber) {
             return in_array($phoneNumber->id, $user->person->phoneNumbers->pluck('id')->all()) &&
                 count($user->person->phoneNumbers) > 1;
+        });
+
+        Gate::define('add-owner', function ($user, $project) {
+            return is_null($project)
+                ? $user->isTechnicalManager()
+                : $user->isTechnicalManager() && $user->hasProject($project);
         });
     }
 }

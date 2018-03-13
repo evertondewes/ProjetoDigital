@@ -8,7 +8,7 @@
             @include ('layouts.status')
 
             <div class="card">
-                <div class="card-header bg-white text-center">
+                <div class="card-header text-center">
                     Minha conta
                 </div>
 

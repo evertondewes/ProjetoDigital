@@ -6,7 +6,7 @@
     <div class="row my-4">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header bg-white text-center">
+                <div class="card-header text-center">
                     {{ $project->projectType->description }}
                 </div>
 
@@ -16,7 +16,7 @@
             </div>
 
             <div class="card my-3">
-                <div class="card-header bg-white text-center">
+                <div class="card-header text-center">
                     Anexos
                 </div>
 

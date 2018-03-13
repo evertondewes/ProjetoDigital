@@ -40,7 +40,7 @@ class EventsController extends Controller
         foreach ((array) request()->file('event_documents') as $file) {
             $event->eventDocuments()->create([
                 'name' => $file->getClientOriginalName(),
-                'path' => $file->store('public/event_documents'),
+                'path' => $file->store('event_documents'),
             ]);
         }
 

@@ -6,7 +6,7 @@
     <div class="row mt-4">
         <div class="col-md-6 mx-auto">
             <div class="card">
-                <div class="card-header bg-white text-center">
+                <div class="card-header text-center">
                     {{ $user->username }}
                 </div>
 

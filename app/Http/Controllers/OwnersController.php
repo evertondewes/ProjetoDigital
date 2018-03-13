@@ -2,16 +2,43 @@
 
 namespace ProjetoDigital\Http\Controllers;
 
-use ProjetoDigital\Http\Requests\PendingOwnerForm;
+use Illuminate\Support\Facades\Gate;
+use ProjetoDigital\Http\Requests\OwnerForm;
+use ProjetoDigital\Models\Project;
 
 class OwnersController extends Controller
 {
-    public function create()
+    public function create(Project $project = null)
     {
-        return view('customer.projects.add-owner');
+        if (Gate::denies('add-owner', $project)) {
+            abort(403);
+        }
+
+        session()->reflash();
+
+        $hasProjectData = session()->has('project_data');
+
+        return view('customer.projects.add-owner', compact('project', 'hasProjectData'));
     }
 
-    public function store(PendingOwnerForm $form)
+    public function store(OwnerForm $form, Project $project = null)
+    {
+        if (Gate::denies('add-owner', $project)) {
+            abort(403);
+        }
+
+        if (is_null($project)) {
+            return $this->pendingOwnerRegistrationResponse($form);
+        }
+
+        $project->people()->attach($form->persist());
+
+        $this->alert('Cliente adicionado com sucesso!');
+
+        return back();
+    }
+
+    protected function pendingOwnerRegistrationResponse(OwnerForm $form)
     {
         $form->persist();
 

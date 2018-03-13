@@ -31,7 +31,7 @@ class ProjectDocumentsController extends Controller
         foreach ((array) request()->file('project_documents') as $file) {
             $project->projectDocuments()->create([
                 'name' => $file->getClientOriginalName(),
-                'path' => $file->store('public/project_documents'),
+                'path' => $file->store('project_documents'),
             ]);
         }
 

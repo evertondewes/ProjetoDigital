@@ -15,7 +15,7 @@ trait ModelTrait
 
     public function updateRule($column)
     {
-        return $this->rules($column) . ",{$column},{$this->id}";
+        return Rules::update($this->getTable(), $column, $this->id);
     }
 
     public function rules($column = null)

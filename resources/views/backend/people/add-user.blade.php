@@ -3,17 +3,13 @@
 @section ('title', 'Adicionar conta')
 
 @section ('content')
-    <h2 class="text-center mt-4">
-        Adicionar conta
-    </h2>
-
     <div class="row my-4">
         <div class="col-md-6 mx-auto">
             @include ('layouts.status')
 
             <div class="card">
-                <div class="card-header bg-white text-center">
-                    {{ $person->name }}
+                <div class="card-header text-center">
+                    Adicionar conta para {{ $person->name }}
                 </div>
 
                 <div class="card-body">

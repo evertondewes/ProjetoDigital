@@ -3,13 +3,9 @@
 @section ('title', 'Listar Pessoas')
 
 @section ('content')
-    <div class="row mt-4">
+    <div class="row my-4">
         <div class="col-md-8 mx-auto">
-            <h2 class="text-center">
-                <i class="fa fa-list-alt"></i> Listar pessoas
-            </h2>
-
-            <div class="mt-4 d-sm-flex flex-row-reverse">
+            <div class="d-sm-flex flex-row-reverse">
                 <div class="dropdown">
                     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
                         Ordenar por:
@@ -34,6 +30,10 @@
 
             <table class="table table-bordered mt-3">
                 <thead>
+                    <tr class="text-center bg-light">
+                        <td colspan="5">Pessoas</td>
+                    </tr>
+
                     <tr>
                         <th>Id</th>
                         <th>Nome</th>

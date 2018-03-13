@@ -5,52 +5,48 @@
 @section ('content')
     <div class="row mt-4">
         <div class="col-md-10 mx-auto">
-            <div class="card">
-                <div class="card-header bg-white text-center">
-                    Minhas Solicitações
-                </div>
+            @include ('layouts.status')
 
-                <div class="card-body">
-                    @include ('layouts.status')
+            @if (count($projects))
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="text-center bg-light">
+                            <td colspan="5">Minhas solicitações</td>
+                        </tr>
 
-                    @if (count($projects))
-                        <table class="table table-bordered">
-                            <thead>
+                        <tr>
+                            <th>Nº</th>
+                            <th>Tipo</th>
+                            <th>Solicitado em</th>
+                            <th>Última atualização</th>
+                            <th>Situação</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach ($projects as $project)
                             <tr>
-                                <th>Nº</th>
-                                <th>Tipo</th>
-                                <th>Solicitado em</th>
-                                <th>Última atualização</th>
-                                <th>Situação</th>
+                                <td>{{ $project->id }}</td>
+                                <td>
+                                    <a title="{{ $project->projectType->description }}" href="/projects/{{ $project->id }}">
+                                        {{ str_limit($project->projectType->description, 15) }}
+                                    </a>
+                                </td>
+                                <td>{{ $project->created_at->format('j/m/Y') }}</td>
+                                <td>{{ $project->lastEvent()
+                                        ? $project->lastEvent()->updated_at->format('j/m/Y')
+                                        : $project->created_at->format('j/m/Y')
+                                }}</td>
+                                <td>{{ $project->lastEvent()->eventType->description ?? 'Em Análise' }}</td>
                             </tr>
-                            </thead>
-
-                            <tbody>
-                            @foreach ($projects as $project)
-                                <tr>
-                                    <td>{{ $project->id }}</td>
-                                    <td>
-                                        <a title="{{ $project->projectType->description }}" href="/projects/{{ $project->id }}">
-                                            {{ str_limit($project->projectType->description, 15) }}
-                                        </a>
-                                    </td>
-                                    <td>{{ $project->created_at->format('j/m/Y') }}</td>
-                                    <td>{{ $project->lastEvent()
-                                            ? $project->lastEvent()->updated_at->format('j/m/Y')
-                                            : $project->created_at->format('j/m/Y')
-                                    }}</td>
-                                    <td>{{ $project->lastEvent()->eventType->description ?? 'Em Análise' }}</td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    @else
-                        <div class="alert alert-warning text-center">
-                            Você não tem nenhuma solicitação cadastrada!
-                        </div>
-                    @endif
+                        @endforeach
+                    </tbody>
+                </table>
+            @else
+                <div class="alert alert-warning text-center">
+                    Você não tem nenhuma solicitação cadastrada!
                 </div>
-            </div>
+            @endif
 
             <div class="d-flex justify-content-center mt-4 mb-5">
                 {{ $projects->links('vendor.pagination.bootstrap-4') }}
