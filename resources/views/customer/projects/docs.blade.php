@@ -25,11 +25,11 @@
                                             </a>
 
                                             <a class="btn btn-danger btn-sm mt-1 mt-md-0" href="#"
-                                               data-form-id="#doc-delete-form" data-toggle="modal" data-target="#are-you-sure-modal">
+                                               data-form-id="#delete-doc-{{ $projectDocument->id }}-form" data-toggle="modal" data-target="#are-you-sure-modal">
                                                 Excluir
                                             </a>
 
-                                            <form class="d-none" id="doc-delete-form" method="POST" action="/project-docs/{{ $projectDocument->id }}">
+                                            <form class="d-none" id="delete-doc-{{ $projectDocument->id }}-form" method="POST" action="/project-docs/{{ $projectDocument->id }}">
                                                 {{ csrf_field() }}
                                                 {{ method_field('DELETE') }}
                                             </form>
