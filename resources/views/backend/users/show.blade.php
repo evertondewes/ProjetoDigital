@@ -13,18 +13,21 @@
                 <div class="card-body">
                     <table class="table">
                         <tbody>
-                            <tr>
-                                <th>E-mail:</th>
-                                <td>{{ $user->person->email }}</td>
-                            </tr>
-                            <tr>
-                                <th>CPF / CNPJ:</th>
-                                <td>
-                                    <a href="/backend/people/{{ $user->person->id }}">
-                                        {{ $user->person->cpf_cnpj }}
-                                    </a>
-                                </td>
-                            </tr>
+                            @if ($user->person)
+                                <tr>
+                                    <th>E-mail:</th>
+                                    <td>{{ $user->person->email }}</td>
+                                </tr>
+                                <tr>
+                                    <th>CPF / CNPJ:</th>
+                                    <td>
+                                        <a href="/backend/people/{{ $user->person->id }}">
+                                            {{ $user->person->cpf_cnpj }}
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endif
+                            
                             <tr>
                                 <th>Nome de usuário:</th>
                                 <td>{{ $user->username }}</td>
