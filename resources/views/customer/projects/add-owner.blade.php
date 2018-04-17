@@ -4,7 +4,7 @@
 
 @section ('content')
     <div class="row my-4">
-        <div class="col-md-8">
+        <div class="col-md-8 {{ is_null($project) ? 'mx-auto' : ''}}">
             @if (is_null($project))
                 <h3 class="text-center mb-4">
                     O CPF / CNPJ fornecido ainda não está cadastrado no sistema.&nbsp;
@@ -103,7 +103,9 @@
             </div>
         </div>
 
-        @include ('customer.projects.menu')
+        @if (! is_null($project))
+            @include ('customer.projects.menu')
+        @endif
     </div>
 @endsection
 
