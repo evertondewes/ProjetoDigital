@@ -20,7 +20,7 @@
 
                 @can ('add-owner', $project)
                     <a href="/owners/add/{{ $project->id }}" class="list-group-item">
-                        Adicionar cliente
+                        Adicionar requerente
                     </a>
                 @endcan
 

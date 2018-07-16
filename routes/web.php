@@ -4,6 +4,8 @@ Route::middleware('guest')->group(function () {
     Route::get('/', 'PagesController@index');
     Route::get('/about', 'PagesController@about');
     Route::get('/help', 'PagesController@help');
+    Route::get('/teste', 'TesteController@index');
+    Route::post('/teste', 'TesteController@store');
 });
 
 Auth::routes();

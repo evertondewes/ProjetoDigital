@@ -33,15 +33,58 @@
         </tr>
         <tr>
             <th>Responsável Técnico:</th>
-            <td>{{ $project->technical_manager->person->name }}</td>
+            <td>
+                <a data-toggle="collapse" href="#collapseTechnical_Manager" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    {{ $project->technical_manager->person->name }}
+                </a>
+                <div class="collapse" id="collapseTechnical_Manager">
+                        <p><strong>CPF/CNPJ:</strong> {{ $project->technical_manager->person->cpf_cnpj}}</p>
+                        <p><strong>Email:</strong> {{ $project->technical_manager->person->email}}</p>
+                        <p><strong>Telefone</strong> 
+                            @foreach ($project->technical_manager->person->phoneNumbers as $phoneNumber)
+                                    ({{ $phoneNumber->area_code }}) {{ $phoneNumber->phone }}
+                            @endforeach
+                        </p>
+                        <p><strong>Endereço:</strong> 
+                            {{ $project->technical_manager->person->address->street}} 
+                            {{ $project->technical_manager->person->address->number}},
+                            {{ $project->technical_manager->person->address->district}} -
+                            {{ $project->technical_manager->person->address->city->name}} 
+                            {{ $project->technical_manager->person->address->city->state->abbreviation}} 
+                        </p>      
+                </div>
+            </td>
         </tr>
         <tr>
             <th>CREA / CAU:</th>
             <td>{{ $project->technical_manager->person->crea_cau }}</td>
         </tr>
         <tr>
-            <th>Cliente(s):</th>
-            <td>{{ implode(', ', $project->people->pluck('name')->all()) }}</td>
+            <th>Requerente(s):</th>
+            {{-- <td>{{ implode(', ', $project->people->pluck('name')->all()) }}</td> --}}
+            <td>
+               @foreach  ($project->people as $people)
+                   <a data-toggle="collapse" href="#collapsePeople" role="button" aria-expanded="false" aria-controls="collapseExample">
+                       {{ $people->name }}
+                   </a>
+                   <div class="collapse" id="collapsePeople">
+                           <p><strong>CPF/CNPJ:</strong> {{ $people->cpf_cnpj}}</p>
+                           <p><strong>Email:</strong> {{ $people->email}}</p>
+                           <p><strong>Telefone</strong> 
+                               @foreach ($people->phoneNumbers as $phoneNumber)
+                                       ({{ $phoneNumber->area_code }}) {{ $phoneNumber->phone }}
+                               @endforeach
+                           </p>
+                           <p><strong>Endereço:</strong> 
+                               {{ $people->address->street}} 
+                               {{ $people->address->number}},
+                               {{ $people->address->district}} -
+                               {{ $people->address->city->name}} 
+                               {{ $people->address->city->state->abbreviation}} 
+                           </p>
+               @endforeach
+            </td>
+
         </tr>
     </tbody>
 </table>

@@ -60,7 +60,7 @@ class UsersTableSeeder extends Seeder
                 'username' => 'cli.stephenhawking',
                 'password' => bcrypt(env('ROOT_PASSWORD')),
                 'active' => true,
-                'role_id' => DB::table('roles')->where('name', 'cliente')->first()->id,
+                'role_id' => DB::table('roles')->where('name', 'requerente')->first()->id,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]

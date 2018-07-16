@@ -23,7 +23,7 @@ trait HasRoles
 
     public function isCustomer()
     {
-        return $this->hasAnyRole('cliente', 'responsavel_tecnico');
+        return $this->hasAnyRole('requerente', 'responsavel_tecnico');
     }
 
     public function isTechnicalManager()
@@ -40,6 +40,6 @@ trait HasRoles
 
     public function scopeCustomer($query)
     {
-        return $query->whereIn('role_id', Roles::id(['cliente', 'responsavel_tecnico']));
+        return $query->whereIn('role_id', Roles::id(['requerente', 'responsavel_tecnico']));
     }
 }

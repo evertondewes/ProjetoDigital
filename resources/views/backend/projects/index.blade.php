@@ -14,7 +14,7 @@
                     <tr>
                         <th>Id</th>
                         <th>Tipo</th>
-                        <th>Cliente(s)</th>
+                        <th>Requerente(s)</th>
                         <th>Situação</th>
                         <th>Ação</th>
                     </tr>

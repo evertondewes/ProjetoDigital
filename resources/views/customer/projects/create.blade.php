@@ -31,11 +31,11 @@
 
                         <div class="form-group">
                             <label for="description">Descrição:</label>
-                            <input type="text" class="form-control" id="description" name="description" value="{{ old('description') }}">
+                            <textarea class="form-control" id="description" name="description" value="{{ old('description') }}"></textarea>
                         </div>
 
                         <div class="form-group">
-                            <label for="cpf_cnpj">CPF / CNPJ (do cliente):</label>
+                            <label for="cpf_cnpj">CPF / CNPJ (do requerente):</label>
                             <input type="text" class="form-control" id="cpf_cnpj" name="cpf_cnpj" value="{{ old('cpf_cnpj') }}">
                         </div>
 

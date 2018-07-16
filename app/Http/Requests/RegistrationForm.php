@@ -40,6 +40,6 @@ class RegistrationForm extends FormRequest
 
     protected function normalizeRole($person)
     {
-        return $person->crea_cau ? 'responsavel_tecnico' : 'cliente';
+        return $person->crea_cau ? 'responsavel_tecnico' : 'requerente';
     }
 }
