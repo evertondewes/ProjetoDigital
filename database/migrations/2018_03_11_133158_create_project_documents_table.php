@@ -19,6 +19,7 @@ class CreateProjectDocumentsTable extends Migration
             $table->string('path');
             $table->integer('project_id')->unsigned();
             $table->foreign('project_id')->references('id')->on('projects');
+            $table->boolean('approved')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

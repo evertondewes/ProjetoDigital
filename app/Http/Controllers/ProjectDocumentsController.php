@@ -15,6 +15,11 @@ class ProjectDocumentsController extends Controller
         return view('customer.projects.docs', compact('project'));
     }
 
+    public function view($id,$projectDocument)
+    {
+        return response()->file(storage_path('app/public/projeto_'.$id.'/'.$projectDocument.'.pdf'));
+    }
+
     public function download(ProjectDocument $projectDocument)
     {
         $this->authorize('view', $projectDocument);
