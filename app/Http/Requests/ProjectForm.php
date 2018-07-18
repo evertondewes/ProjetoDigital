@@ -34,12 +34,12 @@ class ProjectForm extends FormRequest
             $project->users()->attach(auth()->id());
             $project->people()->attach(People::id($this->input('cpf_cnpj')));
 
-            foreach ((array) $this->file('project_documents') as $file) {
+            /*foreach ((array) $this->file('project_documents') as $file) {
                 $project->projectDocuments()->create([
                     'name' => $file->getClientOriginalName(),
                     'path' => $file->store('project_documents'),
                 ]);
-            }
+            }*/
 
             $this->createAddress($project);
 
@@ -65,7 +65,7 @@ class ProjectForm extends FormRequest
     protected function createAddress(Project $project)
     {
         return ProjectAddress::create($this->only([
-            'complement', 'street', 'district', 'area'
+            'complement', 'number', 'street', 'district', 'area'
         ]) + ['project_id' => $project->id, 'city_id' => Cities::id(env('CITY'))]);
     }
 }

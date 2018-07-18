@@ -50,18 +50,18 @@ class ProjectsController extends Controller
     {
         $projectData = [
             'project' => $form->only(['description', 'project_type_id']),
-            'address' => $form->only(['complement', 'street', 'district', 'area']),
+            'address' => $form->only(['complement', 'number', 'street', 'district', 'area']),
             'owner' => $form->only(['cpf_cnpj']),
         ];
 
         $projectData['address'] += ['city_id' => Cities::id(env('CITY'))];
 
-        foreach ((array) $form->file('project_documents') as $file) {
+        /*foreach ((array) $form->file('project_documents') as $file) {
             $projectData['documents'][] = [
                 'name' => $file->getClientOriginalName(),
                 'path' => $file->store('temp'),
             ];
-        }
+        }*/
 
         session()->flash('project_data', $projectData);
 

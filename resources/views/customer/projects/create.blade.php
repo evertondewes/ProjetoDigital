@@ -48,14 +48,19 @@
                             </div>
 
                             <div class="col-6">
+                                <label for="number">Número:</label>
+                                <input type="text" id="number" class="form-control" name="number" value="{{ old('number') }}">
+                            </div>
+
+                            <div class="col-6">
                                 <label for="complement">Complemento:</label>
                                 <input type="text" id="complement" class="form-control" name="complement" value="{{ old('complement') }}">
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <label for="district">Bairro:</label>
-                            <input type="text" id="district" class="form-control" name="district" value="{{ old('district') }}">
+                            <div class="col-6">
+                                <label for="district">Bairro:</label>
+                                <input type="text" id="district" class="form-control" name="district" value="{{ old('district') }}">
+                            </div>
                         </div>
 
                         <div class="form-group">
