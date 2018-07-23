@@ -68,15 +68,15 @@
                             <input type="number" id="area" class="form-control" name="area" value="{{ old('area') }}">
                         </div>
 
-                        <h4 class="text-center">Anexos</h4>
+                       {{--  <h4 class="text-center">Anexos</h4>
                         
                         <div class="form-group">
                             <label for="project_documents">Arquivos:</label>
                             <input type="file" id="project_documents" class="form-control" name="project_documents[]" multiple>
-                        </div>
+                        </div> --}}
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-custom">Cadastrar</button>
+                            <button type="submit" class="btn btn-primary btn-custom">Avançar</button>
                         </div>
                     </form>
                 </div>

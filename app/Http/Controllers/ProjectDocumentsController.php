@@ -3,8 +3,10 @@
 namespace ProjetoDigital\Http\Controllers;
 
 use ProjetoDigital\Models\Project;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use ProjetoDigital\Models\ProjectDocument;
+
 
 class ProjectDocumentsController extends Controller
 {
@@ -27,7 +29,7 @@ class ProjectDocumentsController extends Controller
         return Storage::download($projectDocument->path, $projectDocument->name);
     }
 
-    public function store(Project $project)
+    /*public function store(Project $project)
     {
         $this->authorize('update', $project);
 
@@ -43,6 +45,47 @@ class ProjectDocumentsController extends Controller
         $this->alert('Arquivo(s) adicionado(s) com sucesso!');
 
         return back();
+    }*/
+
+    public function store($project_type, Project $project ,Request $request)
+    {      
+        $this->authorize('update', $project);
+
+        switch ($project_type) {
+            case '7':
+                $request->validate([
+                    'guia_recolhimento' => 'mimes:pdf|max:10000',
+                    'plantas[]' => 'mimes:pdf|max:10000',
+                ]);
+
+                $folder = "projeto_".$project->id;
+
+                $project->projectDocuments()->create([
+                    'name' => 'guia_recolhimento',
+                    'path' => $request->guia_recolhimento->storeAs($folder, 'guia_recolhimento.pdf'),
+                ]);
+
+                $i = 0;
+
+                foreach ($request->plantas as $planta) 
+                {
+                    $project->projectDocuments()->create([
+                        'name' => 'planta_baixa_'.$i,
+                        'path' => $planta->storeAs($folder,'planta_baixa_'.$i.'.pdf'),
+                    ]);
+                    $i++;
+                } 
+               
+            break;
+        
+            default:
+            break;
+        }
+
+        $this->alert('Projeto criado com sucesso!');
+
+        return redirect('/projects');
+ 
     }
 
     public function destroy(ProjectDocument $projectDocument)

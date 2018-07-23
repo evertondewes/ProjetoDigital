@@ -2,8 +2,6 @@
 
 Route::get('/teste', 'TesteController@index');
 Route::post('/teste', 'TesteController@store');
-Route::get('/view-document/{id}/{projectDocument}', 'ProjectDocumentsController@view');
-
 
 Route::middleware('guest')->group(function () {
     Route::get('/', 'PagesController@index');
@@ -36,7 +34,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/settings/{phoneNumber}/phone-numbers', 'SettingsController@destroyPhoneNumber');
     Route::delete('/settings', 'SettingsController@destroy');
 
+    Route::get('/project-docs-view/{id}/{projectDocument}', 'ProjectDocumentsController@view');
     Route::get('/project-docs/{projectDocument}', 'ProjectDocumentsController@download');
+    Route::post('/project-docs/{project_type}/{project}', 'ProjectDocumentsController@store');
     Route::delete('/project-docs/{projectDocument}', 'ProjectDocumentsController@destroy');
 
     Route::get('/event-docs/{eventDocument}', 'Backend\EventDocumentsController@download');

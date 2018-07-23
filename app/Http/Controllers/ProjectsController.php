@@ -39,11 +39,11 @@ class ProjectsController extends Controller
             return $this->personNotFoundResponse($form);
         }
 
-        $form->persist();
+        $project = $form->persist();
 
-        $this->alert('Solicitação cadastrada com sucesso!');
+        //$this->alert('Solicitação cadastrada com sucesso!');
 
-        return back();
+        return view('customer.projects.send-documents', compact('project'));
     }
 
     protected function personNotFoundResponse(ProjectForm $form)
