@@ -18,6 +18,7 @@ class CreateProjectAddressesTable extends Migration
             $table->increments('id');
             $table->integer('city_id')->unsigned();
             $table->foreign('city_id')->references('id')->on('cities');
+            $table->integer('number');
             $table->string('complement');
             $table->string('street');
             $table->string('district');

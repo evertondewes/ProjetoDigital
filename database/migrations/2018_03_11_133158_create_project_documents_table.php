@@ -16,9 +16,11 @@ class CreateProjectDocumentsTable extends Migration
         Schema::create('project_documents', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('description');
             $table->string('path');
             $table->integer('project_id')->unsigned();
             $table->foreign('project_id')->references('id')->on('projects');
+            $table->boolean('approved')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

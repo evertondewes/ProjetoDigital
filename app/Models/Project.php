@@ -50,7 +50,7 @@ class Project extends Model
     {
         $address = $this->address;
 
-        return "{$address->street}, {$address->district}, {$address->complement}";
+        return "{$address->street} {$address->number},{$address->district}, {$address->complement}";
     }
 
     public function getAddressAttribute()

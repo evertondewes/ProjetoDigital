@@ -1,6 +1,6 @@
 @extends ('layouts.master')
 
-@section ('title', 'Cadastrar dados do cliente')
+@section ('title', 'Cadastrar dados do requerente')
 
 @section ('content')
     <div class="row my-4">
@@ -8,7 +8,7 @@
             @if (is_null($project))
                 <h3 class="text-center mb-4">
                     O CPF / CNPJ fornecido ainda não está cadastrado no sistema.&nbsp;
-                    Por favor, cadastre os dados pessoais do seu cliente para prosseguir.
+                    Por favor, cadastre os dados pessoais do seu requerente para prosseguir.
                 </h3>
             @endif
 
@@ -17,7 +17,7 @@
             <div class="card">
                 @if (! is_null($project))
                     <div class="card-header text-center">
-                        Adicionar cliente
+                        Adicionar requerente
                     </div>
                 @endif
 

@@ -1,0 +1,7 @@
+-Cliente virou requerente no front end e no db. Nos models e controllers continua customer
+
+-Adicionei o número no projectAdress
+
+-Nos detalhes dos projetos ao clicar no nome do RT e Requerente é mostrado as informçoes pessoais
+
+-A parte de envio, visão e aprovação de documentos foi reformulada

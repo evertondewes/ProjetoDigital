@@ -8,15 +8,16 @@
             <table class="table table-bordered">
                 <thead>
                     <tr class="text-center bg-light">
-                        <td colspan="5">Solicitações</td>
+                        <td colspan="6">Solicitações</td>
                     </tr>
 
                     <tr>
                         <th>Id</th>
                         <th>Tipo</th>
-                        <th>Cliente(s)</th>
+                        <th>Requerente(s)</th>
                         <th>Situação</th>
                         <th>Ação</th>
+                        <th>Aprovar</th>
                     </tr>
                 </thead>
 
@@ -36,6 +37,8 @@
                                     Adicionar evento
                                 </a>
                             </td>
+                            <td><a href="/project-docs-approve/{{$project->id}}">Aprovar</a></td>
+
                         </tr>
                     @endforeach
                 </tbody>

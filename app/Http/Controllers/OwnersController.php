@@ -33,7 +33,7 @@ class OwnersController extends Controller
 
         $project->people()->attach($form->persist());
 
-        $this->alert('Cliente adicionado com sucesso!');
+        $this->alert('Requerente adicionado com sucesso!');
 
         return back();
     }

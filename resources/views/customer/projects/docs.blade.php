@@ -14,37 +14,16 @@
 
                 <div class="card-body">
                     @if (count($project->projectDocuments))
-                        <table class="table">
-                            <tbody>
-                                @foreach ($project->projectDocuments as $projectDocument)
-                                    <tr>
-                                        <th>{{ $projectDocument->name }}</th>
-                                        <td class="text-right">
-                                            <a class="btn btn-success btn-sm" href="/project-docs/{{ $projectDocument->id }}">
-                                                Baixar
-                                            </a>
 
-                                            <a class="btn btn-danger btn-sm mt-1 mt-md-0" href="#"
-                                               data-form-id="#delete-doc-{{ $projectDocument->id }}-form" data-toggle="modal" data-target="#are-you-sure-modal">
-                                                Excluir
-                                            </a>
+                        @include ('layouts.docs.view')
 
-                                            <form class="d-none" id="delete-doc-{{ $projectDocument->id }}-form" method="POST" action="/project-docs/{{ $projectDocument->id }}">
-                                                {{ csrf_field() }}
-                                                {{ method_field('DELETE') }}
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
                     @else
                         <p class="alert alert-warning text-center">
                             Não há anexos disponíveis
                         </p>
                     @endif
 
-                    <form method="POST" action="/projects/{{ $project->id }}/docs" enctype="multipart/form-data">
+                   {{--  <form method="POST" action="/projects/{{ $project->id }}/docs" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         
                         <div class="form-group">
@@ -57,7 +36,7 @@
                                 Adicionar
                             </button>
                         </div>
-                    </form>
+                    </form> --}}
                 </div>
             </div>
         </div>

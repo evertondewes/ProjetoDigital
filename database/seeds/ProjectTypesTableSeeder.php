@@ -19,6 +19,8 @@ class ProjectTypesTableSeeder extends Seeder
             ['name' => 'edificacao_regularizacao', 'description' => 'Regularização de Edificação'],
             ['name' => 'lotes_desmembramento_remembramento', 'description' => 'Desmembramento / Remembramento de Lote'],
             ['name' => 'certidao', 'description' => 'Certidão'],
+            ['name' => 'autorizacao_tapume', 'description' => 'Autorização de Tapume'],
+            ['name' => 'autorizacao_demolicao', 'description' => 'Autorização de Demolição'],
         ]);
     }
 }
