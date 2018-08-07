@@ -20,11 +20,11 @@
                                 @switch($project->project_type_id)
 
                                     @case(7)
-                                        @include ('layouts.docs-send.tapume')
+                                        @include ('layouts.docs.tapume')
                                         @break
 
                                     @case(8)
-                                        @include ('layouts.docs-send.demolicao')
+                                        @include ('layouts.docs.demolicao')
                                         @break    
 
                                     @default
