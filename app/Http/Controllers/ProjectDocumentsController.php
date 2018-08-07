@@ -59,7 +59,7 @@ class ProjectDocumentsController extends Controller
                     'alvara_ou_autorizacao' => 'mimes:pdf|max:10000',
                 ]);
 
-                $folder = "projeto_".$project->id;
+                $folder = "public/projeto_".$project->id;
 
                 $project->projectDocuments()->create([
                     'name' => 'guia_recolhimento',
