@@ -7,6 +7,26 @@
         <div class="col-md-12">
             @include ('layouts.status')
 
+            <div class="card" style="font-weight: bold;">
+                <div class="card-header text-center">
+                    Observações
+                </div>
+
+                <div class="card-body">
+                    <ul>
+                        <li>Os documentos devem estar no formato PDF</li>
+                        <li>O tamanho máximo por arquivo é de 10mb</li>
+                        <li>Caso seja maior é recomendo o uso de um otimizador de PDFs</li>
+                        <li>Todos os documentos deverão estar assinados pelo Proprietário/Requerente e pelo Ténico Responsável</li>
+                        <li>Todos os processos deverão vir acompanhados de recibo de pagamento de protocolo e de requrimento (Quando for o caso)</li>
+                        <li>Cópia da Matricula atualizada do imovél com no máximo 30 dias</li>
+                        <li>Nenuma obra (Construção, reconstrção, reforma, aumento ou demolição) poderá ser iniciada sem a prévia autorização do Município</li>
+                        <li>Nenuma obra (Construção, reconstrção, reforma, aumento ou demolição) poderá abrir janelas a menos de 1,5 metros do terreno vizinho em paredes paralelas e a menos de 0,75 metros em parees perpendiculares à divisa</li>
+                        <li>Projetos de construção em imóveis marginais as rodovias estaduais e federais deverão observar a faixa <i>"non aedificandi"</i> e apresentar comprovação da aprovação de acesso a rodovia pelo DNIT ou DAER</li>
+                    </ul>
+                </div>
+            </div>
+
             <div class="card">
                 <div class="card-header text-center">
                     Documentos da solicitação

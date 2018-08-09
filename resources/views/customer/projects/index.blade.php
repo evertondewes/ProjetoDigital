@@ -16,6 +16,7 @@
 
                         <tr>
                             <th>Nº</th>
+                            <th>Requerente</th>
                             <th>Tipo</th>
                             <th>Solicitado em</th>
                             <th>Última atualização</th>
@@ -27,9 +28,10 @@
                         @foreach ($projects as $project)
                             <tr>
                                 <td>{{ $project->id }}</td>
+                                <td>{{dd($project->people)}}</td>
                                 <td>
                                     <a title="{{ $project->projectType->description }}" href="/projects/{{ $project->id }}">
-                                        {{ str_limit($project->projectType->description, 15) }}
+                                        {{ $project->projectType->description }}
                                     </a>
                                 </td>
                                 <td>{{ $project->created_at->format('j/m/Y') }}</td>

@@ -21,7 +21,7 @@ class CreateProjectsTable extends Migration
 
         Schema::create('projects', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('description');
+            $table->mediumTexT('description');
             $table->integer('project_type_id')->unsigned();
             $table->foreign('project_type_id')->references('id')->on('project_types');
             $table->integer('deleted_by')->nullable()->unsigned();

@@ -28,7 +28,7 @@ class Project extends Model
 
     public function people()
     {
-        return $this->belongsToMany(Person::class);
+        return $this->belongsTo(Person::class);
     }
 
     public function events()

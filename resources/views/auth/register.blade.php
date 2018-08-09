@@ -56,14 +56,14 @@
                         <h4 class="text-center mb-4">Endereço</h4>
 
                         <div class="form-row form-group">
-                            <div class="col-4 col-sm-3">
-                                <label for="number">Número:</label>
-                                <input type="text" id="number" class="form-control" name="number" value="{{ old('number') }}">
-                            </div>
-
                             <div class="col-8 col-sm-9">
                                 <label for="street">Rua:</label>
                                 <input type="text" id="street" class="form-control" name="street" value="{{ old('street') }}">
+                            </div>
+
+                            <div class="col-4 col-sm-3">
+                                <label for="number">Número:</label>
+                                <input type="text" id="number" class="form-control" name="number" value="{{ old('number') }}">
                             </div>
                         </div>
 
