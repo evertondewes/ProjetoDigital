@@ -21,13 +21,11 @@
                         <div class="form-group">
                             <label for="project_type_id">Tipo:</label>
                             <select class="form-control" name="project_type_id" id="project_type_id">
-                               {{--  @foreach ($projectTypes as $projectType)
+                                @foreach ($projectTypes as $projectType)
                                     <option value="{{ $projectType->id }}">
                                         {{ $projectType->description }}
                                     </option>
-                                @endforeach --}}
-                                <option value="7">Autorização de Tapume</option>
-                                <option value="8">Autorização de Demolição</option>   
+                                @endforeach
                             </select>
                         </div>
 
