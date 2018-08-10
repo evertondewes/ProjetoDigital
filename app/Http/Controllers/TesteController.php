@@ -14,6 +14,10 @@ class TesteController extends Controller
     public function store(Request $request)
     {
 
+        $lol = 'guia_recolhimento';
+
+        dd($request->$lol);
+
         $request->validate([
                 'guia_recolhimento' => 'mimes:pdf|max:10000',
                 'plantas' => 'mimes:pdf|max:10000',

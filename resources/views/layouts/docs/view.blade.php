@@ -2,7 +2,7 @@
         <thead>
             <tr>
                 <th>Documento</th>
-                <th>Substituir</th>
+                <th>Download</th>
             </tr>
         </thead>
         <tbody>
@@ -12,8 +12,8 @@
                         <a href="/project-docs-view/{{$project->id}}/{{$projectDocument->name}}" target="_blank">{{$projectDocument->description}}</a>
                     </td>
                     <td>
-                        <a class="btn btn-primary btn-sm mt-1 mt-md-0" href="#">
-                            Substituir
+                        <a class="btn btn-primary btn-sm mt-1 mt-md-0" href="/project-docs/{{$projectDocument->id}}">
+                            Download
                         </a>
                     </td>
                 </tr>

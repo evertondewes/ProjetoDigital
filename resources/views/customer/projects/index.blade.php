@@ -4,14 +4,14 @@
 
 @section ('content')
     <div class="row mt-4">
-        <div class="col-md-10 mx-auto">
+        <div class="col-md-12 mx-auto">
             @include ('layouts.status')
 
             @if (count($projects))
                 <table class="table table-bordered">
                     <thead>
                         <tr class="text-center bg-light">
-                            <td colspan="5">Minhas solicitações</td>
+                            <td colspan="8">Minhas solicitações</td>
                         </tr>
 
                         <tr>
@@ -28,7 +28,7 @@
                         @foreach ($projects as $project)
                             <tr>
                                 <td>{{ $project->id }}</td>
-                                <td>{{dd($project->people)}}</td>
+                                <td>{{ $project->people->first()->name }}</td>
                                 <td>
                                     <a title="{{ $project->projectType->description }}" href="/projects/{{ $project->id }}">
                                         {{ $project->projectType->description }}

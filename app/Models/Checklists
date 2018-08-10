@@ -1,0 +1,10 @@
+<?php
+
+namespace ProjetoDigital\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Checklists extends Model
+{
+    use ModelTrait;
+}

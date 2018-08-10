@@ -6,6 +6,8 @@ use ProjetoDigital\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use ProjetoDigital\Models\ProjectDocument;
+use ProjetoDigital\Models\ProjectType;
+
 use Auth;
 
 class ProjectDocumentsController extends Controller
@@ -26,7 +28,7 @@ class ProjectDocumentsController extends Controller
     {
         $this->authorize('view', $projectDocument);
 
-        return Storage::download($projectDocument->path, $projectDocument->name);
+        return Storage::download($projectDocument->path, $projectDocument->name.'.pdf');
     }
 
     /*public function store(Project $project)
@@ -47,38 +49,14 @@ class ProjectDocumentsController extends Controller
         return back();
     }*/
 
-    public function store($project_type, Project $project ,Request $request)
+    public function store(ProjectType $project_type, Project $project ,Request $request)
     {      
         $this->authorize('update', $project);
 
-        switch ($project_type)
-        {
-            case '7':
-                $request->validate([
-                    'guia_recolhimento' => 'mimes:pdf|max:10000',
-                    'alvara_ou_autorizacao' => 'mimes:pdf|max:10000',
-                ]);
+        $method = $project_type->name;
 
-                $folder = "public/projeto_".$project->id;
-
-                $project->projectDocuments()->create([
-                    'name' => 'guia_recolhimento',
-                    'description' => 'Requerimento e Guia de recolhimento paga',
-                    'path' => $request->guia_recolhimento->storeAs($folder, 'guia_recolhimento.pdf')
-                ]);
-
-                $project->projectDocuments()->create([
-                    'name' => 'alvara_ou_autorizacao',
-                    'description' => 'Alvará de Construção ou Autorização de Demolição',
-                    'path' => $request->alvara_ou_autorizacao->storeAs($folder, 'alvara_ou_autorizacao.pdf')
-                ]);
-               
-            break;
-        
-            default:
-            break;
-        }
-
+        ProjectDocument::$method($request,$project);
+       
         $this->alert('Projeto criado com sucesso!');
 
         return redirect('/projects');
