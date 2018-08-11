@@ -19,7 +19,6 @@ class CreateChecklistsTable extends Migration
             $table->string('text');
             $table->integer('project_type_id')->unsigned();
             $table->foreign('project_type_id')->references('id')->on('project_types');
-            $table->timestamps();
         });
     }
 

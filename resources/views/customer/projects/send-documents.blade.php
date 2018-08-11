@@ -34,7 +34,7 @@
 
                 <div class="card-body">
                         <div class="form-group">
-                            <form method="POST" action="/project-docs/{{$project->project_type_id}}/{{$project->id}}" enctype="multipart/form-data">
+                            <form method="POST" action="/project-docs/{{$project->id}}" enctype="multipart/form-data">
                                 {{ csrf_field() }}
 
                                 @switch($project->project_type_id)

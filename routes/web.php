@@ -38,9 +38,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/project-docs-approve/{project}', 'ProjectDocumentsController@analyze');
     Route::post('/project-docs-approve/{project}', 'ProjectDocumentsController@approve');
     Route::get('/project-docs/{projectDocument}', 'ProjectDocumentsController@download');
-    Route::post('/project-docs/{project_type}/{project}', 'ProjectDocumentsController@store');
+    Route::get('/project-docs/send/{project}', 'ProjectDocumentsController@send');
+    Route::post('/project-docs/{project}', 'ProjectDocumentsController@store');
     Route::delete('/project-docs/{projectDocument}', 'ProjectDocumentsController@destroy');
-
     Route::get('/event-docs/{eventDocument}', 'Backend\EventDocumentsController@download');
 });
 

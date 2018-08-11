@@ -14,4 +14,10 @@ class ProjectType extends Model
     {
         return $this->hasMany(Project::class);
     }
+
+    public function checklists()
+    {
+        return $this->hasMany(Checklist::class);
+    }
+
 }

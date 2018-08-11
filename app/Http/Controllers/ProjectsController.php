@@ -43,7 +43,7 @@ class ProjectsController extends Controller
 
         //$this->alert('Solicitação cadastrada com sucesso!');
 
-        return view('customer.projects.send-documents', compact('project'));
+        return redirect('/project-docs/send/'.$project->id);
     }
 
     protected function personNotFoundResponse(ProjectForm $form)

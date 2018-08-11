@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use ProjetoDigital\Models\ProjectDocument;
 use ProjetoDigital\Models\ProjectType;
+use Illuminate\Foundation\Http\FormRequest;
 
 use Auth;
 
@@ -31,32 +32,37 @@ class ProjectDocumentsController extends Controller
         return Storage::download($projectDocument->path, $projectDocument->name.'.pdf');
     }
 
-    /*public function store(Project $project)
+    public function send(Project $project)
     {
-        $this->authorize('update', $project);
+        return view('customer.projects.send-documents', compact('project'));
+    }
 
-        $this->validate(request(), ['project_documents' => 'required']);
-
-        foreach ((array) request()->file('project_documents') as $file) {
-            $project->projectDocuments()->create([
-                'name' => $file->getClientOriginalName(),
-                'path' => $file->store('project_documents'),
-            ]);
-        }
-
-        $this->alert('Arquivo(s) adicionado(s) com sucesso!');
-
-        return back();
-    }*/
-
-    public function store(ProjectType $project_type, Project $project ,Request $request)
+    public function store(Project $project ,Request $request)
     {      
         $this->authorize('update', $project);
 
-        $method = $project_type->name;
-
-        ProjectDocument::$method($request,$project);
+        foreach ($project->projectType->checklists as $item) 
+        {
+            $request->validate([
+                $item->name => 'mimes:pdf|max:10000'
+            ]);
+        }
        
+        $folder = "public/projeto_".$project->id;
+
+        foreach ($project->projectType->checklists as $item)
+        {
+            $name = $item->name;
+
+            if (!is_null($request->$name)) 
+            {
+                $project->projectDocuments()->create([
+                    'name' => $name,
+                    'description' => $item->text,
+                    'path' => $request->$name->storeAs($folder, $name.'.pdf')
+                ]);
+            }
+       }
         $this->alert('Projeto criado com sucesso!');
 
         return redirect('/projects');
@@ -81,64 +87,72 @@ class ProjectDocumentsController extends Controller
 
     public function approve(Project $project, Request $request)
     {
-        switch ($project->project_type_id)
-        {
-            case '7':
-                $aprovado = true;
-
-                if ($request->guia_recolhimento == 1)
-                {
-                    $project->projectDocuments()->where('project_id', $project->id)
-                            ->where('name', 'guia_recolhimento')
-                            ->update(['approved' => 1]);
-                } 
-                else
-                {
-                    $project->projectDocuments()->where('project_id', $project->id)
-                            ->where('name', 'guia_recolhimento')
-                            ->update(['approved' => 0]);
-                    $aprovado = false;
-                }
-
-                if ($request->alvara_ou_autorizacao == 1)
-                {
-                    $project->projectDocuments()->where('project_id', $project->id)
-                            ->where('name', 'alvara_ou_autorizacao')
-                            ->update(['approved' => 1]);
-                } 
-                else
-                {
-                    $project->projectDocuments()->where('project_id', $project->id)
-                            ->where('name', 'alvara_ou_autorizacao')
-                            ->update(['approved' => 0]);
-                    $aprovado = false;
-                }
-                
-                if ($aprovado)
-                {
-                    $project->events()->create([
-                        'description' => $request->description,
-                        'event_type_id' => 1,
-                        'project_id' => $project->id,
-                        'user_id' => Auth::user()->id
-                    ]);
-                }
-                else
-                {
-                    $project->events()->create([
-                        'description' => $request->description,
-                        'event_type_id' => 3,
-                        'project_id' => $project->id,
-                        'user_id' => Auth::user()->id
-                    ]);
-                }
-              
-            break;
         
-            default:
-            break;
+        $aprovado = true;
 
+        foreach ($project->projectDocuments as $doc) 
+        {
+           
         }
+
+        // switch ($project->project_type_id)
+        // {
+        //     case '9':
+        //         $aprovado = true;
+
+        //         if ($request->guia_recolhimento == 1)
+        //         {
+        //             $project->projectDocuments()->where('project_id', $project->id)
+        //                     ->where('name', 'guia_recolhimento')
+        //                     ->update(['approved' => 1]);
+        //         } 
+        //         else
+        //         {
+        //             $project->projectDocuments()->where('project_id', $project->id)
+        //                     ->where('name', 'guia_recolhimento')
+        //                     ->update(['approved' => 0]);
+        //             $aprovado = false;
+        //         }
+
+        //         if ($request->alvara_ou_autorizacao == 1)
+        //         {
+        //             $project->projectDocuments()->where('project_id', $project->id)
+        //                     ->where('name', 'alvara_ou_autorizacao')
+        //                     ->update(['approved' => 1]);
+        //         } 
+        //         else
+        //         {
+        //             $project->projectDocuments()->where('project_id', $project->id)
+        //                     ->where('name', 'alvara_ou_autorizacao')
+        //                     ->update(['approved' => 0]);
+        //             $aprovado = false;
+        //         }
+                
+        //         if ($aprovado)
+        //         {
+        //             $project->events()->create([
+        //                 'description' => $request->description,
+        //                 'event_type_id' => 1,
+        //                 'project_id' => $project->id,
+        //                 'user_id' => Auth::user()->id
+        //             ]);
+        //         }
+        //         else
+        //         {
+        //             $project->events()->create([
+        //                 'description' => $request->description,
+        //                 'event_type_id' => 3,
+        //                 'project_id' => $project->id,
+        //                 'user_id' => Auth::user()->id
+        //             ]);
+        //         }
+              
+        //     break;
+        
+        //     default:
+        //     break;
+
+        // }
 
         return redirect('/backend/projects');
     }
