@@ -22,20 +22,7 @@
 
                 <div class="card-body">
                     @if (count($project->projectDocuments))
-                        <table class="table">
-                            <tbody>
-                            @foreach ($project->projectDocuments as $projectDocument)
-                                <tr>
-                                    <th>{{ $projectDocument->name }}</th>
-                                    <td class="text-right">
-                                        <a class="btn btn-success btn-sm" href="/project-docs/{{ $projectDocument->id }}">
-                                            Baixar
-                                        </a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                        @include ('layouts.docs.view')
                     @else
                         <p class="alert alert-warning text-center">
                             Não há anexos disponíveis

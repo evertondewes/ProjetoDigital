@@ -24,6 +24,8 @@ class CreateProjectsTable extends Migration
             $table->mediumTexT('description');
             $table->integer('project_type_id')->unsigned();
             $table->foreign('project_type_id')->references('id')->on('project_types');
+            $table->integer('status_id')->unsigned()->default(1);
+            $table->foreign('status_id')->references('id')->on('status');
             $table->integer('deleted_by')->nullable()->unsigned();
             $table->foreign('deleted_by')->references('id')->on('users');
             $table->softDeletes();

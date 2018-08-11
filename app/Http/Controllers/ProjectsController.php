@@ -5,8 +5,10 @@ namespace ProjetoDigital\Http\Controllers;
 use ProjetoDigital\Facades\Cities;
 use ProjetoDigital\Facades\People;
 use ProjetoDigital\Models\Project;
+use ProjetoDigital\Models\Event;
 use ProjetoDigital\Models\ProjectType;
 use ProjetoDigital\Http\Requests\ProjectForm;
+use Auth;
 
 class ProjectsController extends Controller
 {
@@ -41,7 +43,7 @@ class ProjectsController extends Controller
 
         $project = $form->persist();
 
-        //$this->alert('Solicitação cadastrada com sucesso!');
+        Event::createEvent($project,7,Auth::user()->id,null);
 
         return redirect('/project-docs/send/'.$project->id);
     }
@@ -84,6 +86,8 @@ class ProjectsController extends Controller
     public function update(Project $project, ProjectForm $form)
     {
         $form->update($project);
+
+        Event::createEvent($project,8,Auth::user()->id,null);
 
         $this->alert('Solicitação atualizada com sucesso!');
 

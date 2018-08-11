@@ -12,7 +12,7 @@ class ChecklistsTableSeeder extends Seeder
     public function run()
     {
         DB::table('checklists')->insert([
-            ['name' => 'guia_recolhimento', 'text' => 'Guida de Recolhimento', 'project_type_id' =>'1'],
+            ['name' => 'guia_recolhimento', 'text' => 'Guia de Recolhimento', 'project_type_id' =>'1'],
             ['name' => 'vias_memorial_descritivo', 'text' => 'Via do Memorial Descritivo da Obra', 'project_type_id' =>'1'],
             ['name' => 'plantas', 'text' => 'Plantas', 'project_type_id' =>'1'],
             ['name' => 'art_rrt', 'text' => 'ART/RRT', 'project_type_id' =>'1'],
@@ -22,7 +22,7 @@ class ChecklistsTableSeeder extends Seeder
             ['name' => 'ppci', 'text' => 'Certificado de Aprovação do PPCI', 'project_type_id' =>'1'],
             ['name' => 'licenca_ambiental', 'text' => 'Licença Ambiental', 'project_type_id' =>'1'],
             ['name' => 'licencia_sanitaria', 'text' => 'Licença da Vigilância Sanitária', 'project_type_id' =>'1'],
-            ['name' => 'guia_recolhimento', 'text' => 'Guida de Recolhimento', 'project_type_id' =>'9'],
+            ['name' => 'guia_recolhimento', 'text' => 'Guia de Recolhimento', 'project_type_id' =>'9'],
             ['name' => 'alvara_ou_autorizacao', 'text' => 'Alvará de Construção ou Autorização de Demolição', 'project_type_id' =>'9'],
         ]);
     }

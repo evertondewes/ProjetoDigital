@@ -9,39 +9,32 @@
                 <div class="card-header text-center">
                     Histórico
                 </div>
-
                 <div class="card-body">
                     @if (count($events))
-                        <table class="table table-bordered">
-                            <thead>
-                            <tr>
-                                <th>Data</th>
-                                <th>Situação</th>
-                                <th>Descrição</th>
-                                <th>Ação</th>
-                            </tr>
-                            </thead>
+                        @foreach ($events as $event)
+                            <div class="card">
+                                <div class="card-body">
+                                    <p>
+                                        <b>{{$event->eventType->description}} por:</b> {{$event->user->person->name}}
+                                        <b>em</b> {{$event->created_at->format('j/m/Y')}}
+                                        <b>as</b> {{$event->created_at->format('H:i:s')}}
+                                    </p>
+                                    @if(!is_null($event->obs))
+                                        <p>
+                                            <b>Observação:</b> {{$event->obs}}
+                                        </p>
+                                    @endif
+                                </div>
+                            </div>    
 
-                            <tbody>
-                            @foreach ($events as $event)
-                                <tr>
-                                    <td>{{ $event->created_at->format('j/m/Y') }}</td>
-                                    <td>{{ $event->eventType->description }}</td>
-                                    <td>{{ $event->description }}</td>
-                                    <td>
-                                        <a href="/events/{{ $event->id }}">Ver detalhes</a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                        @endforeach
+            </div>    
                     @else
                         <p class="alert alert-warning text-center mt-3">
                             Não há nenhum evento associado à essa solicitação
                         </p>
                     @endif
                 </div>
-            </div>
         </div>
 
         @include ('customer.projects.menu')

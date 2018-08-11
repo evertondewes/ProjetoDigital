@@ -27,4 +27,14 @@ class Event extends Model
     {
         return $this->hasMany(EventDocument::class);
     }
+
+    public static function createEvent($project,$event_type_id,$user_id,$obs) 
+    {
+        $project->events()->create([
+            'obs' => $obs,
+            'event_type_id' => $event_type_id,
+            'project_id' => $project->id,
+            'user_id' => $user_id
+        ]);    
+    }
 }

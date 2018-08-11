@@ -29,8 +29,8 @@
             </tbody>
         </table>
         <div class="form-group">
-            <label for="description">Comentário:</label>
-            <textarea class="form-control" rows="5" name="description" value="{{ old('comentario') }}" required></textarea>
+            <label for="obs">Observação:</label>
+            <textarea class="form-control" rows="5" name="description" value="{{ old('obs') }}" required></textarea>
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary btn-custom">Enviar</button>

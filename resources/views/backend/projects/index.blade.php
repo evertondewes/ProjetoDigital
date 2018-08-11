@@ -4,7 +4,7 @@
 
 @section ('content')
     <div class="row mt-4">
-        <div class="col-md-8 mx-auto">
+        <div class="col-md-12 mx-auto">
             <table class="table table-bordered">
                 <thead>
                     <tr class="text-center bg-light">
@@ -17,7 +17,7 @@
                         <th>Requerente(s)</th>
                         <th>Situação</th>
                         <th>Ação</th>
-                        <th>Aprovar</th>
+                        <th>Analizar</th>
                     </tr>
                 </thead>
 
@@ -31,13 +31,13 @@
                                 </a>
                             </td>
                             <td>{{ implode(', ', $project->people->pluck('name')->all()) }}</td>
-                            <td>{{ $project->lastEvent()->eventType->description ?? 'Em Análise' }}</td>
+                            <td>{{ $project->status->description}}</td>
                             <td>
                                 <a href="/backend/projects/{{ $project->id }}/events/create">
                                     Adicionar evento
                                 </a>
                             </td>
-                            <td><a href="/project-docs-approve/{{$project->id}}">Aprovar</a></td>
+                            <td><a href="/project-docs-approve/{{$project->id}}">Analizar</a></td>
 
                         </tr>
                     @endforeach

@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use ProjetoDigital\Models\ProjectDocument;
 use ProjetoDigital\Models\ProjectType;
+use ProjetoDigital\Models\Event;
 use Illuminate\Foundation\Http\FormRequest;
-
 use Auth;
 
 class ProjectDocumentsController extends Controller
@@ -87,72 +87,21 @@ class ProjectDocumentsController extends Controller
 
     public function approve(Project $project, Request $request)
     {
-        
-        $aprovado = true;
+        $approved = true;
 
         foreach ($project->projectDocuments as $doc) 
         {
-           
+           $name = $doc->name;
+
+            if ($request->$name == 1) 
+            {
+                ProjectDocument::analyze($project,$name,1);
+            } else {
+                ProjectDocument::analyze($project,$name,0);
+            } 
         }
 
-        // switch ($project->project_type_id)
-        // {
-        //     case '9':
-        //         $aprovado = true;
-
-        //         if ($request->guia_recolhimento == 1)
-        //         {
-        //             $project->projectDocuments()->where('project_id', $project->id)
-        //                     ->where('name', 'guia_recolhimento')
-        //                     ->update(['approved' => 1]);
-        //         } 
-        //         else
-        //         {
-        //             $project->projectDocuments()->where('project_id', $project->id)
-        //                     ->where('name', 'guia_recolhimento')
-        //                     ->update(['approved' => 0]);
-        //             $aprovado = false;
-        //         }
-
-        //         if ($request->alvara_ou_autorizacao == 1)
-        //         {
-        //             $project->projectDocuments()->where('project_id', $project->id)
-        //                     ->where('name', 'alvara_ou_autorizacao')
-        //                     ->update(['approved' => 1]);
-        //         } 
-        //         else
-        //         {
-        //             $project->projectDocuments()->where('project_id', $project->id)
-        //                     ->where('name', 'alvara_ou_autorizacao')
-        //                     ->update(['approved' => 0]);
-        //             $aprovado = false;
-        //         }
-                
-        //         if ($aprovado)
-        //         {
-        //             $project->events()->create([
-        //                 'description' => $request->description,
-        //                 'event_type_id' => 1,
-        //                 'project_id' => $project->id,
-        //                 'user_id' => Auth::user()->id
-        //             ]);
-        //         }
-        //         else
-        //         {
-        //             $project->events()->create([
-        //                 'description' => $request->description,
-        //                 'event_type_id' => 3,
-        //                 'project_id' => $project->id,
-        //                 'user_id' => Auth::user()->id
-        //             ]);
-        //         }
-              
-        //     break;
-        
-        //     default:
-        //     break;
-
-        // }
+        Event::createEvent($project,7,$user_id,$obs);
 
         return redirect('/backend/projects');
     }
