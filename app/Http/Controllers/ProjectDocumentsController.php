@@ -63,6 +63,8 @@ class ProjectDocumentsController extends Controller
                 ]);
             }
        }
+        Event::createEvent($project,7,Auth::user()->id,null);
+
         $this->alert('Projeto criado com sucesso!');
 
         return redirect('/projects');

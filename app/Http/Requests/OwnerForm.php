@@ -3,6 +3,7 @@
 namespace ProjetoDigital\Http\Requests;
 
 use Exception;
+use Auth;
 use ProjetoDigital\Facades\Rules;
 use ProjetoDigital\Models\Project;
 use ProjetoDigital\Facades\People;
@@ -50,6 +51,8 @@ class OwnerForm extends FormRequest
             session()->forget('project_data');
 
             DB::commit();
+
+            return $project;
         } catch (Exception $e) {
             DB::rollback();
 

@@ -5,6 +5,8 @@ namespace ProjetoDigital\Http\Controllers;
 use Illuminate\Support\Facades\Gate;
 use ProjetoDigital\Http\Requests\OwnerForm;
 use ProjetoDigital\Models\Project;
+// use ProjetoDigital\Models\Event;
+use Auth;
 
 class OwnersController extends Controller
 {
@@ -40,12 +42,9 @@ class OwnersController extends Controller
 
     protected function pendingOwnerRegistrationResponse(OwnerForm $form)
     {
-        $form->persist();
-
+    
         $project = $form->persist();
         
-        Event::createEvent($project,7,Auth::user()->id,null);
-
         return redirect('/project-docs/send/'.$project->id);
 
         //return redirect('/projects');

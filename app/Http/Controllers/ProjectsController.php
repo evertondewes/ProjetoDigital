@@ -46,7 +46,7 @@ class ProjectsController extends Controller
 
         $project = $form->persist();
 
-        Event::createEvent($project,7,Auth::user()->id,null);
+        //Event::createEvent($project,7,Auth::user()->id,null);
 
         return redirect('/project-docs/send/'.$project->id);
     }
