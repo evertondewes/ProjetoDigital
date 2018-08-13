@@ -13,7 +13,7 @@ class EventTypesTableSeeder extends Seeder
     public function run()
     {
         DB::table('event_types')->insert([
-            ['name' => 'aprovado', 'description' => 'Status modficiado para Aprovado'],
+            ['name' => 'aprovado', 'description' => 'Status modficiado para Autorizado'],
             ['name' => 'indeferido', 'description' => 'Status modficiado para Indeferido'],
             ['name' => 'pendencias', 'description' => 'Status modficiado para Pendente'],
             ['name' => 'aguardando_vistoria', 'description' => 'Status modificado para Aguardando Vistoria'],

@@ -13,7 +13,7 @@ class StatusTableSeeder extends Seeder
     {
         DB::table('status')->insert([
           ['name' => 'em_analise', 'description' => 'Em Analise'],
-          ['name' => 'aprovado', 'description' => 'Aprovado'],
+          ['name' => 'autorizado', 'description' => 'Autorizado'],
           ['name' => 'indeferido', 'description' => 'Indeferido'],
           ['name' => 'pendencias', 'description' => 'Pendências'],
           ['name' => 'aguardando_vistoria', 'description' => 'Aguardando Vistoria']

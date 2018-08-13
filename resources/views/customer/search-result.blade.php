@@ -15,13 +15,13 @@
                 <div class="card-body">
                     <form  class="form-inline" method="POST" action="/projects/search">
                         {{ csrf_field() }}
-                        <input style="width: 80%;" type="text" class="form-control mb-2 mr-sm-2" name=" search" placeholder="Buscar Projeto por ou Numero" required>
+                        <input style="width: 80%;" type="text" class="form-control mb-2 mr-sm-2" name=" search" placeholder="Buscar Projeto por Numero" required>
                         <button type="submit" class="btn btn-primary mb-2">Buscar</button>
                     </form>
                 </div>
             </div>
 
-            @if (count($projects))
+            @if ($project)
                 <table class="table table-bordered">
                     <thead>
                         <tr class="text-center bg-light">
@@ -39,7 +39,7 @@
                     </thead>
 
                     <tbody>
-                        @foreach ($projects as $project)
+                       
                             <tr>
                                 <td>{{ $project->id }}</td>
                                 <td>{{ $project->people->first()->name }}</td>
@@ -55,18 +55,17 @@
                                 }}</td>
                                 <td>{{ $project->status->description}}</td>
                             </tr>
-                        @endforeach
+                       
                     </tbody>
                 </table>
             @else
+                <br>
                 <div class="alert alert-warning text-center">
-                    Você não tem nenhuma solicitação cadastrada!
+                    Nenhum projeto corresponde a esse número!
                 </div>
             @endif
 
-            <div class="d-flex justify-content-center mt-4 mb-5">
-                {{ $projects->links('vendor.pagination.bootstrap-4') }}
-            </div>
+           
         </div>
     </div>
 @endsection

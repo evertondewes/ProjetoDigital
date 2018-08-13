@@ -87,8 +87,6 @@ class ProjectDocumentsController extends Controller
 
     public function approve(Project $project, Request $request)
     {
-        $approved = true;
-
         foreach ($project->projectDocuments as $doc) 
         {
            $name = $doc->name;
@@ -101,7 +99,10 @@ class ProjectDocumentsController extends Controller
             } 
         }
 
-        Event::createEvent($project,7,$user_id,$obs);
+        Event::createEvent($project, $request->status_id, Auth::user()->id, $request->obs);
+
+        $project->status_id = $request->status_id + 1;
+        $project->save();
 
         return redirect('/backend/projects');
     }

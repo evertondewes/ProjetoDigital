@@ -1,53 +1,42 @@
 @extends ('layouts.master')
 
-@section ('title', 'Listar eventos')
+@section ('title', 'Eventos do projeto')
 
 @section ('content')
-    <div class="row mt-4">
+    <div class="row my-4">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header text-center">
-                    Listar eventos
+                    Histórico
                 </div>
-
                 <div class="card-body">
                     @if (count($events))
-                        <table class="table table-bordered mt-3">
-                            <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Tipo</th>
-                                <th>Data</th>
-                                <th>Usuário</th>
-                                <th>Ação</th>
-                            </tr>
-                            </thead>
+                        @foreach ($events as $event)
+                            <div class="card">
+                                <div class="card-body">
+                                    <p>
+                                        <b>{{$event->eventType->description}} por:</b> {{$event->user->person->name}}
+                                        <b>em</b> {{$event->created_at->format('j/m/Y')}}
+                                        <b>as</b> {{$event->created_at->format('H:i:s')}}
+                                    </p>
+                                    @if(!is_null($event->obs))
+                                        <p>
+                                            <b>Observação:</b> {{$event->obs}}
+                                        </p>
+                                    @endif
+                                </div>
+                            </div>    
 
-                            <tbody>
-                            @foreach ($events as $event)
-                                <tr>
-                                    <td>{{ $event->id }}</td>
-                                    <td>{{ $event->eventType->description }}</td>
-                                    <td>{{ $event->created_at->format('j/m/Y') }}</td>
-                                    <td>{{ $event->user->username }}</td>
-                                    <td>
-                                        <a href="/backend/events/{{ $event->id }}">
-                                            Ver detalhes
-                                        </a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                        @endforeach
+            </div>    
                     @else
                         <p class="alert alert-warning text-center mt-3">
-                            Essa solicitação não possui nenhum evento!
+                            Não há nenhum evento associado à essa solicitação
                         </p>
                     @endif
                 </div>
-            </div>
         </div>
 
-        @include ('backend.projects.menu')
+        @include ('customer.projects.menu')
     </div>
 @endsection

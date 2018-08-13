@@ -2,9 +2,11 @@
 
 namespace ProjetoDigital\Http\Controllers;
 
+use Illuminate\Http\Request;
 use ProjetoDigital\Facades\Cities;
 use ProjetoDigital\Facades\People;
 use ProjetoDigital\Models\Project;
+use ProjetoDigital\Models\Person;
 use ProjetoDigital\Models\Event;
 use ProjetoDigital\Models\ProjectType;
 use ProjetoDigital\Http\Requests\ProjectForm;
@@ -73,6 +75,33 @@ class ProjectsController extends Controller
     public function show(Project $project)
     {
         return view('customer.projects.show', compact('project'));
+    }
+
+    public function search(Request $request)
+    {
+        $project = Project::find($request->search);
+
+        // if (is_null($project)) 
+        // {
+        //     $person = Person::where('name', 'like', "%{$request->search}%")->get();
+            
+        //     $projects = Project::whereHas('person', function ($query) use ($request) {
+        //     $query->where('name', 'like', "%{$request->search}%");
+
+        //     dd($projects);
+        // });
+        // }
+
+        if ($project) 
+        {
+           if ($project->technicalManager->id != Auth::user()->id) 
+                   {
+                      $project = null;
+                   }
+        }
+
+        return view('customer.search-result', compact('project'));
+
     }
 
     public function edit(Project $project)

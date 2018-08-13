@@ -30,7 +30,7 @@
 
             <div class="card">
                 <div class="card-header text-center">
-                    Documentos da solicitação
+                    Documentos <b>Obrigatórios</b> da solicitação
                 </div>
 
                 <div class="card-body">
@@ -68,7 +68,7 @@
                                         @break    
                                     
                                     @case(8)
-                                        @include ('layouts.docs.tapume')
+                                        @include ('layouts.docs.habitese')
                                         @break
 
                                     @case(9)

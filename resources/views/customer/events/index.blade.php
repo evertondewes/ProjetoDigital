@@ -1,6 +1,6 @@
 @extends ('layouts.master')
 
-@section ('title', 'Histórico do projeto')
+@section ('title', 'Eventos do projeto')
 
 @section ('content')
     <div class="row my-4">
