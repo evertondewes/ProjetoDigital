@@ -47,17 +47,6 @@ class OwnerForm extends FormRequest
 
             $project->projectAddresses()->create($projectData['address']);
 
-            foreach ($projectData['documents'] as $file) {
-                $pathSlices = explode('/', $file['path']);
-                $newPath = 'project_documents/' . end($pathSlices);
-
-                Storage::move($file['path'], $newPath);
-
-                $file['path'] = $newPath;
-
-                $project->projectDocuments()->create($file);
-            }
-
             session()->forget('project_data');
 
             DB::commit();
