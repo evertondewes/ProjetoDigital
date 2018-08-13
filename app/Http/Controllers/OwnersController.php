@@ -42,8 +42,12 @@ class OwnersController extends Controller
     {
         $form->persist();
 
-        $this->alert('Solicitação cadastrada com sucesso!');
+        $project = $form->persist();
+        
+        Event::createEvent($project,7,Auth::user()->id,null);
 
-        return redirect('/projects');
+        return redirect('/project-docs/send/'.$project->id);
+
+        //return redirect('/projects');
     }
 }

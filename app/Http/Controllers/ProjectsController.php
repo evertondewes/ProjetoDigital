@@ -39,7 +39,8 @@ class ProjectsController extends Controller
 
     public function store(ProjectForm $form)
     {
-        if (is_null(People::find($form->input('cpf_cnpj')))) {
+        if (is_null(People::find($form->input('cpf_cnpj')))) 
+        {
             return $this->personNotFoundResponse($form);
         }
 
@@ -68,8 +69,10 @@ class ProjectsController extends Controller
         }*/
 
         session()->flash('project_data', $projectData);
+        //session()->flash('novo_projeto', true);
 
         return redirect('/owners/add');
+   
     }
 
     public function show(Project $project)
