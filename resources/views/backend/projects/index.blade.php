@@ -17,7 +17,7 @@
                         <th>Requerente(s)</th>
                         <th>Situação</th>
                         <th>Ação</th>
-                        <th>analisar</th>
+                        <th>Analisar</th>
                     </tr>
                 </thead>
 
@@ -37,7 +37,7 @@
                                     Adicionar evento
                                 </a>
                             </td>
-                            <td><a href="/project-docs-approve/{{$project->id}}">analisar</a></td>
+                            <td><a href="/project-docs-approve/{{$project->id}}">Analisar</a></td>
 
                         </tr>
                     @endforeach
