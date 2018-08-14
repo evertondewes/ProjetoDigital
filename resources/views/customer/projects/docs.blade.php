@@ -19,7 +19,8 @@
 
                     @else
                         <p class="alert alert-warning text-center">
-                            Não há anexos disponíveis
+                            Não há anexos disponíveis <br>  
+                            <a href="/project-docs/send/{{$project->id}}">Clique aqui para anexar os arquivos necesários</a>
                         </p>
                     @endif
 

@@ -34,11 +34,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/settings/{phoneNumber}/phone-numbers', 'SettingsController@destroyPhoneNumber');
     Route::delete('/settings', 'SettingsController@destroy');
 
+    //Rotas dos documentos
     Route::get('/project-docs-view/{id}/{projectDocument}', 'ProjectDocumentsController@view');
     Route::get('/project-docs-approve/{project}', 'ProjectDocumentsController@analyze');
     Route::post('/project-docs-approve/{project}', 'ProjectDocumentsController@approve');
     Route::get('/project-docs/{projectDocument}', 'ProjectDocumentsController@download');
     Route::get('/project-docs/send/{project}', 'ProjectDocumentsController@send');
+    Route::get('/project-docs/edit/{projectDocument}', 'ProjectDocumentsController@edit');
+    Route::patch('/project-docs/edit/{projectDocument}', 'ProjectDocumentsController@replace');
     Route::post('/project-docs/{project}', 'ProjectDocumentsController@store');
     Route::delete('/project-docs/{projectDocument}', 'ProjectDocumentsController@destroy');
     Route::get('/event-docs/{eventDocument}', 'Backend\EventDocumentsController@download');

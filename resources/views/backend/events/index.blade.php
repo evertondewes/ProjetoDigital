@@ -7,7 +7,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header text-center">
-                    Histórico
+                    Eventos
                 </div>
                 <div class="card-body">
                     @if (count($events))

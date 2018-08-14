@@ -4,7 +4,7 @@
 
 @section ('content')
     <div class="row my-4">
-        <div class="col-md-8 mx-auto">
+        <div class="col-md-12 mx-auto">
             <div class="d-sm-flex flex-row-reverse">
                 <div class="dropdown">
                     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
@@ -12,6 +12,9 @@
                     </button>
 
                     <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{ url()->current() }}?by=">
+                            Tipo de usuário
+                        </a>
                         <a class="dropdown-item" href="{{ url()->current() }}?by=id">
                             Id
                         </a>
@@ -31,12 +34,13 @@
             <table class="table table-bordered mt-3">
                 <thead>
                     <tr class="text-center bg-light">
-                        <td colspan="5">Pessoas</td>
+                        <td colspan="6">Pessoas</td>
                     </tr>
 
                     <tr>
                         <th>Id</th>
                         <th>Nome</th>
+                        <th>Tipo</th>
                         <th>E-mail</th>
                         <th>CPF / CNPJ</th>
                         <th>Ação</th>
@@ -50,6 +54,7 @@
                             <td>
                                 <a href="/backend/people/{{ $person->id }}">{{ $person->name }}</a>
                             </td>
+                            <td>{{ $person->users->first()['role']['description']}}</td>
                             <td>{{ $person->email }}</td>
                             <td>{{ $person->cpf_cnpj }}</td>
                             <td>

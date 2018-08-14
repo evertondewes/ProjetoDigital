@@ -15,7 +15,11 @@ class PeopleController extends Controller
         $order = request('order') ?? 'asc';
         $by = request('by') ?? 'id';
 
-        $people = Person::orderBy($by, $order)->paginate(10);
+        $people = Person::with(['users' => function ($q) {
+            $q->orderBy('id', 'asc/desc');
+        }])->paginate(10);
+
+        //$people = Person::orderBy($people->users, $order)->paginate(10);
 
         return view('backend.people.index', compact('people', 'order', 'by'));
     }

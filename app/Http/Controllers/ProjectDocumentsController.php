@@ -71,6 +71,36 @@ class ProjectDocumentsController extends Controller
  
     }
 
+    public function edit(ProjectDocument $projectDocument)
+    {
+        return view('customer.projects.replace-doc', compact('projectDocument'));
+    }
+
+    public function replace(ProjectDocument $projectDocument, Request $request)
+    {
+
+    $name = $projectDocument->name;
+
+    $request->validate([
+        $name => 'mimes:pdf|max:10000'
+    ]);
+
+    $id = $projectDocument->project->id;
+    
+    $folder = "public/projeto_".$id;
+
+    $path = $request->$name->storeAs($folder, $name.'.pdf');
+
+    $projectDocument->touch();
+
+    Event::createEvent($projectDocument->project,10,Auth::user()->id,$projectDocument->description);
+
+    $this->alert('Documento atualizado com sucesso!');
+
+    return redirect('/projects/'.$id.'/docs');
+    
+    }
+
     public function destroy(ProjectDocument $projectDocument)
     {
         $this->authorize('delete', $projectDocument);

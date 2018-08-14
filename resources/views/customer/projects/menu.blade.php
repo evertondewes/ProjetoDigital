@@ -9,7 +9,7 @@
                 <a href="/projects/{{ $project->id }}" class="list-group-item">Ver detalhes</a>
 
                 <a href="/projects/{{ $project->id }}/historic" class="list-group-item">
-                    Histórico
+                    Eventos
                 </a>
 
                 @can ('update', $project)
