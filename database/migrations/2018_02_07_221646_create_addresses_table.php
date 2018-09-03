@@ -18,6 +18,7 @@ class CreateAddressesTable extends Migration
             $table->integer('city_id')->unsigned();
             $table->foreign('city_id')->references('id')->on('cities');
             $table->integer('number');
+            $table->string('complement')->nullable();
             $table->string('street');
             $table->string('district');
             $table->integer('person_id')->unsigned();

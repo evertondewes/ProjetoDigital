@@ -10,7 +10,9 @@
         <a href="/" class="list-group-item">
             <i class="fa fa-home"></i> Início
         </a>
-
+        <a href="/consult-process" class="list-group-item">
+            <i class="fa fa-home"></i> Consultar
+        </a>
         <a href="/about" class="list-group-item">
             <i class="fa fa-book"></i> Sobre
         </a>

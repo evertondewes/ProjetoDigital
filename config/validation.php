@@ -35,8 +35,7 @@ return [
         ],
 
         'project_addresses' => [
-            'complement' => 'required',
-            'street' => 'required',
+              'street' => 'required',
             'district' => 'required',
             'area' => 'required|numeric',
         ],

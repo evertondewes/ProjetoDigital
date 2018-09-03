@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             StatesTableSeeder::class,
             CitiesTableSeeder::class,
             EventTypesTableSeeder::class,
-
+            StatusTableSeeder::class,
             // temporário
             PhoneNumbersTableSeeder::class,
             AddressesTableSeeder::class,

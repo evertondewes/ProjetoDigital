@@ -19,7 +19,7 @@ class CreateProjectAddressesTable extends Migration
             $table->integer('city_id')->unsigned();
             $table->foreign('city_id')->references('id')->on('cities');
             $table->integer('number');
-            $table->string('complement');
+            $table->string('complement')->nullable();
             $table->string('street');
             $table->string('district');
             $table->double('area');

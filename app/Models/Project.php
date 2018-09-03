@@ -89,4 +89,12 @@ class Project extends Model
 
         return $this;
     }
+
+    public function save(array $options = array())
+    {
+        if(empty($this->access_key)) {
+            $this->access_key = rand(100000, 999999);
+        }
+        return parent::save($options);
+    }
 }

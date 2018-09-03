@@ -22,6 +22,7 @@ class CreateProjectsTable extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->increments('id');
             $table->mediumTexT('description');
+            $table->integer('access_key');
             $table->integer('project_type_id')->unsigned();
             $table->foreign('project_type_id')->references('id')->on('project_types');
             $table->integer('status_id')->unsigned()->default(1);

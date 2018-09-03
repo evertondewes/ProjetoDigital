@@ -30,7 +30,8 @@ class ProjectForm extends FormRequest
         try {
             DB::beginTransaction();
 
-            $project = Project::create($this->only(['description', 'project_type_id']));
+            $this->request->add(['status_id' => DB::table('status')->where('name', 'pendencias')->first()->id]);
+            $project = Project::create($this->only(['description', 'project_type_id', 'status_id']));
             $project->users()->attach(auth()->id());
             $project->people()->attach(People::id($this->input('cpf_cnpj')));
 

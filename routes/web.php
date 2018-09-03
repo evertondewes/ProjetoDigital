@@ -5,6 +5,8 @@ Route::post('/teste', 'TesteController@store');
 
 Route::middleware('guest')->group(function () {
     Route::get('/', 'PagesController@index');
+    Route::get('/consult-process', 'PagesController@consultProcess');
+    Route::post('/consult-process-result', 'PagesController@consultProcessResult');
     Route::get('/about', 'PagesController@about');
     Route::get('/help', 'PagesController@help');
 
