@@ -23,6 +23,8 @@ class CreateAddressesTable extends Migration
             $table->string('district');
             $table->integer('person_id')->unsigned();
             $table->foreign('person_id')->references('id')->on('people');
+            $table->integer('created_by')->nullable()->unsigned();
+            $table->foreign('created_by')->references('id')->on('users');
             $table->timestamps();
         });
     }
