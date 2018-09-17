@@ -54,9 +54,9 @@
     </div>
     <hr>
     <div class="form-group">
-        <label for="licencia_sanitaria"><h3>10-Licença da Vigilância Sanitária</h3></label>
+        <label for="licenca_sanitaria"><h3>10-Licença da Vigilância Sanitária</h3></label>
         <p>Cópia da Licença da Vigilância Sanitária (somente para estabelecimentos de saúde, educação e outros onde houver manipulação ou consumo de alimentos)</p>
-        <input type="file" class="form-control"  name="licencia_sanitaria" value="{{ old('licencia_sanitaria') }}">
+        <input type="file" class="form-control"  name="licenca_sanitaria" value="{{ old('licenca_sanitaria') }}">
     </div>
     <hr>
 

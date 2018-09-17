@@ -21,7 +21,7 @@ class ChecklistsTableSeeder extends Seeder
             ['name' => 'tratamento_afluentes', 'text' => 'Projeto de Tratamento de Efluentes', 'project_type_id' =>'1'],
             ['name' => 'ppci', 'text' => 'Certificado de Aprovação do PPCI', 'project_type_id' =>'1'],
             ['name' => 'licenca_ambiental', 'text' => 'Licença Ambiental', 'project_type_id' =>'1'],
-            ['name' => 'licencia_sanitaria', 'text' => 'Licença da Vigilância Sanitária', 'project_type_id' =>'1'],
+            ['name' => 'licenca_sanitaria', 'text' => 'Licença da Vigilância Sanitária', 'project_type_id' =>'1'],
             //Ampliacao
             ['name' => 'guia_recolhimento', 'text' => 'Guia de Recolhimento', 'project_type_id' =>'2'],
             ['name' => 'vias_memorial_descritivo', 'text' => 'Vias do Memorial Descritivo da Obra', 'project_type_id' =>'2'],
