@@ -13,7 +13,7 @@ class ServerRequirements
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle(\Illuminate\Http\Request $request, Closure $next)
     {
         if (! env('STATE') || ! env('CITY')) {
             abort(500, 'A localização do sistema não foi configurada!');
@@ -23,6 +23,12 @@ class ServerRequirements
             $sanitized = preg_replace('/\D+/', '', $request->input('cpf_cnpj'));
 
             $request->request->set('cpf_cnpj', $sanitized);
+        }
+
+        if($request->path() == 'logout') {
+            \Auth::logout();
+            \Session::flush();
+            return redirect('/');
         }
 
         return $next($request);
