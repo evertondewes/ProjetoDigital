@@ -1,4 +1,6 @@
 <?php
+// file_put_contents(sys_get_temp_dir() .'\\teste\\'. basename(__FILE__, '.php') . '_' . __LINE__ . '_.txt', 1, FILE_APPEND);
+// C:\Users\jfrs\AppData\Local\Temp\teste
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;

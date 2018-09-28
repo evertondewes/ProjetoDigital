@@ -17,7 +17,7 @@ class Customer
     {
         $user = $request->user();
 
-        if (auth()->check() && $user->isCustomer() && $user->isActive()) {
+        if (auth()->check() && $user->isActive() && ($user->isCustomer() || $user->isSecretary())) {
             return $next($request);
         }
 

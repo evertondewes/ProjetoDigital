@@ -13,7 +13,8 @@
     </h2>
 
     <p class="text-center">
-        <a href="{{ url()->previous() }}">Voltar</a>
+        <a href="{{ url()->previous() }}"  class="btn btn-primary btn-custom">Voltar</a>
+        <a href="/"  class="btn btn-primary btn-custom">Página Inicial</a>
     </p>
 
     <script src="/js/app.js"></script>

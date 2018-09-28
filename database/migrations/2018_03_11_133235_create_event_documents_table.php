@@ -16,12 +16,14 @@ class CreateEventDocumentsTable extends Migration
         Schema::create('event_documents', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('path');
+            // $table->binary('content');
             $table->integer('event_id')->unsigned();
             $table->foreign('event_id')->references('id')->on('events');
             $table->softDeletes();
             $table->timestamps();
         });
+
+        DB::statement("ALTER TABLE event_documents ADD content LONGBLOB");
     }
 
     /**

@@ -12,6 +12,8 @@ Route::middleware('guest')->group(function () {
 
 });
 
+
+
 Auth::routes();
 
 Route::get('/redirect-user', 'RedirectionsController@redirectUser');
@@ -97,3 +99,5 @@ Route::group([
     Route::post('/events/{event}/docs', 'EventDocumentsController@store');
     Route::delete('/event-docs/{eventDocument}', 'EventDocumentsController@destroy');
 });
+
+Route::resource('eventDocument', 'EventDocumentController');

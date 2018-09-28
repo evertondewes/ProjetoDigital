@@ -10,6 +10,7 @@ use ProjetoDigital\Models\ProjectType;
 use ProjetoDigital\Models\Event;
 use Illuminate\Foundation\Http\FormRequest;
 use Auth;
+use Illuminate\Support\Facades\Input;
 
 class ProjectDocumentsController extends Controller
 {
@@ -38,32 +39,92 @@ class ProjectDocumentsController extends Controller
     }
 
     public function store(Project $project ,Request $request)
-    {      
+    {
         $this->authorize('update', $project);
-
-        foreach ($project->projectType->checklists as $item) 
-        {
-            $request->validate([
-                $item->name => 'mimes:pdf|max:10000'
-            ]);
-        }
-       
-        $folder = "public/projeto_".$project->id;
 
         foreach ($project->projectType->checklists as $item)
         {
-            $name = $item->name;
+            $request->validate([
+                $item->name => 'mimes:pdf|max:100000'
+            ]);
+        }
 
-            if (!is_null($request->$name)) 
-            {
-                $project->projectDocuments()->create([
-                    'name' => $name,
-                    'description' => $item->text,
-                    'path' => $request->$name->storeAs($folder, $name.'.pdf')
-                ]);
+//dd($project->projectType);
+//
+//        $folder = "public/projeto_".$project->id;
+//
+//        foreach ($project->projectType->checklists as $item)
+//        {
+//            $name = $item->name;
+//
+//            if (!is_null($request->name))
+//            {
+//                dd($request->name);
+//                $project->projectDocuments()->create([
+//                    'name' => $name,
+//                    'description' => $item->text,
+//                    'path' => $request->name->storeAs($folder, $name.'.pdf')
+//                ]);
+//            }
+//       }
+
+
+        $event = Event::createEvent($project,7,Auth::user()->id,null);
+
+        $inputs = $request->all();
+
+        foreach ($inputs as $key => $input) {
+            if(Input::hasFile($key)) {
+
+//                $file = Input::file($key);
+//
+//                if (Input::hasFile($key))
+//                {
+//                   echo '---- tem arquivo';
+//                }
+//
+//// Determining If An Uploaded File Is Valid
+//                if (Input::file($key)->isValid())
+//                {
+//                    echo '---- valido';
+//                }
+
+//// Getting Requested file path
+//                $path = Input::file($key)->getRealPath();
+//                echo $path . '---- $path';
+//// Getting Original name of the file
+////**Edit** - gives the original filename as on uploading user's system. **Edit end**
+//                echo Input::file($key)->getClientOriginalName();
+//
+//// Getting uploaded File extention
+//                echo Input::file($key)->getClientOriginalExtension();
+//
+//// Getting Size of the file
+//                echo Input::file($key)->getSize();
+//
+//// Getting MIME Type of uploaded file
+////                echo Input::file($key)->getMimeType();
+//
+//                dd('------');
+
+           //     dd($key , $inputs, $input, Input::hasFile($key));
+
+//$path = Input::file($key)->getRealPath();
+//$name = Input::file($key)->getClientOriginalName();
+
+//dd($path .'\\' . $name);
+
+                $eventDocument=  new \ProjetoDigital\Models\EventDocument();
+                $eventDocument->name = Input::file($key)->getClientOriginalName();
+                $eventDocument->content = base64_encode(file_get_contents(Input::file($key)->getRealPath()));
+                $eventDocument->event_id = $event->id;
+                $eventDocument->save();
+//                dd($key , $inputs, $input, Input::hasFile($key), $eventDocument);
+                //Input::file($key);
+                //$EventDocument->
             }
-       }
-        Event::createEvent($project,7,Auth::user()->id,null);
+        }
+//        dd($inputs);
 
         $this->alert('Projeto criado com sucesso!');
 

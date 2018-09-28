@@ -30,11 +30,12 @@ class Event extends Model
 
     public static function createEvent($project,$event_type_id,$user_id,$obs) 
     {
-        $project->events()->create([
+        return $project->events()->create([
             'obs' => $obs,
             'event_type_id' => $event_type_id,
             'project_id' => $project->id,
-            'user_id' => $user_id
+            'user_id' => $user_id,
+          //  'created_by' => $user_id
         ]);    
     }
 }

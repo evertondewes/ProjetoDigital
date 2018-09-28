@@ -13,6 +13,7 @@ class EventsController extends Controller
 {
     public function index(Project $project)
     {
+        dd($project);
         return view('backend.events.index', [
             'project' => $project,
             'events' => $project->events()->latest()->get(),
