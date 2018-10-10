@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use \ProjetoDigital\Models\ProjectType;
+use \ProjetoDigital\Models\DocumentType;
 
 class ChecklistsTableSeeder extends Seeder
 {
@@ -12,83 +14,89 @@ class ChecklistsTableSeeder extends Seeder
     public function run()
     {
         DB::table('checklists')->insert([
-            ['name' => 'guia_recolhimento', 'text' => 'Guia de Recolhimento', 'project_type_id' =>'1'],
-            ['name' => 'vias_memorial_descritivo', 'text' => 'Vias do Memorial Descritivo da Obra', 'project_type_id' =>'1'],
-            ['name' => 'plantas', 'text' => 'Plantas Baixas', 'project_type_id' =>'1'],
-            ['name' => 'art_rrt', 'text' => 'ART/RRT', 'project_type_id' =>'1'],
-            ['name' => 'martricula_imovel', 'text' => 'Matrícula do Imóvel', 'project_type_id' =>'1'],
-            ['name' => 'memorial_descritivo_atividade', 'text' => 'Memorial Descritivo/Relatório de Atividades', 'project_type_id' =>'1'],
-            ['name' => 'tratamento_afluentes', 'text' => 'Projeto de Tratamento de Efluentes', 'project_type_id' =>'1'],
-            ['name' => 'ppci', 'text' => 'Certificado de Aprovação do PPCI', 'project_type_id' =>'1'],
-            ['name' => 'licenca_ambiental', 'text' => 'Licença Ambiental', 'project_type_id' =>'1'],
-            ['name' => 'licenca_sanitaria', 'text' => 'Licença da Vigilância Sanitária', 'project_type_id' =>'1'],
-            //Ampliacao
-            ['name' => 'guia_recolhimento', 'text' => 'Guia de Recolhimento', 'project_type_id' =>'2'],
-            ['name' => 'vias_memorial_descritivo', 'text' => 'Vias do Memorial Descritivo da Obra', 'project_type_id' =>'2'],
-            ['name' => 'art_rrt', 'text' => 'ART/RRT', 'project_type_id' =>'2'],
-            ['name' => 'martricula_imovel', 'text' => 'Matrícula do Imóvel', 'project_type_id' =>'2'],
-            ['name' => 'laudo', 'text' => 'Laudo de Vistoria', 'project_type_id' =>'2'],
-            ['name' => 'memorial_descritivo_atividade', 'text' => 'Memorial Descritivo/Relatório de Atividades', 'project_type_id' =>'2'],
-            ['name' => 'ppci_alvara', 'text' => 'PPCDI/SPDA e Alvará Corpo de Bombeiros', 'project_type_id' =>'2'],
-            ['name' => 'licenca_fepam', 'text' => 'Licença de Operação Ambiental', 'project_type_id' =>'2'],
-            ['name' => 'alvara_sanitaria', 'text' => 'Alvará Vigilância Sanitária ou CEVS', 'project_type_id' =>'2'],
-            //Loteamento 1
-            ['name' => 'guia_recolhimento', 'text' => 'Guia de Recolhimento', 'project_type_id' =>'4'],
-            ['name' => 'art_rrt', 'text' => 'ART/RRT', 'project_type_id' =>'4'],
-            ['name' => 'martricula_imovel', 'text' => 'Matrícula do Imóvel', 'project_type_id' =>'4'],  
-            ['name' => 'viabilidade_tecnica', 'text' => 'Declaração de Disponibilidade/Viabilidade Técnica', 'project_type_id' =>'4'],
-            ['name' => 'disponibilidade_coleta', 'text' => 'Disponibilidade de Coleta de Resíduos', 'project_type_id' =>'4'],
-            ['name' => 'esgotamento', 'text' => 'Solução de Esgotamento Pluvial', 'project_type_id' =>'4'],
-            ['name' => 'solo', 'text' => 'Teste de Permeabilidade do Solo', 'project_type_id' =>'4'],
-            ['name' => 'licenca_ambiental', 'text' => 'Licenciamento Ambiental', 'project_type_id' =>'4'],
-            ['name' => 'vias_projeto', 'text' => 'Vias do Projeto de Loteamento', 'project_type_id' =>'4'],
-            ['name' => 'vias_memorial_descritivo', 'text' => 'Vias do Memorial Descritivo', 'project_type_id' =>'4'],
-            //Loteamento 2
-            ['name' => 'guia_recolhimento', 'text' => 'Guia de Recolhimento', 'project_type_id' =>'5'],
-            ['name' => 'art_rrt', 'text' => 'ART/RRT', 'project_type_id' =>'5'],
-            ['name' => 'martricula_imovel', 'text' => 'Matrícula do Imóvel', 'project_type_id' =>'5'],
-            ['name' => 'aprovacao_tecnico', 'text' => 'Termo de Aprovação Técnica', 'project_type_id' =>'5'],
-            ['name' => 'terras', 'text' => 'Projeto de Movimentação de Terras', 'project_type_id' =>'5'],
-            ['name' => 'microdrenagem', 'text' => 'Projeto de Microdrenagem Pluvial', 'project_type_id' =>'5'],
-            ['name' => 'esgoto', 'text' => 'Projeto de Tratamento de Esgoto', 'project_type_id' =>'5'],
-            ['name' => 'pavimentacao', 'text' => 'Projeto de Pavimentação', 'project_type_id' =>'5'],
-            ['name' => 'agua', 'text' => 'Projeto de Aguá Potável', 'project_type_id' =>'5'],
-            ['name' => 'energia', 'text' => 'Projeto de Distribuição de Energia', 'project_type_id' =>'5'],
-            ['name' => 'termo_aprovacao', 'text' => 'Termo de Aprovação de Loteamento', 'project_type_id' =>'5'],
-            ['name' => 'cronograma', 'text' => 'Cronograma Físico-Financeiro', 'project_type_id' =>'5'],
-            ['name' => 'licenca_ambiental', 'text' => 'Licenciamento Ambiental', 'project_type_id' =>'5'],
-            //Regularização
-            ['name' => 'guia_recolhimento', 'text' => 'Guia de Recolhimento', 'project_type_id' =>'6'],
-            ['name' => 'plantas', 'text' => 'Plantas Baixas', 'project_type_id' =>'6'],
-            ['name' => 'art_rrt', 'text' => 'ART/RRT', 'project_type_id' =>'6'],
-            ['name' => 'martricula_imovel', 'text' => 'Matrícula do Imóvel', 'project_type_id' =>'6'],
-            ['name' => 'laudo_vistoria', 'text' => 'Laudo de Vistoria', 'project_type_id' =>'6'],
-            ['name' => 'memorial_descritivo_atividade', 'text' => 'Memorial Descritivo/Relatório de Atividades', 'project_type_id' =>'6'],
-            ['name' => 'laudo_efluentes', 'text' => 'Laudo do Sistema de Tratamento de Efluentes', 'project_type_id' =>'6'],
-            ['name' => 'ppci_alvara', 'text' => 'PPCI/SPDA e Alvará do Corpo de Bombeiros', 'project_type_id' =>'6'],
-            ['name' => 'licenca_fepam', 'text' => 'Licença de Operação Ambiental', 'project_type_id' =>'6'],
-            ['name' => 'alvara_sanitaria', 'text' => 'Alvará Vigilância Sanitária ou CEVS', 'project_type_id' =>'6'],
-            //Desdobro
-            ['name' => 'guia_recolhimento', 'text' => 'Guia de Recolhimento', 'project_type_id' =>'7'],
-            ['name' => 'vias_memorial_descritivo', 'text' => 'Vias do Memorial Descritivo Simplificado', 'project_type_id' =>'7'],
-            ['name' => 'plantas', 'text' => 'Plantas Baixas', 'project_type_id' =>'7'],
-            ['name' => 'art_rrt', 'text' => 'ART/RRT', 'project_type_id' =>'7'],
-            ['name' => 'martricula_imovel', 'text' => 'Matrícula do Imóvel', 'project_type_id' =>'7'],
-            //Habite-se
-            ['name' => 'guia_recolhimento', 'text' => 'Guia de Recolhimento', 'project_type_id' =>'8'],
-            ['name' => 'alvara_construcao', 'text' => 'Alvará de Construção', 'project_type_id' =>'8'],
-            ['name' => 'martricula_imovel', 'text' => 'Matrícula do Imóvel', 'project_type_id' =>'8'],
-            ['name' => 'alvara_bombeiros', 'text' => 'Alvará Corpo de Bombeiros', 'project_type_id' =>'8'],
-            ['name' => 'licenca_fepam', 'text' => 'Licença de Operação Ambiental', 'project_type_id' =>'8'],
-            ['name' => 'alvara_sanitaria', 'text' => 'Alvará Vigilância Sanitária ou CEVS', 'project_type_id' =>'8'],
-            //Tapumes
-            ['name' => 'guia_recolhimento', 'text' => 'Guia de Recolhimento', 'project_type_id' =>'9'],
-            ['name' => 'alvara_ou_autorizacao', 'text' => 'Alvará de Construção ou Autorização de Demolição', 'project_type_id' =>'9'],
-            //Demolicao
-            ['name' => 'guia_recolhimento', 'text' => 'Guia de Recolhimento', 'project_type_id' =>'10'],
-            ['name' => 'croqui', 'text' => 'Vias do Croqui da Edificação', 'project_type_id' =>'10'],
-            ['name' => 'art_rrt', 'text' => 'ART/RRT', 'project_type_id' =>'10'],
-            ['name' => 'martricula_imovel', 'text' => 'Matrícula do Imóvel', 'project_type_id' =>'10'],
+            ['project_type_id' => ProjectType::where('name', 'edificacao_nova')->first()->id, 'document_type_id' => DocumentType::where('name', 'guia_recolhimento')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'edificacao_nova')->first()->id, 'document_type_id' => DocumentType::where('name', 'vias_memorial_descritivo')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'edificacao_nova')->first()->id, 'document_type_id' => DocumentType::where('name', 'plantas')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'edificacao_nova')->first()->id, 'document_type_id' => DocumentType::where('name', 'art_rrt')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'edificacao_nova')->first()->id, 'document_type_id' => DocumentType::where('name', 'martricula_imovel')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'edificacao_nova')->first()->id, 'document_type_id' => DocumentType::where('name', 'memorial_descritivo_atividade')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'edificacao_nova')->first()->id, 'document_type_id' => DocumentType::where('name', 'tratamento_afluentes')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'edificacao_nova')->first()->id, 'document_type_id' => DocumentType::where('name', 'ppci')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'edificacao_nova')->first()->id, 'document_type_id' => DocumentType::where('name', 'licenca_ambiental')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'edificacao_nova')->first()->id, 'document_type_id' => DocumentType::where('name', 'licenca_sanitaria')->first()->id],
+            //Ampliacao                                                        ProjectType::where('name', 'edificacao_ampliacao')->first()->id
+            ['project_type_id' => ProjectType::where('name', 'edificacao_ampliacao')->first()->id, 'document_type_id' => DocumentType::where('name', 'guia_recolhimento')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'edificacao_ampliacao')->first()->id, 'document_type_id' => DocumentType::where('name', 'vias_memorial_descritivo')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'edificacao_ampliacao')->first()->id, 'document_type_id' => DocumentType::where('name', 'art_rrt')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'edificacao_ampliacao')->first()->id, 'document_type_id' => DocumentType::where('name', 'martricula_imovel')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'edificacao_ampliacao')->first()->id, 'document_type_id' => DocumentType::where('name', 'laudo')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'edificacao_ampliacao')->first()->id, 'document_type_id' => DocumentType::where('name', 'memorial_descritivo_atividade')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'edificacao_ampliacao')->first()->id, 'document_type_id' => DocumentType::where('name', 'ppci_alvara')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'edificacao_ampliacao')->first()->id, 'document_type_id' => DocumentType::where('name', 'licenca_fepam')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'edificacao_ampliacao')->first()->id, 'document_type_id' => DocumentType::where('name', 'alvara_sanitaria')->first()->id],
+//            //Loteamento 1
+            ['project_type_id' => ProjectType::where('name', 'loteamento_1fase')->first()->id, 'document_type_id' => DocumentType::where('name', 'guia_recolhimento')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'loteamento_1fase')->first()->id, 'document_type_id' => DocumentType::where('name', 'art_rrt')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'loteamento_1fase')->first()->id, 'document_type_id' => DocumentType::where('name', 'martricula_imovel')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'loteamento_1fase')->first()->id, 'document_type_id' => DocumentType::where('name', 'viabilidade_tecnica')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'loteamento_1fase')->first()->id, 'document_type_id' => DocumentType::where('name', 'disponibilidade_coleta')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'loteamento_1fase')->first()->id, 'document_type_id' => DocumentType::where('name', 'esgotamento')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'loteamento_1fase')->first()->id, 'document_type_id' => DocumentType::where('name', 'solo')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'loteamento_1fase')->first()->id, 'document_type_id' => DocumentType::where('name', 'licenca_ambiental')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'loteamento_1fase')->first()->id, 'document_type_id' => DocumentType::where('name', 'vias_projeto')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'loteamento_1fase')->first()->id, 'document_type_id' => DocumentType::where('name', 'vias_memorial_descritivo')->first()->id],
+
+//            //Loteamento 2
+            ['project_type_id' => ProjectType::where('name', 'loteamento_2fase')->first()->id, 'document_type_id' => DocumentType::where('name', 'guia_recolhimento')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'loteamento_2fase')->first()->id, 'document_type_id' => DocumentType::where('name', 'art_rrt')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'loteamento_2fase')->first()->id, 'document_type_id' => DocumentType::where('name', 'martricula_imovel')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'loteamento_2fase')->first()->id, 'document_type_id' => DocumentType::where('name', 'aprovacao_tecnico')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'loteamento_2fase')->first()->id, 'document_type_id' => DocumentType::where('name', 'terras')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'loteamento_2fase')->first()->id, 'document_type_id' => DocumentType::where('name', 'microdrenagem')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'loteamento_2fase')->first()->id, 'document_type_id' => DocumentType::where('name', 'esgoto')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'loteamento_2fase')->first()->id, 'document_type_id' => DocumentType::where('name', 'pavimentacao')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'loteamento_2fase')->first()->id, 'document_type_id' => DocumentType::where('name', 'agua')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'loteamento_2fase')->first()->id, 'document_type_id' => DocumentType::where('name', 'energia')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'loteamento_2fase')->first()->id, 'document_type_id' => DocumentType::where('name', 'termo_aprovacao')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'loteamento_2fase')->first()->id, 'document_type_id' => DocumentType::where('name', 'cronograma')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'loteamento_2fase')->first()->id, 'document_type_id' => DocumentType::where('name', 'licenca_ambiental')->first()->id],
+//            //Regularização
+
+            ['project_type_id' => ProjectType::where('name', 'construcao_regularizacao')->first()->id, 'document_type_id' => DocumentType::where('name', 'guia_recolhimento')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'construcao_regularizacao')->first()->id, 'document_type_id' => DocumentType::where('name', 'plantas')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'construcao_regularizacao')->first()->id, 'document_type_id' => DocumentType::where('name', 'art_rrt')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'construcao_regularizacao')->first()->id, 'document_type_id' => DocumentType::where('name', 'martricula_imovel')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'construcao_regularizacao')->first()->id, 'document_type_id' => DocumentType::where('name', 'laudo_vistoria')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'construcao_regularizacao')->first()->id, 'document_type_id' => DocumentType::where('name', 'memorial_descritivo_atividade')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'construcao_regularizacao')->first()->id, 'document_type_id' => DocumentType::where('name', 'laudo_efluentes')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'construcao_regularizacao')->first()->id, 'document_type_id' => DocumentType::where('name', 'ppci_alvara')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'construcao_regularizacao')->first()->id, 'document_type_id' => DocumentType::where('name', 'licenca_fepam')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'construcao_regularizacao')->first()->id, 'document_type_id' => DocumentType::where('name', 'alvara_sanitaria')->first()->id],
+
+//            //Desdobro
+            ['project_type_id' => ProjectType::where('name', 'lotes_desmembramento_remembramento')->first()->id, 'document_type_id' => DocumentType::where('name', 'guia_recolhimento')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'lotes_desmembramento_remembramento')->first()->id, 'document_type_id' => DocumentType::where('name', 'vias_memorial_descritivo')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'lotes_desmembramento_remembramento')->first()->id, 'document_type_id' => DocumentType::where('name', 'plantas')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'lotes_desmembramento_remembramento')->first()->id, 'document_type_id' => DocumentType::where('name', 'art_rrt')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'lotes_desmembramento_remembramento')->first()->id, 'document_type_id' => DocumentType::where('name', 'martricula_imovel')->first()->id],
+
+//            //Habite-se
+            ['project_type_id' => ProjectType::where('name', 'certidao_habitese')->first()->id, 'document_type_id' => DocumentType::where('name', 'guia_recolhimento')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'certidao_habitese')->first()->id, 'document_type_id' => DocumentType::where('name', 'alvara_construcao')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'certidao_habitese')->first()->id, 'document_type_id' => DocumentType::where('name', 'martricula_imovel')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'certidao_habitese')->first()->id, 'document_type_id' => DocumentType::where('name', 'alvara_bombeiros')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'certidao_habitese')->first()->id, 'document_type_id' => DocumentType::where('name', 'licenca_fepam')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'certidao_habitese')->first()->id, 'document_type_id' => DocumentType::where('name', 'alvara_sanitaria')->first()->id],
+
+//            //Tapumes
+            ['project_type_id' => ProjectType::where('name', 'autorizacao_tapume')->first()->id, 'document_type_id' => DocumentType::where('name', 'guia_recolhimento')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'autorizacao_tapume')->first()->id, 'document_type_id' => DocumentType::where('name', 'alvara_ou_autorizacao')->first()->id],
+
+//            //Demolicao
+            ['project_type_id' => ProjectType::where('name', 'autorizacao_demolicao')->first()->id, 'document_type_id' => DocumentType::where('name', 'guia_recolhimento')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'autorizacao_demolicao')->first()->id, 'document_type_id' => DocumentType::where('name', 'croqui')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'autorizacao_demolicao')->first()->id, 'document_type_id' => DocumentType::where('name', 'art_rrt')->first()->id],
+            ['project_type_id' => ProjectType::where('name', 'autorizacao_demolicao')->first()->id, 'document_type_id' => DocumentType::where('name', 'martricula_imovel')->first()->id],
 
         ]);
     }

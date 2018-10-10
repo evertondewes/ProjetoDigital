@@ -2,7 +2,7 @@
 
 namespace ProjetoDigital\Http\Controllers;
 
-use ProjetoDigital\document_type;
+use ProjetoDigital\documentType;
 use Illuminate\Http\Request;
 
 class DocumentTypeController extends Controller
@@ -41,10 +41,10 @@ class DocumentTypeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \ProjetoDigital\document_type  $document_type
+     * @param  \ProjetoDigital\documentType  $document_type
      * @return \Illuminate\Http\Response
      */
-    public function show(document_type $document_type)
+    public function show(documentType $document_type)
     {
         //
     }
@@ -52,10 +52,10 @@ class DocumentTypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \ProjetoDigital\document_type  $document_type
+     * @param  \ProjetoDigital\documentType  $document_type
      * @return \Illuminate\Http\Response
      */
-    public function edit(document_type $document_type)
+    public function edit(documentType $document_type)
     {
         //
     }
@@ -64,10 +64,10 @@ class DocumentTypeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \ProjetoDigital\document_type  $document_type
+     * @param  \ProjetoDigital\documentType  $document_type
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, document_type $document_type)
+    public function update(Request $request, documentType $document_type)
     {
         //
     }
@@ -75,10 +75,10 @@ class DocumentTypeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \ProjetoDigital\document_type  $document_type
+     * @param  \ProjetoDigital\documentType  $document_type
      * @return \Illuminate\Http\Response
      */
-    public function destroy(document_type $document_type)
+    public function destroy(documentType $document_type)
     {
         //
     }

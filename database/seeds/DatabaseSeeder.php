@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
             PeopleTableSeeder::class, // temporário
             UsersTableSeeder::class,
             ProjectTypesTableSeeder::class,
+            DocumentTypesTableSeeder::class,
+            ChecklistsTableSeeder::class,
             StatesTableSeeder::class,
             CitiesTableSeeder::class,
             EventTypesTableSeeder::class,
