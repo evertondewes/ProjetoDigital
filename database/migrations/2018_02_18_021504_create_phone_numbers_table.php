@@ -17,6 +17,7 @@ class CreatePhoneNumbersTable extends Migration
             $table->increments('id');
             $table->string('phone');
             $table->char('area_code', 2);
+            $table->string('description')->nullable();
             $table->integer('person_id')->unsigned();
             $table->foreign('person_id')->references('id')->on('people');
         });

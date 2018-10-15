@@ -33,20 +33,26 @@ class CreateProjectsTable extends Migration
             $table->timestamps();
         });
 
+        // users that can work in project
         Schema::create('project_user', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('project_id')->unsigned();
             $table->foreign('project_id')->references('id')->on('projects');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->primary(['project_id', 'user_id']);
+            $table->softDeletes();
+            $table->timestamps();
         });
 
+        // person or enteprise that are owner of project
         Schema::create('person_project', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('project_id')->unsigned();
             $table->foreign('project_id')->references('id')->on('projects');
             $table->integer('person_id')->unsigned();
             $table->foreign('person_id')->references('id')->on('people');
-            $table->primary(['project_id', 'person_id']);
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 

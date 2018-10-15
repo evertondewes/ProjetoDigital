@@ -13,10 +13,10 @@ class CreateProjectDocumentTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('project_document_types', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
-        });
+//        Schema::create('project_document_types', function (Blueprint $table) {
+//            $table->increments('id');
+//            $table->timestamps();
+//        });
     }
 
     /**
