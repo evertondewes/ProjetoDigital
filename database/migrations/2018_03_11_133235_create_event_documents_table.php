@@ -27,7 +27,7 @@ class CreateEventDocumentsTable extends Migration
             $table->timestamps();
         });
 
-     //   DB::statement("ALTER TABLE event_documents ADD content LONGBLOB");
+        DB::statement("ALTER TABLE event_documents ADD content LONGBLOB");
     }
 
     /**
