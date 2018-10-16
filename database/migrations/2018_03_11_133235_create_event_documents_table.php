@@ -27,7 +27,7 @@ class CreateEventDocumentsTable extends Migration
             $table->timestamps();
         });
 
-        /* ## configurações necessárias no config do mysql para arquivos grandes
+        /* ## mysql configuration for large files (my.ini)
                 max_allowed_packet      = 110M
                 innodb_buffer_pool_size=511M
                 innodb_log_file_size=500M
