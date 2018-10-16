@@ -40,12 +40,13 @@ class ProjectDocumentsController extends Controller
 
     public function store(Project $project ,Request $request)
     {
+
         $this->authorize('update', $project);
 
-        foreach ($project->projectType->checklists as $item)
+        foreach ($project->projectType->documentTypes as $documentType)
         {
             $request->validate([
-                $item->name => 'mimes:pdf|max:100000'
+                $documentType->name => 'mimes:pdf|max:100000'
             ]);
         }
 
@@ -107,7 +108,7 @@ class ProjectDocumentsController extends Controller
 //
 //                dd('------');
 
-           //     dd($key , $inputs, $input, Input::hasFile($key));
+
 
 //$path = Input::file($key)->getRealPath();
 //$name = Input::file($key)->getClientOriginalName();
@@ -117,11 +118,14 @@ class ProjectDocumentsController extends Controller
                 $eventDocument=  new \ProjetoDigital\Models\EventDocument();
                 $eventDocument->name = Input::file($key)->getClientOriginalName();
                 $eventDocument->content = base64_encode(file_get_contents(Input::file($key)->getRealPath()));
+                $eventDocument->document_type_id = $key;
                 $eventDocument->event_id = $event->id;
+
                 $eventDocument->save();
 //                dd($key , $inputs, $input, Input::hasFile($key), $eventDocument);
                 //Input::file($key);
                 //$EventDocument->
+
             }
         }
 //        dd($inputs);
