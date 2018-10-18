@@ -1,4 +1,6 @@
 <?php
+// php artisan serve --host=0.0.0.0 --port=80
+// https://stackoverflow.com/questions/31455829/laravel-5-clear-cache-in-shared-hosting-server
 
 Route::get('/teste', 'TesteController@index');
 Route::post('/teste', 'TesteController@store');
