@@ -3,6 +3,7 @@
 namespace ProjetoDigital\Http\Controllers;
 
 use ProjetoDigital\Models\Project;
+use Session;
 
 class PagesController extends Controller
 {
@@ -22,9 +23,14 @@ class PagesController extends Controller
         $project = Project::find($request->id);
 
         if($project->access_key == $request->access_key) {
-            return view('customer.projects.show', compact('project'));
-        } else {
+            \Session::put('access_key_project_id_'. $project->id, $project->access_key);
 
+            $events = $project->events;
+
+            return view('pages.consult-process-result', compact('project', 'events'));
+        } else {
+            $this->alert('Processo ou chave inválida!');
+            return redirect('/consult-process');
         }
 
     }

@@ -13,7 +13,7 @@ class ProjectDocument extends Model
 
     public function project()
     {
-        return $this->belongsTo(Project::class);
+        return $this->belongsToMany(Project::class);
     }
 
     public static function analyze($project,$name,$approved)
@@ -22,6 +22,5 @@ class ProjectDocument extends Model
                 ->where('name', $name)
                 ->update(['approved' => $approved]);
     }
-   
 }
 

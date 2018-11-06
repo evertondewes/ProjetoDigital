@@ -31,6 +31,11 @@ trait HasRoles
         return $this->hasAnyRole('responsavel_tecnico');
     }
 
+    public function isSecretary()
+    {
+        return $this->hasAnyRole('secretario');
+    }
+
     public function hasAnyRole($roles)
     {
         $roles = is_array($roles) ? $roles : func_get_args();

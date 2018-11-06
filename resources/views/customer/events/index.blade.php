@@ -10,7 +10,7 @@
                     Eventos
                 </div>
                 <div class="card-body">
-                    @if (count($events))
+                    @if (count($events)>0)
                         @foreach ($events as $event)
                             <div class="card">
                                 <div class="card-body">
@@ -24,6 +24,17 @@
                                             <b>Observação:</b> {{$event->obs}}
                                         </p>
                                     @endif
+                                </div>
+                                <div class="card-body">
+                                    @if (count($event->eventDocuments)>0)
+                                        @include ('layouts.events.view')
+                                    @else
+                                        <p class="alert alert-warning text-center">
+                                            Não há anexos disponíveis <br>
+                                            <a href="/project-docs/send/{{$project->id}}">Clique aqui para anexar os arquivos necesários</a>
+                                        </p>
+                                    @endif
+
                                 </div>
                             </div>    
 

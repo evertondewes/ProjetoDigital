@@ -41,10 +41,10 @@ class Project extends Model
         return $this->belongsTo(Status::class);
     }
 
-    public function projectDocuments()
-    {
-        return $this->hasMany(ProjectDocument::class);
-    }
+//    public function projectDocuments()
+//    {
+//        return $this->hasMany(ProjectDocument::class);
+//    }
 
     public function lastEvent()
     {

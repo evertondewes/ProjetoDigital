@@ -14,4 +14,9 @@ class Checklist extends Model
     {
         return $this->belongsTo(ProjectType::class);
     }
+
+    public function documentTypes()
+    {
+        return $this->hasMany(DocumentType::class);
+    }
 }

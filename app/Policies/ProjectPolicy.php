@@ -19,7 +19,7 @@ class ProjectPolicy
      */
     public function view(User $user, Project $project)
     {
-        return $user->isCustomer() && $user->hasProject($project);
+        return ($user->isCustomer() && $user->hasProject($project)) || $user->isSecretary();
     }
 
     /**

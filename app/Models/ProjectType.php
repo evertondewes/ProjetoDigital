@@ -15,9 +15,8 @@ class ProjectType extends Model
         return $this->hasMany(Project::class);
     }
 
-    public function checklists()
+    public function documentTypes()
     {
-        return $this->hasMany(Checklist::class);
+        return $this->belongsToMany(DocumentType::class);
     }
-
 }

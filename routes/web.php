@@ -1,5 +1,6 @@
 <?php
 
+
 Route::get('/teste', 'TesteController@index');
 Route::post('/teste', 'TesteController@store');
 
@@ -11,6 +12,8 @@ Route::middleware('guest')->group(function () {
     Route::get('/help', 'PagesController@help');
 
 });
+
+
 
 Auth::routes();
 
@@ -97,3 +100,5 @@ Route::group([
     Route::post('/events/{event}/docs', 'EventDocumentsController@store');
     Route::delete('/event-docs/{eventDocument}', 'EventDocumentsController@destroy');
 });
+
+Route::resource('eventDocument', 'EventDocumentController');

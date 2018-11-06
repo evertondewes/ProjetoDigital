@@ -3,6 +3,8 @@
         <tr>
             <th>Número:</th>
             <td>{{ $project->id }}</td>
+            <th>Chave:</th>
+            <td>{{ $project->access_key }}</td>
         </tr>
         <tr>
             <th>Solicitado em:</th>

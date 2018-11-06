@@ -13,17 +13,17 @@ class CreateProjectDocumentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('project_documents', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('description');
-            $table->string('path');
-            $table->integer('project_id')->unsigned();
-            $table->foreign('project_id')->references('id')->on('projects');
-            $table->boolean('approved')->nullable();
-            $table->softDeletes();
-            $table->timestamps();
-        });
+//        Schema::create('project_documents', function (Blueprint $table) {
+//            $table->increments('id');
+//            $table->string('name');
+//            $table->string('description');
+//            $table->string('path');
+//            $table->integer('project_id')->unsigned();
+//            $table->foreign('project_id')->references('id')->on('projects');
+//            $table->boolean('approved')->nullable();
+//            $table->softDeletes();
+//            $table->timestamps();
+//        });
     }
 
     /**
@@ -33,6 +33,6 @@ class CreateProjectDocumentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('project_documents');
+//        Schema::dropIfExists('project_documents');
     }
 }

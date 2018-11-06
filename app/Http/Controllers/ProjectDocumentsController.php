@@ -10,6 +10,7 @@ use ProjetoDigital\Models\ProjectType;
 use ProjetoDigital\Models\Event;
 use Illuminate\Foundation\Http\FormRequest;
 use Auth;
+use Illuminate\Support\Facades\Input;
 
 class ProjectDocumentsController extends Controller
 {
@@ -38,38 +39,36 @@ class ProjectDocumentsController extends Controller
     }
 
     public function store(Project $project ,Request $request)
-    {      
+    {
+
         $this->authorize('update', $project);
 
-        foreach ($project->projectType->checklists as $item) 
+        foreach ($project->projectType->documentTypes as $documentType)
         {
             $request->validate([
-                $item->name => 'mimes:pdf|max:10000'
+                $documentType->name => 'mimes:pdf|max:100000'
             ]);
         }
-       
-        $folder = "public/projeto_".$project->id;
 
-        foreach ($project->projectType->checklists as $item)
-        {
-            $name = $item->name;
+        $event = Event::createEvent($project,7,Auth::user()->id,null);
 
-            if (!is_null($request->$name)) 
-            {
-                $project->projectDocuments()->create([
-                    'name' => $name,
-                    'description' => $item->text,
-                    'path' => $request->$name->storeAs($folder, $name.'.pdf')
-                ]);
+        $inputs = $request->all();
+
+        foreach ($inputs as $key => $input) {
+            if(Input::hasFile($key)) {
+                $eventDocument=  new \ProjetoDigital\Models\EventDocument();
+                $eventDocument->name = Input::file($key)->getClientOriginalName();
+                $eventDocument->content = base64_encode(file_get_contents(Input::file($key)->getRealPath()));
+                $eventDocument->document_type_id = $key;
+                $eventDocument->event_id = $event->id;
+
+                $eventDocument->save();
             }
-       }
-        Event::createEvent($project,7,Auth::user()->id,null);
+        }
 
         $this->alert('Projeto criado com sucesso!');
-
         return redirect('/projects');
- 
-    }
+     }
 
     public function edit(ProjectDocument $projectDocument)
     {

@@ -15,10 +15,12 @@ class CreateChecklistsTable extends Migration
     {
         Schema::create('checklists', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('text');
             $table->integer('project_type_id')->unsigned();
             $table->foreign('project_type_id')->references('id')->on('project_types');
+            $table->integer('document_type_id')->unsigned();
+            $table->foreign('document_type_id')->references('id')->on('document_types');
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 
