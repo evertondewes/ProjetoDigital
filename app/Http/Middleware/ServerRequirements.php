@@ -25,18 +25,6 @@ class ServerRequirements
             $request->request->set('cpf_cnpj', $sanitized);
         }
 
-
-
-        if($request->path() == 'logout') {
-
-            auth()->logout();
-            \Session::flush();
-            auth()->logout();
-
-            return route('logout');
-
-        }
-
         return $next($request);
     }
 }
