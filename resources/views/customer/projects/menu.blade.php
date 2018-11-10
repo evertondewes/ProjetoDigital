@@ -8,6 +8,10 @@
             <div class="list-group list-group-flush">
                 <a href="/projects/{{ $project->id }}" class="list-group-item">Ver detalhes</a>
 
+                <a href="/projects/{{ $project->id }}/docs" class="list-group-item">
+                    Documentos
+                </a>
+
                 <a href="/projects/{{ $project->id }}/historic" class="list-group-item">
                     Eventos
                 </a>
@@ -24,12 +28,12 @@
                     </a>
                 @endcan
 
-                <a href="/projects/{{ $project->id }}/docs" class="list-group-item">Anexos</a>
 
                 <a href="#" class="list-group-item">Pagamentos</a>
 
                 @can ('delete', $project)
-                    <a href="#" class="list-group-item text-danger" data-form-id="#delete-form" data-toggle="modal" data-target="#are-you-sure-modal">
+                    <a href="#" class="list-group-item text-danger" data-form-id="#delete-form" data-toggle="modal"
+                       data-target="#are-you-sure-modal">
                         Excluir
                     </a>
 

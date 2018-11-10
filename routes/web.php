@@ -1,9 +1,6 @@
 <?php
 
 
-Route::get('/teste', 'TesteController@index');
-Route::post('/teste', 'TesteController@store');
-
 Route::middleware('guest')->group(function () {
     Route::get('/', 'PagesController@index');
     Route::get('/consult-process', 'PagesController@consultProcess');
@@ -12,8 +9,6 @@ Route::middleware('guest')->group(function () {
     Route::get('/help', 'PagesController@help');
 
 });
-
-
 
 Auth::routes();
 
@@ -51,7 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/project-docs/{projectDocument}', 'ProjectDocumentsController@destroy');
     Route::get('/event-docs/{eventDocument}', 'Backend\EventDocumentsController@download');
 });
-
+//dd($_POST);
 Route::middleware('customer')->group(function () {
     Route::get('/dashboard', 'DashboardController@index');
 

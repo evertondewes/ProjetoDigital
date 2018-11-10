@@ -15,4 +15,9 @@ class EventDocument extends Model
     {
         return $this->belongsTo(Event::class);
     }
+
+    public function documentType()
+    {
+        return $this->belongsTo(DocumentType::class);
+    }
 }

@@ -11,6 +11,7 @@ use ProjetoDigital\Models\Event;
 use ProjetoDigital\Models\ProjectType;
 use ProjetoDigital\Http\Requests\ProjectForm;
 use Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProjectsController extends Controller
 {
@@ -19,13 +20,33 @@ class ProjectsController extends Controller
         $this->authorizeResource(Project::class);
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        if(!is_null($request->search)) {
+            $project = Project::find($request->search);
+            if (!is_null($project)) {
+                return redirect('/projects/'.$request->search);
+            }
+        }
+
+        $queryProject = Project::query();
+
+        $queryProject->orderBy('id','desc');
+
+        if(!is_null($request->search)) {
+            $queryProject->whereHas('people',function($q) use ($request){
+                return $q->where('people.name', 'like', '%'.$request->search.'%');
+            });
+        }
         $user = auth()->user();
 
-        $projects = $user->isTechnicalManager()
-            ? $user->projects()->latest()->paginate(10)
-            : $user->person->projects()->latest()->paginate(10);
+        if($user->isTechnicalManager()) {
+            $queryProject->whereHas('users',function($q) use ($user){
+                return $q->where('users.id', '=', $user->id);
+            });
+        }
+
+        $projects = $queryProject->paginate(20);
 
         return view('customer.projects.index', compact('projects'));
     }
@@ -39,8 +60,7 @@ class ProjectsController extends Controller
 
     public function store(ProjectForm $form)
     {
-        if (is_null(People::find($form->input('cpf_cnpj')))) 
-        {
+        if (is_null(People::find($form->input('cpf_cnpj')))) {
             return $this->personNotFoundResponse($form);
         }
 
@@ -48,7 +68,7 @@ class ProjectsController extends Controller
 
         //Event::createEvent($project,7,Auth::user()->id,null);
 
-        return redirect('/project-docs/send/'.$project->id);
+        return redirect('/project-docs/send/' . $project->id);
     }
 
     protected function personNotFoundResponse(ProjectForm $form)
@@ -72,7 +92,7 @@ class ProjectsController extends Controller
         //session()->flash('novo_projeto', true);
 
         return redirect('/owners/add');
-   
+
     }
 
     public function show(Project $project)
@@ -87,7 +107,7 @@ class ProjectsController extends Controller
         // if (is_null($project)) 
         // {
         //     $person = Person::where('name', 'like', "%{$request->search}%")->get();
-            
+
         //     $projects = Project::whereHas('person', function ($query) use ($request) {
         //     $query->where('name', 'like', "%{$request->search}%");
 
@@ -95,12 +115,10 @@ class ProjectsController extends Controller
         // });
         // }
 
-        if ($project) 
-        {
-           if ($project->technicalManager->id != Auth::user()->id) 
-                   {
-                      $project = null;
-                   }
+        if ($project) {
+            if ($project->technicalManager->id != Auth::user()->id) {
+                $project = null;
+            }
         }
 
         return view('customer.search-result', compact('project'));
@@ -119,7 +137,7 @@ class ProjectsController extends Controller
     {
         $form->update($project);
 
-        Event::createEvent($project,8,Auth::user()->id,null);
+        Event::createEvent($project, 8, Auth::user()->id, null);
 
         $this->alert('Solicitação atualizada com sucesso!');
 

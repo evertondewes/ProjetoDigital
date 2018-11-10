@@ -13,9 +13,9 @@
                 </div>
 
                 <div class="card-body">
-                    <form  class="form-inline" method="POST" action="/projects/search">
-                        {{ csrf_field() }}
-                        <input style="width: 80%;" type="text" class="form-control mb-2 mr-sm-2" name=" search" placeholder="Buscar Projeto por ou Numero" required>
+                    <form  class="form-inline" method="GET" action="/projects">
+
+                        <input style="width: 80%;" type="text" class="form-control mb-2 mr-sm-2" name="search" placeholder="Buscar Projeto por Nome do Cliente ou Número do Projeto" required>
                         <button type="submit" class="btn btn-primary mb-2">Buscar</button>
                     </form>
                 </div>

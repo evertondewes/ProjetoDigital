@@ -13,7 +13,7 @@ class EventsController extends Controller
 
         return view('customer.events.index', [
             'project' => $project,
-            'events' => $project->events()->latest()->get(),
+            'events' => $project->events->reverse() ,
         ]);
     }
 

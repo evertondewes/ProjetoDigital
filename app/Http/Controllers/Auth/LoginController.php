@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use ProjetoDigital\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Auth;
+
 
 class LoginController extends Controller
 {
@@ -53,8 +55,8 @@ class LoginController extends Controller
     {
         $user = User::where($request->only($this->username()))->first();
 
-        if (! is_null($user) &&
-            ! $user->isActive() &&
+        if (!is_null($user) &&
+            !$user->isActive() &&
             Hash::check($request->input('password'), $user->password)
         ) {
             $this->alert('Esta conta não está ativada!', 'danger');
@@ -70,5 +72,11 @@ class LoginController extends Controller
     public function username()
     {
         return 'username';
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return redirect('/login');
     }
 }
