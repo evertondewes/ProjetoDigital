@@ -1,4 +1,6 @@
 <?php
+// php artisan serve --host=0.0.0.0 --port=80
+// https://stackoverflow.com/questions/31455829/laravel-5-clear-cache-in-shared-hosting-server
 
 
 Route::middleware('guest')->group(function () {
@@ -9,6 +11,8 @@ Route::middleware('guest')->group(function () {
     Route::get('/help', 'PagesController@help');
 
 });
+
+
 
 Auth::routes();
 
