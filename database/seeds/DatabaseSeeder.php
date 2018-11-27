@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             ProjectTypesTableSeeder::class,
             DocumentTypesTableSeeder::class,
+            DocumentTypeProjectTypeTableSeeder::class,
             StatesTableSeeder::class,
             CitiesTableSeeder::class,
             EventTypesTableSeeder::class,
@@ -24,7 +25,6 @@ class DatabaseSeeder extends Seeder
             // temporário
             PhoneNumbersTableSeeder::class,
             AddressesTableSeeder::class,
-            DocumentTypeProjectTypeTableTableSeeder::class,
         ]);
     }
 }

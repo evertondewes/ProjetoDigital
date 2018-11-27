@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use \ProjetoDigital\Models\ProjectType;
 use \ProjetoDigital\Models\DocumentType;
 
-class DocumentTypeProjectTypeTableTableSeeder extends Seeder
+class DocumentTypeProjectTypeTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
