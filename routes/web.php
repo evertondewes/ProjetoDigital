@@ -50,11 +50,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/project-docs/{projectDocument}', 'ProjectDocumentsController@destroy');
     Route::get('/event-docs/{eventDocument}', 'Backend\EventDocumentsController@download');
 });
-//dd($_POST);
+//dd($_POST);DashboardController
 Route::middleware('customer')->group(function () {
     Route::get('/dashboard', 'DashboardController@index');
 
-    Route::resource('projects', 'ProjectsController');
+//    Route::resource('projects', 'ProjectsController');
 
     Route::get('/owners/add/{project?}', 'OwnersController@create');
     Route::post('/owners/{project?}', 'OwnersController@store');
@@ -89,7 +89,7 @@ Route::group([
     Route::patch('/pending-accounts/{user}', 'PendingAccountsController@activate');
 
     Route::get('/projects', 'ProjectsController@index');
-    Route::get('/projects/{project}', 'ProjectsController@show');
+    //Route::get('/projects/{project}', 'ProjectsController@show');
 
     Route::get('/projects/{project}/events', 'EventsController@index');
     Route::get('/projects/{project}/events/create', 'EventsController@create');
@@ -99,5 +99,7 @@ Route::group([
     Route::post('/events/{event}/docs', 'EventDocumentsController@store');
     Route::delete('/event-docs/{eventDocument}', 'EventDocumentsController@destroy');
 });
+
+Route::resource('projects', 'ProjectsController');
 
 Route::resource('eventDocument', 'EventDocumentController');

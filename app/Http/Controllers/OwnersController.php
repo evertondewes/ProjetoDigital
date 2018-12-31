@@ -12,15 +12,15 @@ class OwnersController extends Controller
 {
     public function create(Project $project = null)
     {
+
         if (Gate::denies('add-owner', $project)) {
             abort(403);
         }
+        $project = session()->get('project_data')['project'];
 
-        session()->reflash();
+        $cpf_cnpj = session('project_data')['owner']['cpf_cnpj'];
 
-        $hasProjectData = session()->has('project_data');
-
-        return view('customer.projects.add-owner', compact('project', 'hasProjectData'));
+        return view('customer.projects.add-owner', ['project' => $project, 'cpf_cnpj' => $cpf_cnpj] );
     }
 
     public function store(OwnerForm $form, Project $project = null)
@@ -29,24 +29,34 @@ class OwnersController extends Controller
             abort(403);
         }
 
+        $owner = $form->persist();
+
         if (is_null($project)) {
-            return $this->pendingOwnerRegistrationResponse($form);
+            return back();
         }
 
-        $project->people()->attach($form->persist());
+        $project->people()->attach($owner);
+
+        $event = session()->get('event_data');
+
+        Event::sendMailProjectStatus($owner->email, $project, $event);
+
 
         $this->alert('Requerente adicionado com sucesso!');
 
-        return back();
+        return redirect('/project-docs/send/' . $project->id);
     }
 
-    protected function pendingOwnerRegistrationResponse(OwnerForm $form)
-    {
-    
-        $project = $form->persist();
-        
-        return redirect('/project-docs/send/'.$project->id);
-
-        //return redirect('/projects');
-    }
+//    protected function pendingOwnerRegistrationResponse(OwnerForm $form)
+//    {
+//
+//
+//        $form->persist();
+//
+//        $projectData = session('project_data');
+//dd($projectData);
+//        return redirect('/project-docs/send/'. $projectData['project']->id);
+//
+//        //return redirect('/projects');
+//    }
 }

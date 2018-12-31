@@ -13,7 +13,7 @@ trait HasRoles
 
     public function isBackendWorker()
     {
-        return $this->hasAnyRole('admin', 'secretario', 'engenheiro', 'estagiario');
+        return $this->hasAnyRole('admin', 'secretario', 'engenheiro', 'estagiario', 'prefeito', 'vice_prefeito');
     }
 
     public function isEngineer()

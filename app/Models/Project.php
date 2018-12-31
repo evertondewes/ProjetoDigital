@@ -23,12 +23,12 @@ class Project extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class)->withTimestamps();
     }
 
     public function people()
     {
-        return $this->belongsToMany(Person::class);
+        return $this->belongsToMany(Person::class)->withTimestamps();
     }
 
     public function events()

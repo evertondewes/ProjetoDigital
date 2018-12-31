@@ -33,8 +33,9 @@ class ProjectDocumentsController extends Controller
         return Storage::download($projectDocument->path, $projectDocument->name.'.pdf');
     }
 
-    public function send(Project $project)
+    public function send($id)
     {
+        $project = Project::find($id);
         return view('customer.projects.send-documents', compact('project'));
     }
 
@@ -50,7 +51,7 @@ class ProjectDocumentsController extends Controller
             ]);
         }
 
-        $event = Event::createEvent($project,7,Auth::user()->id,null);
+        $event = Event::createEvent($project,9, Auth::user()->id,null);
 
         $inputs = $request->all();
 
@@ -66,7 +67,7 @@ class ProjectDocumentsController extends Controller
             }
         }
 
-        $this->alert('Projeto criado com sucesso!');
+        $this->alert('Documentos adicionados com sucesso!');
         return redirect('/projects');
      }
 

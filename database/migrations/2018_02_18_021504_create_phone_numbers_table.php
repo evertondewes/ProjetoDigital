@@ -20,6 +20,7 @@ class CreatePhoneNumbersTable extends Migration
             $table->string('description')->nullable();
             $table->integer('person_id')->unsigned();
             $table->foreign('person_id')->references('id')->on('people');
+            $table->softDeletes();
         });
     }
 

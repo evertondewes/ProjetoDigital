@@ -34,7 +34,7 @@
 
                         <div class="form-group">
                             <label for="cpf_cnpj">CPF / CNPJ:</label>
-                            <input type="text" id="cpf_cnpj" class="form-control" name="cpf_cnpj" value="{{ old('cpf_cnpj') ?: session('project_data')['owner']['cpf_cnpj'] }}">
+                            <input type="text" id="cpf_cnpj" class="form-control" name="cpf_cnpj" value="{{ old('cpf_cnpj') ?: $cpf_cnpj }}">
                         </div>
 
                         <div class="form-group">

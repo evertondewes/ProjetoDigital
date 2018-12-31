@@ -12,4 +12,9 @@ class ProjectAddress extends Model
     {
         return $this->belongsTo(Project::class);
     }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
 }

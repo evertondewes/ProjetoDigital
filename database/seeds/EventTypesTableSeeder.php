@@ -22,6 +22,7 @@ class EventTypesTableSeeder extends Seeder
             ['name' => 'projeto_criado', 'description' => 'Projeto Criado'],
             ['name' => 'projeto_editado', 'description' => 'Projeto Editado'],
             ['name' => 'projeto_excluido', 'description' => 'Projeto Excluído'],
+            ['name' => 'documentos_adicionados', 'description' => 'Novos documentos adicionados ao projeto'],
         ]);
     }
 }

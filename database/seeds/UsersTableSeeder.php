@@ -15,7 +15,27 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                'person_id' => 1,
+                'person_id' => DB::table('people')->where('email', 'prefeito@cerrolargo.rs.gov.br')->first()->id,
+                'email' => 'prefeito@cerrolargo.rs.gov.br',
+                'username' => 'prefeito',
+                'password' => bcrypt(env('ROOT_PASSWORD')),
+                'active' => true,
+                'role_id' => DB::table('roles')->where('name', 'prefeito')->first()->id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'person_id' => DB::table('people')->where('email', 'vice_prefeito@cerrolargo.rs.gov.br')->first()->id,
+                'email' => 'vice_prefeito@cerrolargo.rs.gov.br',
+                'username' => 'vice_prefeito',
+                'password' => bcrypt(env('ROOT_PASSWORD')),
+                'active' => true,
+                'role_id' => DB::table('roles')->where('name', 'vice_prefeito')->first()->id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'person_id' => DB::table('people')->where('email', 'isaac.newton@exemplo.com')->first()->id,
                 'email' => 'isaac.newton@exemplo.com',
                 'username' => env('ROOT_USERNAME'),
                 'password' => bcrypt(env('ROOT_PASSWORD')),
@@ -25,7 +45,7 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'person_id' => 2,
+                'person_id' => DB::table('people')->where('email', 'albert.einstein@exemplo.com')->first()->id,
                 'email' => 'albert.einstein@exemplo.com',
                 'username' => 'sec.alberteinstein',
                 'password' => bcrypt(env('ROOT_PASSWORD')),
@@ -35,7 +55,7 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'person_id' => 3,
+                'person_id' => DB::table('people')->where('email', 'galileu.galilei@exemplo.com')->first()->id,
                 'email' => 'galileu.galilei@exemplo.com',
                 'username' => 'res.galileugalilei',
                 'password' => bcrypt(env('ROOT_PASSWORD')),
@@ -45,7 +65,7 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'person_id' => 4,
+                'person_id' => DB::table('people')->where('email', 'antoine.lavoisier@exemplo.com')->first()->id,
                 'email' => 'antoine.lavoisier@exemplo.com',
                 'username' => 'est.antoinelavoisier',
                 'password' => bcrypt(env('ROOT_PASSWORD')),
@@ -55,7 +75,7 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'person_id' => 5,
+                'person_id' => DB::table('people')->where('email', 'stephen.hawking@exemplo.com')->first()->id,
                 'email' => 'stephen.hawking@exemplo.com',
                 'username' => 'cli.stephenhawking',
                 'password' => bcrypt(env('ROOT_PASSWORD')),

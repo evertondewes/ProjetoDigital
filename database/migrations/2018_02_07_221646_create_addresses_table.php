@@ -26,6 +26,7 @@ class CreateAddressesTable extends Migration
             $table->integer('created_by')->nullable()->unsigned();
             $table->foreign('created_by')->references('id')->on('users');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

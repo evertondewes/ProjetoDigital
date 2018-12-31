@@ -33,7 +33,8 @@ class ProjectForm extends FormRequest
             $this->request->add(['status_id' => DB::table('status')->where('name', 'pendencias')->first()->id]);
             $project = Project::create($this->only(['description', 'project_type_id', 'status_id']));
             $project->users()->attach(auth()->id());
-            $project->people()->attach(People::id($this->input('cpf_cnpj')));
+
+            //$project->people()->attach(People::id($this->input('cpf_cnpj')));
 
             /*foreach ((array) $this->file('project_documents') as $file) {
                 $project->projectDocuments()->create([
@@ -43,6 +44,7 @@ class ProjectForm extends FormRequest
             }*/
 
             $this->createAddress($project);
+
 
             DB::commit();
 

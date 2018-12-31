@@ -15,7 +15,7 @@
                 <div class="card-body">
                     <h4 class="text-center">Solicitação</h4>
 
-                    <form method="POST" action="/projects" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('projects.store') }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
 
                         <div class="form-group">

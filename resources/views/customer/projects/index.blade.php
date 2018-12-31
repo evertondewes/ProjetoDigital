@@ -41,8 +41,12 @@
                     <tbody>
                         @foreach ($projects as $project)
                             <tr>
-                                <td>{{ $project->id }}</td>
-                                <td>{{ $project->people->first()->name }}</td>
+                                <td>
+                                    <a title="{{ $project->id }}" href="/projects/{{ $project->id }}">
+                                        {{ $project->id }}
+                                    </a>
+                                </td>
+                                <td>{{ null !== $project->people->first()  ? $project->people->first()->name : '' }}</td>
                                 <td>
                                     <a title="{{ $project->projectType->description }}" href="/projects/{{ $project->id }}">
                                         {{ $project->projectType->description }}

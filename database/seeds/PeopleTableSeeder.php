@@ -13,6 +13,22 @@ class PeopleTableSeeder extends Seeder
     {
         DB::table('people')->insert([
             [
+                'name' => 'Prefeito',
+                'email' => 'prefeito@cerrolargo.rs.gov.br',
+                'cpf_cnpj' => '81879183510',
+                'crea_cau' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Vice Prefeito',
+                'email' => 'vice_prefeito@cerrolargo.rs.gov.br',
+                'cpf_cnpj' => '81879183511',
+                'crea_cau' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
                 'name' => 'Isaac Newton',
                 'email' => 'isaac.newton@exemplo.com',
                 'cpf_cnpj' => '81879183579',

@@ -19,6 +19,7 @@ class CreateDocumentTypesTable extends Migration
             $table->string('title');
             $table->string('text', 512);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

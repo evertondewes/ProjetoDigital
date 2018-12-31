@@ -29,6 +29,7 @@ class CreateUsersTable extends Migration
             $table->foreign('deleted_by')->references('id')->on('users');
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -60,39 +60,24 @@ class ProjectsController extends Controller
 
     public function store(ProjectForm $form)
     {
-        if (is_null(People::find($form->input('cpf_cnpj')))) {
-            return $this->personNotFoundResponse($form);
-        }
-
         $project = $form->persist();
 
-        //Event::createEvent($project,7,Auth::user()->id,null);
+        session()->put('project_data', ['project' => $project, 'owner' => $form->only(['cpf_cnpj'])]);
+
+        $event = Event::createEvent($project,7, Auth::user()->id,null);
+
+        $owner = People::find($form->input('cpf_cnpj'));
+
+        if (is_null($owner)) {
+
+            session()->put('event_data', $event);
+
+            return redirect('/owners/add');
+        }
+
+        $project->people()->attach($owner->id);
 
         return redirect('/project-docs/send/' . $project->id);
-    }
-
-    protected function personNotFoundResponse(ProjectForm $form)
-    {
-        $projectData = [
-            'project' => $form->only(['description', 'project_type_id']),
-            'address' => $form->only(['complement', 'number', 'street', 'district', 'area']),
-            'owner' => $form->only(['cpf_cnpj']),
-        ];
-
-        $projectData['address'] += ['city_id' => Cities::id(env('CITY'))];
-
-        /*foreach ((array) $form->file('project_documents') as $file) {
-            $projectData['documents'][] = [
-                'name' => $file->getClientOriginalName(),
-                'path' => $file->store('temp'),
-            ];
-        }*/
-
-        session()->flash('project_data', $projectData);
-        //session()->flash('novo_projeto', true);
-
-        return redirect('/owners/add');
-
     }
 
     public function show(Project $project)

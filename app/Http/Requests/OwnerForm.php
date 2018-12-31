@@ -34,25 +34,9 @@ class OwnerForm extends FormRequest
             $this->createAddress($person->id);
             $this->createPhoneNumber($person->id);
 
-            if (! session()->has('project_data')) {
-                DB::commit();
-
-                return $person;
-            }
-
-            $projectData = session('project_data');
-
-            $project = Project::create($projectData['project']);
-            $project->users()->attach(auth()->id());
-            $project->people()->attach(People::id($this->input('cpf_cnpj')));
-
-            $project->projectAddresses()->create($projectData['address']);
-
-            session()->forget('project_data');
-
             DB::commit();
 
-            return $project;
+            return $person;
         } catch (Exception $e) {
             DB::rollback();
 
