@@ -18,6 +18,11 @@ class User extends Authenticatable
         return $this->belongsTo(Person::class);
     }
 
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
     public function isActive()
     {
         return $this->active;

@@ -3,6 +3,7 @@
 namespace ProjetoDigital\Http\Controllers\Backend;
 
 use ProjetoDigital\Models\User;
+use ProjetoDigital\Models\Role;
 use ProjetoDigital\Repositories\Roles;
 use ProjetoDigital\Http\Controllers\Controller;
 use ProjetoDigital\Http\Requests\BackendRegistrationForm;
@@ -19,15 +20,25 @@ class UsersController extends Controller
         $filter = request('filter') ?? 1;
         $order = request('order') ?? 'asc';
         $by = request('by') ?? 'id';
+        $role_id = request('role');
 
-        $users = User::where('active', $filter)
-            ->orderBy($by, $order)
-            ->paginate(10);
+        if(is_null($role_id)) {
+            $users = User::where('active', $filter)->orderBy($by, $order)->paginate(50);
+        } else {
+            $users = User::where(['active' => $filter, 'role_id' => $role_id])->orderBy($by, $order)->paginate(50);
+        }
 
-        return view(
-            'backend.users.index',
-            compact('users', 'order', 'by', 'filter')
-        );
+        //$users->orderBy($by, $order)->paginate(10);
+
+        $roles = Role::all();
+        foreach ($roles as $role) {
+            if($role->id == $role_id) {
+                $role_selecionada = $role;
+                break;
+            }
+        }
+
+        return view('backend.users.index', compact('users', 'order', 'by', 'filter', 'roles', 'role_selecionada'));
     }
 
     public function create(Roles $roles)

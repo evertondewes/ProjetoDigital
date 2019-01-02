@@ -22,6 +22,21 @@
 
                 <div class="dropdown">
                     <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                        {{ $role_selecionada->description ?? 'Tipo de Usuário:' }}
+                    </button>
+
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{ url()->current() }}">Todos</a>
+                        @foreach($roles as $role)
+                            <a class="dropdown-item" href="{{ url()->current() }}?role={{ $role->id }}">
+                                {{ $role->description }}
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
                         Ordenar por:
                     </button>
 
