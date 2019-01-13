@@ -5,7 +5,7 @@ namespace ProjetoDigital\Http\Controllers;
 use Illuminate\Support\Facades\Gate;
 use ProjetoDigital\Http\Requests\OwnerForm;
 use ProjetoDigital\Models\Project;
-// use ProjetoDigital\Models\Event;
+use ProjetoDigital\Models\Event;
 use Auth;
 
 class OwnersController extends Controller
